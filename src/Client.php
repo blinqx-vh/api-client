@@ -1,0 +1,82 @@
+<?php
+declare(strict_types = 1);
+
+namespace Dnhb\ApiClient;
+
+use Dnhb\ApiClient\Contract\ApiRequestInterface;
+use Dnhb\ApiClient\Contract\AuthInterface;
+use Dnhb\ApiClient\Exception\ApiClientAuthException;
+use Dnhb\ApiClient\Exception\ApiClientConnectException;
+use Dnhb\ApiClient\Exception\ApiClientResponseException;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
+
+/**
+ * Class Client
+ *
+ * @package Dnhb\ApiClient
+ */
+final class Client
+{
+    /** @var ClientInterface */
+    private $client;
+    /** @var AuthInterface */
+    private $auth;
+    /** @var string */
+    private $host = 'http://api.hypotheekbond.nl';
+
+    /**
+     * Client constructor.
+     *
+     * @param ClientInterface $client
+     * @param AuthInterface $auth
+     */
+    public function __construct(ClientInterface $client, AuthInterface $auth)
+    {
+
+        $this->client = $client;
+        $this->auth = $auth;
+    }
+
+    /**
+     * @param ApiRequestInterface $request
+     * @return mixed
+     * @throws ApiClientAuthException
+     * @throws ApiClientResponseException
+     */
+    public function send(ApiRequestInterface $request)
+    {
+        $requestParams = $request->getRequestParams();
+
+        $requestParams[$this->auth->getKey()] = $this->auth->getValue();
+        $paramString = http_build_query($requestParams);
+        $url = "{$this->host}/{$request->getBaseUrl()}?{$paramString}";
+        $method = $request->getMethod();
+
+        try {
+            $response = $this->client->request($method, $url, [
+                'headers' => [
+                    'Accept' => 'application/json',
+                ]
+            ]);
+            $responseBody = $response->getBody()->getContents();
+            return $request->getResponseTransformer()->transform(json_decode($responseBody, true));
+        } catch (ClientException $e) {
+            throw new ApiClientResponseException($e->getMessage(), $e->getRequest(), $e->getResponse(), $e->getCode(),
+                $e);
+        } catch (ConnectException $e) {
+            throw new ApiClientConnectException($e->getMessage(), $e->getRequest(), $e->getResponse(), $e);
+        }
+    }
+
+    /**
+     * @param string $host
+     * @return Client
+     */
+    public function setHost($host): Client
+    {
+        $this->host = $host;
+        return $this;
+    }
+}

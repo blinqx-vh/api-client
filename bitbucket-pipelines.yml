@@ -1,0 +1,9 @@
+image: composer/composer:php7
+
+pipelines:
+  default:
+    - step:
+        script:
+          - composer validate
+          - COMPOSER_ROOT_VERSION=$(git describe --abbrev=0 --tags) composer install --prefer-dist
+          - vendor/bin/phpunit
