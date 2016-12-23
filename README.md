@@ -1,10 +1,10 @@
-#api-client (Not production ready!!) #
+#Hypotheekbond API Client
 
-##Description##
+##Description
 Wrapper around the Hypotheekbond API
 
 
-##Example usage##
+##Example usage
 
 constructing the api client 
 
@@ -19,17 +19,24 @@ simple usage
 complex requests
 
     $fixedRatePeriods = [
-        new PaymentFixedRatePeriodParameter(10, 2.5),
+        new PaymentFixedRatePeriodParameter(10, 2.65)
     ];
+
     $loanParts = [
-        new PaymentLoanpartParameter(new MortgageType(MortgageType::ANNUITY), 150000, 360, $fixedRatePeriods),
+        new PaymentLoanpartParameter(
+            new MortgageType(MortgageType::LINEAR),
+            100000.0,
+            1,
+            $fixedRatePeriods
+        )
     ];
+
     $persons = [
         new PaymentPersonParameter(new DateTime('1980-01-01'), 15000),
-        new PaymentPersonParameter(new DateTime('1985-01-01'), 30000),
+        new PaymentPersonParameter(new DateTime('1985-01-01'), 35000)
     ];
-    
-    $payments = $api->calculation()->getMortgagePayments($loanParts, 150000, $persons);
+
+    $payments = $api->calculation()->getMortgagePayments($loanParts, 125000.0, $persons); 
     $investment = $payments->getTotal()->getInvestment();
     $firstMonthInterest = $response->getPayments()[0]->getInterest();
      
