@@ -32,7 +32,7 @@ final class FineLoanpartParameter implements GetParameterInterface
     /** @var string */
     private $fixedRateTermStartDate;
     /** @var int */
-    private $fixedRateTermDurationInYears;
+    private $fixedRateTermDurationInMonths;
     /** @var float */
     private $remainingDebt;
     /** @var float */
@@ -98,7 +98,7 @@ final class FineLoanpartParameter implements GetParameterInterface
         $this->loanpartStartDate = $loanpartStartDate->format('Y-m-d');
         $this->loanpartDurationInMonths = $loanpartDurationInMonths;
         $this->fixedRateTermStartDate = $fixedRateTermStartDate->format('Y-m-d');
-        $this->fixedRateTermDurationInYears = round($fixedRateTermDurationInMonths / 12);
+        $this->fixedRateTermDurationInMonths = $fixedRateTermDurationInMonths;
         $this->remainingDebt = $remainingDebt;
         $this->interestPercentage = $interestPercentage;
         $this->originalDebt = $originalDebt;
@@ -117,7 +117,7 @@ final class FineLoanpartParameter implements GetParameterInterface
             'loanPartStartDate' => $this->loanpartStartDate,
             'loanPartDuration' => $this->loanpartDurationInMonths,
             'fixedRateTermStartDate' => $this->fixedRateTermStartDate,
-            'fixedRateTermDuration' => $this->fixedRateTermDurationInYears,
+            'fixedRateTermDurationInMonths' => $this->fixedRateTermDurationInMonths,
             'remainingDebt' => $this->remainingDebt,
             'percentage' => $this->interestPercentage,
             'originalDebt' => $this->originalDebt,
@@ -155,9 +155,9 @@ final class FineLoanpartParameter implements GetParameterInterface
     /**
      * @return int
      */
-    public function getFixedRateTermDurationInYears(): int
+    public function getFixedRateTermDurationInMonths(): int
     {
-        return $this->fixedRateTermDurationInYears;
+        return $this->fixedRateTermDurationInMonths;
     }
 
     /**

@@ -45,7 +45,7 @@ final class FineLoanpartTest extends ApiClientTestCase
                 'loanPartStartDate=2000-10-10',
                 'loanPartDuration=360',
                 'fixedRateTermStartDate=2000-10-10',
-                'fixedRateTermDuration=20',
+                'fixedRateTermDurationInMonths=240',
                 'remainingDebt=100000',
                 'percentage=4.65',
                 'originalDebt=200000',
