@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
 namespace Dnhb\ApiClient\ResponseTransformer;
@@ -21,7 +21,7 @@ final class FloatResult implements TransformerInterface
      */
     public function transform(array $response): float
     {
-        if(!isset($response['data']['result'])) {
+        if (!isset($response['data']['result'])) {
             throw new ApiClientUnexcpectedResultException();
         }
 

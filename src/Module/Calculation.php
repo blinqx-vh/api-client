@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Module;
 
@@ -51,17 +51,17 @@ final class Calculation extends AbstractModule
     }
 
     /**
-     * @param DateTime $loanpartStartDate
-     * @param int $loanpartDurationInMonths
-     * @param DateTime $fixedRateTermStartDate
-     * @param int $fixedRateTermDurationInMonths
-     * @param float $remainingDebt
-     * @param float $interestPercentage
-     * @param float $originalDebt
+     * @param DateTime     $loanpartStartDate
+     * @param int          $loanpartDurationInMonths
+     * @param DateTime     $fixedRateTermStartDate
+     * @param int          $fixedRateTermDurationInMonths
+     * @param float        $remainingDebt
+     * @param float        $interestPercentage
+     * @param float        $originalDebt
      * @param MortgageType $mortgageType
-     * @param DateTime $refinancingDate
-     * @param float $presentDayInterest
-     * @param float $fineFreePercentage
+     * @param DateTime     $refinancingDate
+     * @param float        $presentDayInterest
+     * @param float        $fineFreePercentage
      * @return float
      */
     public function getLoanpartFine(
@@ -76,8 +76,7 @@ final class Calculation extends AbstractModule
         DateTime $refinancingDate,
         float $presentDayInterest,
         float $fineFreePercentage
-    ): float
-    {
+    ): float {
         $parameter = new FineLoanpartParameter(
             $loanpartStartDate,
             $loanpartDurationInMonths,
@@ -98,9 +97,9 @@ final class Calculation extends AbstractModule
     /**
      * @param float $interestPercentage
      * @param array $persons
-     * @param bool $nhg
-     * @param int $mortgageDurationInMonths
-     * @param int $fixedRateTermDurationInMonths
+     * @param bool  $nhg
+     * @param int   $mortgageDurationInMonths
+     * @param int   $fixedRateTermDurationInMonths
      * @param float $notDeductible
      * @param float $groundRent
      * @return float
@@ -113,8 +112,7 @@ final class Calculation extends AbstractModule
         int $fixedRateTermDurationInMonths,
         float $notDeductible,
         float $groundRent
-    ): float
-    {
+    ): float {
         $parameter = new MaximumMortgageByIncomeParameter(
             $interestPercentage,
             $persons,

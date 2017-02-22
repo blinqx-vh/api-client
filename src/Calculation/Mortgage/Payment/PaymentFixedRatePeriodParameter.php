@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
 
@@ -18,7 +18,7 @@ final class PaymentFixedRatePeriodParameter
     /**
      * PaymentFixedRatePeriodParameter constructor.
      *
-     * @param int $durationInYears
+     * @param int   $durationInYears
      * @param float $interestRate
      */
     public function __construct(int $durationInYears, float $interestRate)

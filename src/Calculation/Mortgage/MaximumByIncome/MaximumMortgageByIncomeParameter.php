@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\MaximumByIncome;
 
@@ -56,9 +56,9 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
      * MaximumMortgageByIncomeParameter constructor.
      * @param float $interestPercentage
      * @param array $persons Array of person objects
-     * @param bool $nhg
-     * @param int $mortgageDurationInMonths
-     * @param int $fixedRateTermDurationInMonths
+     * @param bool  $nhg
+     * @param int   $mortgageDurationInMonths
+     * @param int   $fixedRateTermDurationInMonths
      * @param float $notDeductible
      * @param float $groundRent
      */
