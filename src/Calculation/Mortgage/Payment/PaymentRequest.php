@@ -25,7 +25,7 @@ final class PaymentRequest extends AbstractPostApiRequest
      */
     public function __construct(PostParameterInterface $parameters)
     {
-        $this->options['json'] = $parameters->toJsonableObject();
+        $this->options['body'] = json_encode($parameters->toJsonableObject());
         parent::__construct($parameters);
     }
 
