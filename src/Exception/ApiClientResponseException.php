@@ -38,7 +38,7 @@ final class ApiClientResponseException extends ApiClientException
         $this->request = $request;
         $this->response = $response;
         if ($this->getResponse()->getBody()) {
-            $body = json_decode($this->getResponse()->getBody());
+            $body = json_decode($this->getResponse()->getBody()->getContents());
             $message .= ' [message] ' . $body->error->message;
         }
         parent::__construct($message, $code, $previous);

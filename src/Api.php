@@ -5,6 +5,7 @@ namespace Dnhb\ApiClient;
 
 
 use Dnhb\ApiClient\Module\Calculation;
+use Dnhb\ApiClient\Module\Import;
 
 /**
  * Class Api
@@ -31,5 +32,13 @@ final class Api
     public function calculation(): Calculation
     {
         return new Calculation($this->client);
+    }
+
+    /**
+     * @return Import
+     */
+    public function import(): Import
+    {
+        return new Import($this->client);
     }
 }
