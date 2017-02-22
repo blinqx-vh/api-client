@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Exception;
 
@@ -19,10 +19,10 @@ class ApiClientConnectException extends ConnectException
     /**
      * ApiClientConnectException constructor.
      *
-     * @param string $message
-     * @param RequestInterface $request
+     * @param string            $message
+     * @param RequestInterface  $request
      * @param ResponseInterface $response
-     * @param Exception $previous
+     * @param Exception         $previous
      */
     public function __construct(
         $message = null,

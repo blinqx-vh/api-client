@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Exception;
 
@@ -22,11 +22,11 @@ final class ApiClientResponseException extends ApiClientException
     /**
      * ApiClientResponseException constructor.
      *
-     * @param string $message
-     * @param RequestInterface $request
+     * @param string            $message
+     * @param RequestInterface  $request
      * @param ResponseInterface $response
-     * @param int $code
-     * @param Exception $previous
+     * @param int               $code
+     * @param Exception         $previous
      */
     public function __construct(
         $message = null,

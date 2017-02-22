@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Calculation\Fine\Loanpart;
 
@@ -50,17 +50,17 @@ final class FineLoanpartParameter implements GetParameterInterface
 
     /**
      * FineLoanpartParameter constructor.
-     * @param DateTime $loanpartStartDate
-     * @param int $loanpartDurationInMonths
-     * @param DateTime $fixedRateTermStartDate
-     * @param $fixedRateTermDurationInMonths
-     * @param float $remainingDebt
-     * @param float $interestPercentage
-     * @param float $originalDebt
+     * @param DateTime     $loanpartStartDate
+     * @param int          $loanpartDurationInMonths
+     * @param DateTime     $fixedRateTermStartDate
+     * @param              $fixedRateTermDurationInMonths
+     * @param float        $remainingDebt
+     * @param float        $interestPercentage
+     * @param float        $originalDebt
      * @param MortgageType $mortgageType
-     * @param DateTime $refinancingDate
-     * @param float $presentDayInterest
-     * @param float $fineFreePercentage
+     * @param DateTime     $refinancingDate
+     * @param float        $presentDayInterest
+     * @param float        $fineFreePercentage
      * @throws ApiClientInvalidArgumentException
      */
     public function __construct(

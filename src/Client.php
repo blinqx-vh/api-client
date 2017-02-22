@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient;
 
@@ -30,7 +30,7 @@ final class Client
      * Client constructor.
      *
      * @param ClientInterface $client
-     * @param AuthInterface $auth
+     * @param AuthInterface   $auth
      */
     public function __construct(ClientInterface $client, AuthInterface $auth)
     {

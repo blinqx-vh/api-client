@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
 
@@ -25,7 +25,7 @@ final class PaymentParameters implements PostParameterInterface
      * PaymentParameters constructor.
      *
      * @param array $loanparts
-     * @param $woz
+     * @param       $woz
      * @param array $persons
      */
     public function __construct(array $loanparts, float $woz, array $persons)

@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient;
 
@@ -28,7 +28,7 @@ final class Api
     /**
      * @return Calculation
      */
-    public function calculation()
+    public function calculation(): Calculation
     {
         return new Calculation($this->client);
     }

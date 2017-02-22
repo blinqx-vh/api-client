@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
 
@@ -33,9 +33,9 @@ final class PaymentLoanpartParameter
     /**
      * PaymentLoanpartParameter constructor.
      * @param MortgageType $type
-     * @param float $amount
-     * @param int $durationInMonths
-     * @param array|null $fixedRatePeriods
+     * @param float        $amount
+     * @param int          $durationInMonths
+     * @param array|null   $fixedRatePeriods
      * @throws ApiClientInvalidArgumentException
      */
     public function __construct(
