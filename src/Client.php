@@ -24,7 +24,7 @@ final class Client
     /** @var AuthInterface */
     private $auth;
     /** @var string */
-    private $host = 'http://api.hypotheekbond.nl';
+    private $host = 'https://api.hypotheekbond.nl';
 
     /**
      * Client constructor.
@@ -55,12 +55,14 @@ final class Client
         $method = $request->getMethod();
 
         try {
-            $response = $this->client->request($method, $url, [
+            $params = array_merge([
                 'headers' => [
                     'Accept' => 'application/json',
                 ]
-            ]);
+            ], $request->getOptions());
+            $response = $this->client->request($method, $url, $params);
             $responseBody = $response->getBody()->getContents();
+
             return $request->getResponseTransformer()->transform(json_decode($responseBody, true));
         } catch (ClientException $e) {
             throw new ApiClientResponseException($e->getMessage(), $e->getRequest(), $e->getResponse(), $e->getCode(),
@@ -78,5 +80,13 @@ final class Client
     {
         $this->host = $host;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHost(): string
+    {
+        return $this->host;
     }
 }
