@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Dnhb\ApiClient\Exception;
 
 /**
- * Class ApiClientUnexcpectedResultException
+ * Class ApiClientUnexpectedResultException
  *
  * @package Dnhb\ApiClient\Exception
  */
-final class ApiClientUnexcpectedResultException extends ApiClientException
+final class ApiClientUnexpectedResultException extends ApiClientException
 {
 }
