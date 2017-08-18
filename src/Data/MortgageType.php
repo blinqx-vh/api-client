@@ -34,4 +34,26 @@ final class MortgageType extends Enum
     const BANKSAVING = 'banksaving';
     /** */
     const BRIDGING_LOAN = 'bridging-loan';
+
+    /** */
+    const INTEREST_ONLY_VARIATION = 'INTEREST_ONLY';
+    /** */
+    const SAVING_VARIATION = 'SAVING';
+    /** */
+    const LIFE_VARIATION = 'LIFE';
+    /** */
+    const HYBRID_VARIATION = 'HYBRID';
+    /** */
+    const INVESTMENT_VARIATION = 'INVESTMENT';
+    /** */
+    const ANNUITY_VARIATION = 'ANNUITY';
+    /** */
+    const LINEAR_VARIATION = 'LINEAR';
+    /** */
+    const CREDIT_VARIATION = 'CREDIT';
+    /** */
+    const BANKSAVING_VARIATION = 'BANKSAVING';
+    /** */
+    const BRIDGING_LOAN_VARIATION = 'BRIDGING_LOAN';
+
 }

@@ -13,11 +13,14 @@ use Dnhb\ApiClient\Client;
  */
 abstract class AbstractModule
 {
-    /** @var  Client */
+    /**
+     * @var  Client 
+     */
     protected $client;
 
     /**
      * AbstractModule constructor.
+     *
      * @param Client $client
      */
     public function __construct(Client $client)
