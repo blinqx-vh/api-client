@@ -48,7 +48,7 @@ final class Interest extends AbstractModule
      * @throws ApiClientResponseException
      * @throws ApiClientAuthException
      *
-     * @return mixed
+     * @return array
      */
     public function getInterestRates(
         int $mortgageProviderId,
@@ -64,7 +64,7 @@ final class Interest extends AbstractModule
         SortDirectionType $sortDirection,
         int $page = 0,
         int $limit = 25
-    )
+    ): array
     {
         $parameter = new InterestRatesParameter(
             $mortgageProviderId,
@@ -104,7 +104,7 @@ final class Interest extends AbstractModule
      * @throws ApiClientAuthException
      * @throws ApiClientResponseException
      *
-     * @return mixed
+     * @return array
      */
     public function getBankLabels(
         int $mortgageProvider = null,
@@ -118,7 +118,7 @@ final class Interest extends AbstractModule
         float $maxLtv = null,
         int $page = 0,
         int $limit = 25
-    )
+    ): array
     {
         $parameter = new BankLabelsParameter(
             $mortgageProvider,
@@ -156,7 +156,7 @@ final class Interest extends AbstractModule
      * @throws ApiClientAuthException
      * @throws ApiClientResponseException
      *
-     * @return mixed
+     * @return array
      */
     public function getMortgageProviders(
         int $mortgageProviderId = null,
@@ -170,7 +170,7 @@ final class Interest extends AbstractModule
         bool $onlyUseIncludedLabels = null,
         int $page = 0,
         int $limit = 25
-    )
+    ): array
     {
         $parameter = new MortgageProvidersParameter(
             $mortgageProviderId,

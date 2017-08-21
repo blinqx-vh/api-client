@@ -11,7 +11,7 @@ use Dnhb\ApiClient\Exception\ApiClientInvalidArgumentException;
 use Dnhb\ApiClient\Import\Assert\Assertion;
 
 /**
- * Class InterestLabelParameter
+ * Class BankLabelsParameter
  */
 class BankLabelsParameter implements GetParameterInterface
 {
@@ -20,16 +20,16 @@ class BankLabelsParameter implements GetParameterInterface
      * @var array
      */
     private $supportedMortgageTypes = [
-        MortgageType::INTEREST_ONLY_VARIATION,
-        MortgageType::ANNUITY_VARIATION,
-        MortgageType::BANKSAVING_VARIATION,
-        MortgageType::BRIDGING_LOAN_VARIATION,
-        MortgageType::CREDIT_VARIATION,
-        MortgageType::HYBRID_VARIATION,
-        MortgageType::INVESTMENT_VARIATION,
-        MortgageType::LIFE_VARIATION,
-        MortgageType::LINEAR_VARIATION,
-        MortgageType::SAVING_VARIATION
+        MortgageType::INTEREST_ONLY,
+        MortgageType::ANNUITY,
+        MortgageType::BANKSAVING,
+        MortgageType::BRIDGING_LOAN,
+        MortgageType::CREDIT,
+        MortgageType::HYBRID,
+        MortgageType::INVESTMENT,
+        MortgageType::LIFE,
+        MortgageType::LINEAR,
+        MortgageType::SAVING
     ];
 
     /**
@@ -87,7 +87,8 @@ class BankLabelsParameter implements GetParameterInterface
     private $limit;
 
     /**
-     * InterestLabelParameter constructor.
+     * BankLabelsParameter constructor.
+     *
      * @param int|null $mortgageProviderId
      * @param int|null $productId
      * @param MortgageType|null $mortgageType

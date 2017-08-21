@@ -60,7 +60,7 @@ final class InterestRateTest extends ApiClientTestCase
             25
         );
 
-        foreach ($result AS $assertableArray) {
+        foreach ($result as $assertableArray) {
             $this->executeAssertChecks($assertableArray);
         }
 

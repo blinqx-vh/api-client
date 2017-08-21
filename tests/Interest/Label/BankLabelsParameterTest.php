@@ -24,7 +24,7 @@ final class BankLabelsParameterTest extends TestCase
         $bankLabelsParameter = new BankLabelsParameter(
             1,
              null,
-            new MortgageType(MortgageType::INTEREST_ONLY_VARIATION),
+            new MortgageType(MortgageType::INTEREST_ONLY),
             new AvailableForType(AvailableForType::TYPE_BOTH),
             false,
             100.0,
@@ -38,7 +38,7 @@ final class BankLabelsParameterTest extends TestCase
         $this->assertSame(1, $bankLabelsParameter->getMortgageProviderId());
         $this->assertNull($bankLabelsParameter->getProductId());
         $this->assertInstanceOf(MortgageType::class, $bankLabelsParameter->getMortgageType());
-        $this->assertSame(MortgageType::INTEREST_ONLY_VARIATION, $bankLabelsParameter->getMortgageType()->getValue());
+        $this->assertSame(MortgageType::INTEREST_ONLY, $bankLabelsParameter->getMortgageType()->getValue());
         $this->assertInstanceOf(AvailableForType::class, $bankLabelsParameter->getAvailableFor());
         $this->assertSame(AvailableForType::TYPE_BOTH, $bankLabelsParameter->getAvailableFor()->getValue());
         $this->assertFalse($bankLabelsParameter->getNhg());

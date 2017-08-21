@@ -25,7 +25,7 @@ final class MortgageProvidersParameterTest extends TestCase
             1,
             null,
             1,
-            new MortgageType(MortgageType::INTEREST_ONLY_VARIATION),
+            new MortgageType(MortgageType::INTEREST_ONLY),
             new AvailableForType(AvailableForType::TYPE_BOTH),
             false,
             100.0,
@@ -39,7 +39,7 @@ final class MortgageProvidersParameterTest extends TestCase
         $this->assertNull($bankLabelsParameter->getLabelId());
         $this->assertSame(1, $bankLabelsParameter->getProductId());
         $this->assertInstanceOf(MortgageType::class, $bankLabelsParameter->getMortgageType());
-        $this->assertSame(MortgageType::INTEREST_ONLY_VARIATION, $bankLabelsParameter->getMortgageType()->getValue());
+        $this->assertSame(MortgageType::INTEREST_ONLY, $bankLabelsParameter->getMortgageType()->getValue());
         $this->assertInstanceOf(AvailableForType::class, $bankLabelsParameter->getAvailableFor());
         $this->assertSame(AvailableForType::TYPE_BOTH, $bankLabelsParameter->getAvailableFor()->getValue());
         $this->assertFalse($bankLabelsParameter->getNhg());

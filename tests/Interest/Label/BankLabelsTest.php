@@ -36,7 +36,7 @@ final class BankLabelsTest extends ApiClientTestCase
         $result = $api->interest()->getBankLabels(
             1,
             null,
-            new MortgageType(MortgageType::INTEREST_ONLY_VARIATION),
+            new MortgageType(MortgageType::INTEREST_ONLY),
             new AvailableForType(AvailableForType::TYPE_BOTH),
             false,
             100.0,
@@ -47,7 +47,7 @@ final class BankLabelsTest extends ApiClientTestCase
             100
         );
 
-        foreach ($result AS $assertableArray) {
+        foreach ($result as $assertableArray) {
             $this->executeAssertChecks($assertableArray);
         }
 
@@ -56,7 +56,7 @@ final class BankLabelsTest extends ApiClientTestCase
             '/interest/v1/label',
             implode('&', [
                 'mortgageProviderId=1',
-                'repaymentType=INTEREST_ONLY',
+                'repaymentType=interest-only',
                 'availableFor=BOTH',
                 'nhg=false',
                 'loanToValuePercentage=100',

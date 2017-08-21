@@ -35,7 +35,7 @@ final class MortgageProvidersTest extends ApiClientTestCase
             1,
             23,
             null,
-            new MortgageType(MortgageType::ANNUITY_VARIATION),
+            new MortgageType(MortgageType::ANNUITY),
             new AvailableForType(AvailableForType::TYPE_BOTH),
             true,
             100.0,
@@ -45,7 +45,7 @@ final class MortgageProvidersTest extends ApiClientTestCase
             250
         );
 
-        foreach ($result AS $assertableArray) {
+        foreach ($result as $assertableArray) {
             $this->executeAssertChecks($assertableArray);
         }
 
@@ -55,7 +55,7 @@ final class MortgageProvidersTest extends ApiClientTestCase
             implode('&', [
                 'mortgageProviderId=1',
                 'labelId=23',
-                'repaymentType=ANNUITY',
+                'repaymentType=annuity',
                 'availableFor=BOTH',
                 'nhg=true',
                 'loanToValuePercentage=100',
