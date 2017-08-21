@@ -34,4 +34,5 @@ final class MortgageType extends Enum
     const BANKSAVING = 'banksaving';
     /** */
     const BRIDGING_LOAN = 'bridging-loan';
+
 }

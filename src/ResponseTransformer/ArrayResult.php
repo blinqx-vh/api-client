@@ -8,23 +8,23 @@ use Dnhb\ApiClient\Exception\ApiClientUnexpectedResultException;
 
 
 /**
- * Class FloatResult
+ * Class ArrayResult
  *
  * @package Dnhb\ApiClient\ResponseTransformer
  */
-final class FloatResult implements TransformerInterface
+final class ArrayResult implements TransformerInterface
 {
     /**
      * @param array $response
-     * @return float
+     * @return array
      * @throws ApiClientUnexpectedResultException
      */
-    public function transform(array $response): float
+    public function transform(array $response): array
     {
-        if (!isset($response['data']['result'])) {
+        if (!isset($response['data'])) {
             throw new ApiClientUnexpectedResultException();
         }
 
-        return $response['data']['result'];
+        return $response['data'];
     }
 }

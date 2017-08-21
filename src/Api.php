@@ -6,6 +6,7 @@ namespace Dnhb\ApiClient;
 
 use Dnhb\ApiClient\Module\Calculation;
 use Dnhb\ApiClient\Module\Import;
+use Dnhb\ApiClient\Module\Interest;
 
 /**
  * Class Api
@@ -32,6 +33,16 @@ final class Api
     public function calculation(): Calculation
     {
         return new Calculation($this->client);
+    }
+
+    /**
+     * Interest api module
+     *
+     * @return Interest
+     */
+    public function interest(): Interest
+    {
+        return new Interest($this->client);
     }
 
     /**
