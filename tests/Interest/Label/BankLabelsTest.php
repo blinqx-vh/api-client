@@ -56,7 +56,7 @@ final class BankLabelsTest extends ApiClientTestCase
             '/interest/v1/label',
             implode('&', [
                 'mortgageProviderId=1',
-                'repaymentType=interest-only',
+                'repaymentType=INTEREST_ONLY',
                 'availableFor=BOTH',
                 'nhg=false',
                 'loanToValuePercentage=100',
