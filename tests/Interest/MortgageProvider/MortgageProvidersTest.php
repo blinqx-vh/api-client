@@ -55,7 +55,7 @@ final class MortgageProvidersTest extends ApiClientTestCase
             implode('&', [
                 'mortgageProviderId=1',
                 'labelId=23',
-                'repaymentType=annuity',
+                'repaymentType=ANNUITY',
                 'availableFor=BOTH',
                 'nhg=true',
                 'loanToValuePercentage=100',

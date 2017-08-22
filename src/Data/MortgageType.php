@@ -15,24 +15,24 @@ use MyCLabs\Enum\Enum;
 final class MortgageType extends Enum
 {
     /** */
-    const INTEREST_ONLY = 'interest-only';
+    const INTEREST_ONLY = 'INTEREST_ONLY';
     /** */
-    const SAVING = 'saving';
+    const SAVING = 'SAVING';
     /** */
-    const LIFE = 'life';
+    const LIFE = 'LIFE';
     /** */
-    const HYBRID = 'hybrid';
+    const HYBRID = 'HYBRID';
     /** */
-    const INVESTMENT = 'investment';
+    const INVESTMENT = 'INVESTMENT';
     /** */
-    const ANNUITY = 'annuity';
+    const ANNUITY = 'ANNUITY';
     /** */
-    const LINEAR = 'linear';
+    const LINEAR = 'LINEAR';
     /** */
-    const CREDIT = 'credit';
+    const CREDIT = 'CREDIT';
     /** */
-    const BANKSAVING = 'banksaving';
+    const BANKSAVING = 'BANKSAVING';
     /** */
-    const BRIDGING_LOAN = 'bridging-loan';
+    const BRIDGING_LOAN = 'BRIDGING_LOAN';
 
 }
