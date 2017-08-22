@@ -49,7 +49,7 @@ final class FineLoanpartTest extends ApiClientTestCase
                 'remainingDebt=100000',
                 'percentage=4.65',
                 'originalDebt=200000',
-                'mortgageType=linear',
+                'mortgageType=LINEAR',
                 'refinancingDate=2020-10-10',
                 'presentDayInterest=2.15',
                 'fineFreePercentage=10',
