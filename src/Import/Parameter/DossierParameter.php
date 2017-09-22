@@ -30,6 +30,9 @@ final class DossierParameter extends AbstractImportParameter
     /** */
     const MAX_HOUSES_PER_DOSSIER = 1;
 
+    /** */
+    const MAX_LENGTH_LABEL = 255;
+
     /** @var array */
     protected $hasPersons;
 
@@ -48,6 +51,8 @@ final class DossierParameter extends AbstractImportParameter
     protected $clientStatus;
     /** @var string */
     protected $note;
+    /** @var array */
+    protected $labels;
 
     /**
      * DossierParameter constructor.
@@ -84,8 +89,20 @@ final class DossierParameter extends AbstractImportParameter
 
         $hasPrimaryContact = false;
         foreach ($this->hasPersons as $identifier) {
+            $personParameter = $this->getScope()->get($identifier);
+
+            if(!$personParameter instanceof PersonParameter) {
+                throw new \LogicException(
+                    sprintf(
+                        'An unexpected error occured, found a %s when a %s was expected',
+                        get_class($personParameter),
+                        PersonParameter::class
+                    )
+                );
+            }
+
             try {
-                $isPrimaryContact = $this->getScope()->get($identifier)->isPrimaryContact();
+                $isPrimaryContact = $personParameter->isPrimaryContact();
 
                 if ($isPrimaryContact === true) {
                     if ($hasPrimaryContact === true) {
@@ -239,6 +256,26 @@ final class DossierParameter extends AbstractImportParameter
     public function setNote(string $value): DossierParameter
     {
         $this->note = $value;
+        return $this;
+    }
+
+    /**
+     * @param string $label
+     * @return DossierParameter
+     */
+    public function addLabel(string $label): DossierParameter
+    {
+        Assertion::notEmpty($label, 'A label cannot be empty');
+        Assertion::maxLength(
+            $label,
+            static::MAX_LENGTH_LABEL,
+            sprintf(
+                'A label cannot contain more than %s characters',
+                static::MAX_LENGTH_LABEL
+            )
+        );
+
+        $this->labels[] = $label;
         return $this;
     }
 }
