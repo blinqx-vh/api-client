@@ -33,9 +33,9 @@ final class Auth implements AuthInterface
      *
      * @param string $apiKey
      *
-     * @return Auth
+     * @return AuthInterface
      */
-    public static function apiKey(string $apiKey): Auth
+    public static function apiKey(string $apiKey): AuthInterface
     {
         return new self(self::TYPE_APIKEY, $apiKey);
     }
@@ -43,9 +43,9 @@ final class Auth implements AuthInterface
     /**
      * @param string $token
      *
-     * @return Auth
+     * @return AuthInterface
      */
-    public static function token(string $token): Auth
+    public static function token(string $token): AuthInterface
     {
         return new self(self::TYPE_JWT, $token);
     }
