@@ -15,7 +15,7 @@ use Dnhb\ApiClient\Module\Interest;
 class Api
 {
     /** @var  Client */
-    private $client;
+    protected $client;
 
     /**
      * Api constructor.
