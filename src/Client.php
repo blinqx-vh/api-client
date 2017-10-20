@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient;
 
@@ -41,6 +41,7 @@ final class Client
 
     /**
      * @param ApiRequestInterface $request
+     *
      * @return mixed
      * @throws ApiClientAuthException
      * @throws ApiClientResponseException
@@ -55,18 +56,23 @@ final class Client
         $method = $request->getMethod();
 
         try {
-            $params = array_merge([
-                'headers' => [
-                    'Accept' => 'application/json',
-                ]
-            ], $request->getOptions());
+            $params = array_merge(
+                [
+                    'headers' => [
+                        'Accept' => 'application/json',
+                    ],
+                ],
+                $request->getOptions()
+            );
             $response = $this->client->request($method, $url, $params);
             $responseBody = $response->getBody()->getContents();
 
             return $request->getResponseTransformer()->transform(json_decode($responseBody, true));
         } catch (ClientException $e) {
-            throw new ApiClientResponseException($e->getMessage(), $e->getRequest(), $e->getResponse(), $e->getCode(),
-                $e);
+            throw new ApiClientResponseException(
+                $e->getMessage(), $e->getRequest(), $e->getResponse(), $e->getCode(),
+                $e
+            );
         } catch (ConnectException $e) {
             throw new ApiClientConnectException($e->getMessage(), $e->getRequest(), $e->getResponse(), $e);
         }
@@ -74,11 +80,13 @@ final class Client
 
     /**
      * @param string $host
+     *
      * @return Client
      */
     public function setHost($host): Client
     {
         $this->host = $host;
+
         return $this;
     }
 

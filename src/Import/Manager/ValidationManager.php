@@ -1,11 +1,10 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Manager;
 
 use Dnhb\ApiClient\Exception\ApiClientValidationException;
 use Dnhb\ApiClient\Import\Scope;
-
 
 /**
  * Class ValidationManager
@@ -14,7 +13,6 @@ final class ValidationManager
 {
     /** @var ApiClientValidationException|null */
     private $validationException;
-
     /** @var string */
     private $currentScopeIdentifier;
 
@@ -32,8 +30,10 @@ final class ValidationManager
     public function addFailure(string $message)
     {
         $this->validationException =
-            new ApiClientValidationException(sprintf('%s in scope \'%s\'', $message, $this->currentScopeIdentifier),
-                $this->validationException);
+            new ApiClientValidationException(
+                sprintf('%s in scope \'%s\'', $message, $this->currentScopeIdentifier),
+                $this->validationException
+            );
     }
 
     /**

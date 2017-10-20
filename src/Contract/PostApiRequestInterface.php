@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Contract;
 
@@ -16,7 +16,6 @@ interface PostApiRequestInterface
      * @param PostParameterInterface $parameters
      */
     public function __construct(PostParameterInterface $parameters);
-
 
     /**
      * @return string

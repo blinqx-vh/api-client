@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Auth;
-
 
 use Dnhb\ApiClient\Contract\AuthInterface;
 
@@ -33,6 +32,7 @@ final class Auth implements AuthInterface
     /**
      *
      * @param string $apiKey
+     *
      * @return Auth
      */
     public static function apiKey(string $apiKey): Auth
@@ -42,6 +42,7 @@ final class Auth implements AuthInterface
 
     /**
      * @param string $token
+     *
      * @return Auth
      */
     public static function token(string $token): Auth

@@ -1,9 +1,7 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\ResponseTransformer;
-
 
 /**
  * Interface TransformerInterface
@@ -14,6 +12,7 @@ interface TransformerInterface
 {
     /**
      * @param array $response
+     *
      * @return mixed
      */
     public function transform(array $response);

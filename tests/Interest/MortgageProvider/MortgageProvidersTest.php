@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Dnhb\ApiClient\Tests\Interest\MortgageProvider;
-
 
 use Dnhb\ApiClient\Data\AvailableForType;
 use Dnhb\ApiClient\Data\MortgageType;
@@ -14,13 +12,13 @@ use Dnhb\ApiClient\Tests\TestCase\ApiClientTestCase;
  */
 final class MortgageProvidersTest extends ApiClientTestCase
 {
-
     /**
      * Test the request.
      */
     public function testRequest()
     {
-        $api = $this->getApi('
+        $api = $this->getApi(
+            '
             {
               "data": [
                 {
@@ -29,7 +27,8 @@ final class MortgageProvidersTest extends ApiClientTestCase
                 }
               ]
             }
-        ');
+        '
+        );
 
         $result = $api->interest()->getMortgageProviders(
             1,
@@ -52,19 +51,22 @@ final class MortgageProvidersTest extends ApiClientTestCase
         $this->assertRequestInContainer(
             Method::GET,
             '/interest/v1/mortgage-provider',
-            implode('&', [
-                'mortgageProviderId=1',
-                'labelId=23',
-                'repaymentType=ANNUITY',
-                'availableFor=BOTH',
-                'nhg=true',
-                'loanToValuePercentage=100',
-                'period=1',
-                'onlyUseIncludedLabels=false',
-                'page=1',
-                'limit=250',
-                'api_key=key'
-            ])
+            implode(
+                '&',
+                [
+                    'mortgageProviderId=1',
+                    'labelId=23',
+                    'repaymentType=ANNUITY',
+                    'availableFor=BOTH',
+                    'nhg=true',
+                    'loanToValuePercentage=100',
+                    'period=1',
+                    'onlyUseIncludedLabels=false',
+                    'page=1',
+                    'limit=250',
+                    'api_key=key',
+                ]
+            )
         );
     }
 

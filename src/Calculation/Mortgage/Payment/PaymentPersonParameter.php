@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
-
 
 use DateTime;
 
@@ -45,6 +44,4 @@ final class PaymentPersonParameter
     {
         return $this->salary;
     }
-
-
 }

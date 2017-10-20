@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Assert;
-
 
 /**
  * Class Assertion
@@ -13,6 +12,7 @@ final class Assertion extends \Assert\Assertion
 {
     /** */
     const INVALID_POSTALCODE = 301;
+
     /** */
     const INVALID_PHONENUMBER = 302;
 
@@ -70,6 +70,4 @@ final class Assertion extends \Assert\Assertion
 
         return true;
     }
-
-
 }

@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Parameter;
 
@@ -47,6 +47,7 @@ final class PersonParameter extends AbstractImportParameter
 
     /**
      * PersonParameter constructor.
+     *
      * @param string $identifier
      * @param Scope  $scope
      */
@@ -54,10 +55,12 @@ final class PersonParameter extends AbstractImportParameter
     {
         parent::__construct($identifier, $scope);
 
-        $this->setRequiredProperties([
-            'isPrimaryContact',
-            'lastName'
-        ]);
+        $this->setRequiredProperties(
+            [
+                'isPrimaryContact',
+                'lastName',
+            ]
+        );
     }
 
     /**
@@ -95,16 +98,19 @@ final class PersonParameter extends AbstractImportParameter
 
     /**
      * @param boolean $value
+     *
      * @return PersonParameter
      */
     public function setIsPrimaryContact(bool $value): PersonParameter
     {
         $this->isPrimaryContact = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return PersonParameter
      */
     public function setLastName(string $value): PersonParameter
@@ -112,41 +118,49 @@ final class PersonParameter extends AbstractImportParameter
         Assertion::notEmpty($value, 'LastName cannot be empty');
 
         $this->lastName = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return PersonParameter
      */
     public function setInitials(string $value): PersonParameter
     {
         $this->initials = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return PersonParameter
      */
     public function setFirstName(string $value): PersonParameter
     {
         $this->firstName = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return PersonParameter
      */
     public function setLastNamePrefix(string $value): PersonParameter
     {
         $this->lastNamePrefix = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return PersonParameter
      */
     public function setEmail(string $value): PersonParameter
@@ -154,11 +168,13 @@ final class PersonParameter extends AbstractImportParameter
         Assertion::email($value, 'Email should contain a valid email address');
 
         $this->email = $value;
+
         return $this;
     }
 
     /**
      * @param DateTime $value
+     *
      * @return PersonParameter
      */
     public function setDateOfBirth(DateTime $value): PersonParameter
@@ -166,21 +182,25 @@ final class PersonParameter extends AbstractImportParameter
         Assertion::lessOrEqualThan($value, new DateTime(), 'Date of Birth should be in the past');
 
         $this->dateOfBirth = $value->format('Y-m-d');
+
         return $this;
     }
 
     /**
      * @param Gender $value
+     *
      * @return PersonParameter
      */
     public function setGender(Gender $value): PersonParameter
     {
         $this->gender = $value->getKey();
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return PersonParameter
      */
     public function setPrivatePhoneNumber(string $value): PersonParameter
@@ -191,11 +211,13 @@ final class PersonParameter extends AbstractImportParameter
         Assertion::phonenumber($value, 'Private phone number should contain a valid phone number');
 
         $this->privatePhoneNumber = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return PersonParameter
      */
     public function setMobilePhoneNumber(string $value): PersonParameter
@@ -203,6 +225,7 @@ final class PersonParameter extends AbstractImportParameter
         Assertion::phonenumber($value, 'Mobile phone number should contain a valid phone number');
 
         $this->mobilePhoneNumber = $value;
+
         return $this;
     }
 }

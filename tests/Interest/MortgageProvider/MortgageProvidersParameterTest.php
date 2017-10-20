@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Dnhb\ApiClient\Tests\Interest\Rate;
-
 
 use Dnhb\ApiClient\Data\AvailableForType;
 use Dnhb\ApiClient\Data\MortgageType;
@@ -14,7 +12,6 @@ use PHPUnit\Framework\TestCase;
  */
 final class MortgageProvidersParameterTest extends TestCase
 {
-
     /**
      * Test different parameters on correct usage of the different
      * types of parameters.

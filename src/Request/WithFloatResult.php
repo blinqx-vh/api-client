@@ -1,9 +1,7 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Request;
-
 
 use Dnhb\ApiClient\ResponseTransformer\FloatResult;
 use Dnhb\ApiClient\ResponseTransformer\TransformerInterface;

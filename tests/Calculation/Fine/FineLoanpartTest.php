@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests\Calculation\Fine;
-
 
 use DateTime;
 use Dnhb\ApiClient\Data\MortgageType;
@@ -16,7 +15,6 @@ use Dnhb\ApiClient\Tests\TestCase\ApiClientTestCase;
  */
 final class FineLoanpartTest extends ApiClientTestCase
 {
-
     /** */
     public function testRequest()
     {
@@ -41,20 +39,23 @@ final class FineLoanpartTest extends ApiClientTestCase
         $this->assertRequestInContainer(
             Method::GET,
             '/calculation/v1/fine/loanpart',
-            implode('&', [
-                'loanPartStartDate=2000-10-10',
-                'loanPartDuration=360',
-                'fixedRateTermStartDate=2000-10-10',
-                'fixedRateTermDurationInMonths=240',
-                'remainingDebt=100000',
-                'percentage=4.65',
-                'originalDebt=200000',
-                'mortgageType=LINEAR',
-                'refinancingDate=2020-10-10',
-                'presentDayInterest=2.15',
-                'fineFreePercentage=10',
-                'api_key=key'
-            ])
+            implode(
+                '&',
+                [
+                    'loanPartStartDate=2000-10-10',
+                    'loanPartDuration=360',
+                    'fixedRateTermStartDate=2000-10-10',
+                    'fixedRateTermDurationInMonths=240',
+                    'remainingDebt=100000',
+                    'percentage=4.65',
+                    'originalDebt=200000',
+                    'mortgageType=LINEAR',
+                    'refinancingDate=2020-10-10',
+                    'presentDayInterest=2.15',
+                    'fineFreePercentage=10',
+                    'api_key=key',
+                ]
+            )
         );
     }
 }

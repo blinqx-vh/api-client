@@ -1,9 +1,7 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment\Response;
-
 
 /**
  * Class TotalPayment
@@ -27,6 +25,7 @@ final class TotalPayment
 
     /**
      * TotalPayment constructor.
+     *
      * @param array $response
      */
     public function __construct(array $response)
@@ -86,6 +85,4 @@ final class TotalPayment
     {
         return $this->investment;
     }
-
-
 }

@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Manager;
 
@@ -8,7 +8,6 @@ use Dnhb\ApiClient\Exception\ApiClientException;
 use Dnhb\ApiClient\Import\Assert\Assertion;
 use Dnhb\ApiClient\Import\Scope;
 use stdClass;
-
 
 /**
  * Class ImportParameterManager
@@ -25,13 +24,17 @@ final class ImportParameterManager implements PostParameterInterface
 
     /**
      * @param Scope $scope
+     *
      * @return $this|ImportParameterManager
      * @throws \Dnhb\ApiClient\Exception\ApiClientValidationException
      */
     public function addScope(Scope $scope): ImportParameterManager
     {
-        Assertion::lessThan(count($this->scopes), self::MAX_SCOPES,
-            sprintf('A maximum of %s scopes per import request is allowed', self::MAX_SCOPES));
+        Assertion::lessThan(
+            count($this->scopes),
+            self::MAX_SCOPES,
+            sprintf('A maximum of %s scopes per import request is allowed', self::MAX_SCOPES)
+        );
 
         $this->scopes[] = $scope;
 
@@ -62,6 +65,6 @@ final class ImportParameterManager implements PostParameterInterface
             throw $validationManager->getValidationException();
         }
 
-        return (object)$serializedScopes;
+        return (object) $serializedScopes;
     }
 }

@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment\Response;
-
 
 /**
  * Class Payment
@@ -11,7 +10,6 @@ namespace Dnhb\ApiClient\Calculation\Mortgage\Payment\Response;
  */
 final class Payment
 {
-
     /** @var int */
     private $month;
     /** @var string */
@@ -29,6 +27,7 @@ final class Payment
 
     /**
      * Payment constructor.
+     *
      * @param array $response
      */
     public function __construct(array $response)
@@ -97,6 +96,4 @@ final class Payment
     {
         return $this->interest;
     }
-
-
 }

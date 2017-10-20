@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Contract;
 
@@ -32,5 +32,4 @@ abstract class AbstractPostApiRequest extends AbstractApiRequest implements Post
     {
         return Method::POST;
     }
-
 }

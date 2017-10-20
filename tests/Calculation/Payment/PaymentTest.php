@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests\Calculation\Payment;
-
 
 use DateTime;
 use Dnhb\ApiClient\Calculation\Mortgage\Payment\PaymentFixedRatePeriodParameter;
@@ -25,13 +24,15 @@ class PaymentTest extends ApiClientTestCase
     public function testRequest()
     {
         $api = $this->getApi(
-            '{"data":{"months":[{"month":1,"date":"2017-01-20","repayment":100000,"gross":0,"net":0,"remainingDebt":0,' .
-            '"interest":0}],"total":{"interestPayment":0,"repayment":100000,"gross":100000,"net":100000,"remainingDebt' .
+            '{"data":{"months":[{"month":1,"date":"2017-01-20","repayment":100000,"gross":0,"net":0,"remainingDebt":0,'
+            .
+            '"interest":0}],"total":{"interestPayment":0,"repayment":100000,"gross":100000,"net":100000,"remainingDebt'
+            .
             '":0,"investment":100000}}}'
         );
 
         $fixedRatePeriods = [
-            new PaymentFixedRatePeriodParameter(10, 2.65)
+            new PaymentFixedRatePeriodParameter(10, 2.65),
         ];
 
         $loanParts = [
@@ -40,16 +41,15 @@ class PaymentTest extends ApiClientTestCase
                 100000.0,
                 1,
                 $fixedRatePeriods
-            )
+            ),
         ];
 
         $persons = [
             new PaymentPersonParameter(new DateTime('1980-01-01'), 15000),
-            new PaymentPersonParameter(new DateTime('1985-01-01'), 35000)
+            new PaymentPersonParameter(new DateTime('1985-01-01'), 35000),
         ];
 
         $result = $api->calculation()->getMortgagePayments($loanParts, 125000.0, $persons);
-
 
         $this->assertPayment($result->getPayments()[0]);
         $this->assertTotal($result->getTotal());

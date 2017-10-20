@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\MaximumByIncome;
-
 
 /**
  * Class MaximumMortgageByIncomePersonParameter
@@ -24,6 +23,7 @@ final class MaximumMortgageByIncomePersonParameter
 
     /**
      * MaximumMortgageByIncomePersonParameter constructor.
+     *
      * @param float $yearlyIncome
      * @param int   $age
      * @param float $yearlyAlimony

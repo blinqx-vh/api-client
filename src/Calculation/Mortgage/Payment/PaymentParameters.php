@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
-
 
 use Dnhb\ApiClient\Contract\PostParameterInterface;
 use stdClass;
@@ -44,31 +43,31 @@ final class PaymentParameters implements PostParameterInterface
         foreach ($this->loanparts as $loanpart) {
             $interesPeriods = [];
             foreach ($loanpart->getFixedRatePeriods() as $fixedRatePeriod) {
-                $interesPeriods[] = (object)[
-                    'duration' => $fixedRatePeriod->getDurationInYears(),
-                    'interestRate' => $fixedRatePeriod->getInterestRate()
+                $interesPeriods[] = (object) [
+                    'duration'     => $fixedRatePeriod->getDurationInYears(),
+                    'interestRate' => $fixedRatePeriod->getInterestRate(),
                 ];
             }
-            $loanparts[] = (object)[
-                'amount' => $loanpart->getAmount(),
-                'mortgageType' => $loanpart->getType()->getValue(),
+            $loanparts[] = (object) [
+                'amount'           => $loanpart->getAmount(),
+                'mortgageType'     => $loanpart->getType()->getValue(),
                 'durationInMonths' => $loanpart->getDurationInMonths(),
-                'interestPeriods' => $interesPeriods
+                'interestPeriods'  => $interesPeriods,
             ];
         }
 
         $people = [];
         foreach ($this->persons as $person) {
-            $people[] = (object)[
-                'dob' => $person->getDateOfBirth()->format('Y-m-d'),
-                'grossIncome' => $person->getSalary()
+            $people[] = (object) [
+                'dob'         => $person->getDateOfBirth()->format('Y-m-d'),
+                'grossIncome' => $person->getSalary(),
             ];
         }
 
-        return (object)[
+        return (object) [
             'loanparts' => $loanparts,
-            'WOZ' => $this->woz,
-            'people' => $people,
+            'WOZ'       => $this->woz,
+            'people'    => $people,
         ];
     }
 }

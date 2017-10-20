@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests;
-
 
 use Dnhb\ApiClient\Auth\Auth;
 use Dnhb\ApiClient\Client;

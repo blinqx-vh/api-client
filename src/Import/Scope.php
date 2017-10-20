@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import;
 
@@ -20,15 +20,14 @@ use stdClass;
 final class Scope implements Validatable
 {
     use WithIdentifier;
-
     /** @var array */
     private $items = [];
-
     /** @var array */
     private $lookup = [];
 
     /**
      * Scope constructor.
+     *
      * @param string $identifier
      */
     public function __construct(string $identifier)
@@ -38,6 +37,7 @@ final class Scope implements Validatable
 
     /**
      * @param ImportParameter $parameter
+     *
      * @return bool
      */
     public function has(ImportParameter $parameter): bool
@@ -47,6 +47,7 @@ final class Scope implements Validatable
 
     /**
      * @param string $identifier
+     *
      * @return ImportParameter
      */
     public function get(string $identifier): ImportParameter
@@ -60,6 +61,7 @@ final class Scope implements Validatable
 
     /**
      * @param ImportParameter $parameter
+     *
      * @throws ScopesNotMatchException
      */
     public function add(ImportParameter $parameter)
@@ -71,10 +73,12 @@ final class Scope implements Validatable
         }
 
         if ($this->has($parameter)) {
-            throw new InvalidArgumentException(sprintf(
-                'Identifier \'%s\' already found in this scope',
-                $parameter->getIdentifier()
-            ));
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Identifier \'%s\' already found in this scope',
+                    $parameter->getIdentifier()
+                )
+            );
         }
 
         if ($parameter->getType() === DossierParameter::TYPE && $this->hasType(DossierParameter::TYPE)) {
@@ -96,7 +100,7 @@ final class Scope implements Validatable
             $serializedItems[$identifier] = $item->serialize();
         }
 
-        return (object)$serializedItems;
+        return (object) $serializedItems;
     }
 
     /**
@@ -115,6 +119,7 @@ final class Scope implements Validatable
 
     /**
      * @param string $type
+     *
      * @return bool
      */
     private function hasType(string $type)
@@ -124,6 +129,7 @@ final class Scope implements Validatable
 
     /**
      * @param string $type
+     *
      * @return int
      */
     private function countItemsOfType(string $type): int
@@ -137,6 +143,7 @@ final class Scope implements Validatable
 
     /**
      * @param Scope $scope
+     *
      * @return bool
      */
     private function isSameScope(Scope $scope)

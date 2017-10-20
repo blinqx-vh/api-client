@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests\Calculation\Mortgage\MaximumByValue;
-
 
 use Dnhb\ApiClient\Request\Method;
 use Dnhb\ApiClient\Tests\TestCase\ApiClientTestCase;
@@ -26,10 +25,13 @@ class MaximumMortgageByValueTest extends ApiClientTestCase
         $this->assertRequestInContainer(
             Method::GET,
             '/calculation/v1/mortgage/maximum-by-value',
-            implode('&', [
-                'objectvalue=100000',
-                'api_key=key'
-            ])
+            implode(
+                '&',
+                [
+                    'objectvalue=100000',
+                    'api_key=key',
+                ]
+            )
         );
     }
 }

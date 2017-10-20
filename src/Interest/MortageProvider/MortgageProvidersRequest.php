@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Dnhb\ApiClient\Interest\MortageProvider;
-
 
 use Dnhb\ApiClient\Contract\AbstractGetApiRequest;
 use Dnhb\ApiClient\Request\WithArrayResult;
@@ -12,9 +10,7 @@ use Dnhb\ApiClient\Request\WithArrayResult;
  */
 class MortgageProvidersRequest extends AbstractGetApiRequest
 {
-
     use WithArrayResult;
-
     protected $baseUrl = 'interest/v1/mortgage-provider';
 
     /**

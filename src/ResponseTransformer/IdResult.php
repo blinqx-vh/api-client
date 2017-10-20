@@ -1,11 +1,9 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\ResponseTransformer;
 
 use Dnhb\ApiClient\Exception\ApiClientUnexpectedResultException;
-
 
 /**
  * Class IdResult
@@ -16,6 +14,7 @@ final class IdResult implements TransformerInterface
 {
     /**
      * @param array $response
+     *
      * @return int
      * @throws ApiClientUnexpectedResultException
      */

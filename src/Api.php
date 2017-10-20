@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient;
-
 
 use Dnhb\ApiClient\Module\Calculation;
 use Dnhb\ApiClient\Module\Import;
@@ -20,6 +19,7 @@ final class Api
 
     /**
      * Api constructor.
+     *
      * @param Client $client
      */
     public function __construct(Client $client)

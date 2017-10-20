@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests\Interest\Rate;
-
 
 use Dnhb\ApiClient\Data\AvailableForType;
 use Dnhb\ApiClient\Data\SortDirectionType;
@@ -17,13 +16,13 @@ use Dnhb\ApiClient\Tests\TestCase\ApiClientTestCase;
  */
 final class InterestRateTest extends ApiClientTestCase
 {
-
     /**
      * Test the request.
      */
     public function testRequest()
     {
-        $api = $this->getApi('
+        $api = $this->getApi(
+            '
             {
               "data": [
                 {
@@ -42,7 +41,8 @@ final class InterestRateTest extends ApiClientTestCase
                 }
               ]
             }
-        ');
+        '
+        );
 
         $result = $api->interest()->getInterestRates(
             37,
@@ -67,22 +67,25 @@ final class InterestRateTest extends ApiClientTestCase
         $this->assertRequestInContainer(
             Method::GET,
             '/interest/v1/interest-rates',
-            implode('&', [
-                'mortgageProviderId=37',
-                'labelId=400',
-                'productId=2529',
-                'availableFor=CONTINUATION',
-                'nhg=true',
-                'loanToValuePercentage=100',
-                'bestInterestOnly=true',
-                'period=0',
-                'onlyUseIncludedLabels=true',
-                'sortBy=percentage',
-                'sortDirection=ASC',
-                'page=1',
-                'limit=25',
-                'api_key=key'
-            ])
+            implode(
+                '&',
+                [
+                    'mortgageProviderId=37',
+                    'labelId=400',
+                    'productId=2529',
+                    'availableFor=CONTINUATION',
+                    'nhg=true',
+                    'loanToValuePercentage=100',
+                    'bestInterestOnly=true',
+                    'period=0',
+                    'onlyUseIncludedLabels=true',
+                    'sortBy=percentage',
+                    'sortDirection=ASC',
+                    'page=1',
+                    'limit=25',
+                    'api_key=key',
+                ]
+            )
         );
     }
 

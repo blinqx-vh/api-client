@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
-
 
 use Dnhb\ApiClient\Contract\AbstractPostApiRequest;
 use Dnhb\ApiClient\Contract\PostParameterInterface;
@@ -21,6 +20,7 @@ final class PaymentRequest extends AbstractPostApiRequest
 
     /**
      * PaymentRequest constructor.
+     *
      * @param PostParameterInterface $parameters
      */
     public function __construct(PostParameterInterface $parameters)
@@ -36,6 +36,4 @@ final class PaymentRequest extends AbstractPostApiRequest
     {
         return new MortgagePayments();
     }
-
-
 }
