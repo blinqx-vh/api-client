@@ -1,10 +1,9 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Traits;
 
 use stdClass;
-
 
 /**
  * Trait WithSerialize
@@ -21,11 +20,12 @@ trait WithSerialize
      */
     public function serialize(): stdClass
     {
-        return (object)$this->propertiesToArray(get_object_vars($this));
+        return (object) $this->propertiesToArray(get_object_vars($this));
     }
 
     /**
      * @param array $properties
+     *
      * @return array
      */
     private function propertiesToArray(array $properties): array

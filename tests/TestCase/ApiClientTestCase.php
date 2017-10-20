@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests\TestCase;
-
 
 use Dnhb\ApiClient\Api;
 use Dnhb\ApiClient\Auth\Auth;
@@ -30,6 +29,7 @@ abstract class ApiClientTestCase extends TestCase
 
     /**
      * @param string $responseBody
+     *
      * @return Api
      */
     protected function getApi(string $responseBody): Api
@@ -37,9 +37,11 @@ abstract class ApiClientTestCase extends TestCase
         $this->historyContainer = [];
         $history = Middleware::history($this->historyContainer);
 
-        $mock = new MockHandler([
-            new Response(200, [], $responseBody),
-        ]);
+        $mock = new MockHandler(
+            [
+                new Response(200, [], $responseBody),
+            ]
+        );
 
         $stack = HandlerStack::create($mock);
         $stack->push($history);
@@ -49,6 +51,7 @@ abstract class ApiClientTestCase extends TestCase
         $auth = Auth::apiKey('key');
 
         $client = new Client($guzzleClient, $auth);
+
         return new Api($client);
     }
 

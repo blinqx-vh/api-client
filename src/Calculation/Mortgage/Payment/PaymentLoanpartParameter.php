@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
-
 
 use Assert\Assertion;
 use Dnhb\ApiClient\Data\MortgageType;
@@ -19,7 +18,7 @@ final class PaymentLoanpartParameter
     private $supportedTypes = [
         MortgageType::ANNUITY,
         MortgageType::INTEREST_ONLY,
-        MortgageType::LINEAR
+        MortgageType::LINEAR,
     ];
     /** @var MortgageType */
     private $type;
@@ -32,10 +31,12 @@ final class PaymentLoanpartParameter
 
     /**
      * PaymentLoanpartParameter constructor.
+     *
      * @param MortgageType $type
      * @param float        $amount
      * @param int          $durationInMonths
      * @param array|null   $fixedRatePeriods
+     *
      * @throws ApiClientInvalidArgumentException
      */
     public function __construct(
@@ -84,7 +85,6 @@ final class PaymentLoanpartParameter
         return $this->durationInMonths;
     }
 
-
     /**
      * @return PaymentFixedRatePeriodParameter[]
      */
@@ -92,5 +92,4 @@ final class PaymentLoanpartParameter
     {
         return $this->fixedRatePeriods;
     }
-
 }

@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Contract;
-
 
 /**
  * Interface AuthorizationInterface
@@ -13,6 +12,7 @@ interface AuthInterface
 {
     /** */
     const TYPE_APIKEY = 'api_key';
+
     /** */
     const TYPE_JWT = 'token';
 

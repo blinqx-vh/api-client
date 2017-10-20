@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\MaximumByIncome;
 
@@ -14,12 +14,12 @@ use Dnhb\ApiClient\Request\WithFloatResult;
 final class MaximumMortgageByIncomeRequest extends AbstractGetApiRequest
 {
     use WithFloatResult;
-
     /** @var string */
     protected $baseUrl = 'calculation/v1/loanparts/maximum-by-income';
 
     /**
      * MaximumMortgageByIncomeRequest constructor.
+     *
      * @param MaximumMortgageByIncomeParameter $parameter
      */
     public function __construct(MaximumMortgageByIncomeParameter $parameter)

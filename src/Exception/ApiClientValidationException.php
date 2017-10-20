@@ -1,10 +1,9 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Exception;
 
 use Exception;
-
 
 /**
  * Class ApiClientValidationException
@@ -15,6 +14,7 @@ class ApiClientValidationException extends ApiClientException
 {
     /**
      * ApiClientValidationException constructor.
+     *
      * @param string    $message
      * @param Exception $previous
      */

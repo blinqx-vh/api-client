@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Parameter;
 
@@ -23,10 +23,13 @@ final class DossierParameter extends AbstractImportParameter
 
     /** */
     const TYPE = 'Dossier';
+
     /** */
     const MIN_PERSONS_PER_DOSSIER = 1;
+
     /** */
     const MAX_PERSONS_PER_DOSSIER = 2;
+
     /** */
     const MAX_HOUSES_PER_DOSSIER = 1;
 
@@ -35,16 +38,12 @@ final class DossierParameter extends AbstractImportParameter
 
     /** @var array */
     protected $hasPersons;
-
     /** @var array */
     protected $hasHouses;
-
     /** @var array */
     protected $hasExternalDocuments;
-
     /** @var string */
     protected $hasCorrespondenceAddress;
-
     /** @var MaritalStatus|null */
     protected $maritalStatus;
     /** @var ClientStatus|null */
@@ -56,6 +55,7 @@ final class DossierParameter extends AbstractImportParameter
 
     /**
      * DossierParameter constructor.
+     *
      * @param string $identifier
      * @param Scope  $scope
      */
@@ -84,6 +84,7 @@ final class DossierParameter extends AbstractImportParameter
 
         if (count($this->hasPersons) < self::MIN_PERSONS_PER_DOSSIER) {
             $validationManager->addFailure('There are no persons added to the DossierParameter');
+
             return; // Cant check persons, so return before foreach statement
         }
 
@@ -91,7 +92,7 @@ final class DossierParameter extends AbstractImportParameter
         foreach ($this->hasPersons as $identifier) {
             $personParameter = $this->getScope()->get($identifier);
 
-            if(!$personParameter instanceof PersonParameter) {
+            if (!$personParameter instanceof PersonParameter) {
                 throw new \LogicException(
                     sprintf(
                         'An unexpected error occured, found a %s when a %s was expected',
@@ -119,23 +120,29 @@ final class DossierParameter extends AbstractImportParameter
 
     /**
      * @param PersonParameter $personParameter
+     *
      * @return DossierParameter
      */
     public function addPerson(PersonParameter $personParameter): DossierParameter
     {
-        Assertion::lessThan(count($this->hasPersons), self::MAX_PERSONS_PER_DOSSIER,
-            sprintf('A maximum of %s persons per dossier is allowed', self::MAX_PERSONS_PER_DOSSIER));
+        Assertion::lessThan(
+            count($this->hasPersons),
+            self::MAX_PERSONS_PER_DOSSIER,
+            sprintf('A maximum of %s persons per dossier is allowed', self::MAX_PERSONS_PER_DOSSIER)
+        );
 
         if (!$this->getScope()->has($personParameter)) {
             $this->getScope()->add($personParameter);
         }
 
         $this->hasPersons[] = $personParameter->getIdentifier();
+
         return $this;
     }
 
     /**
      * @param string $identifier
+     *
      * @return PersonParameter
      */
     public function createPerson(string $identifier): PersonParameter
@@ -148,6 +155,7 @@ final class DossierParameter extends AbstractImportParameter
 
     /**
      * @param AddressParameter $address
+     *
      * @return DossierParameter
      */
     public function addCorrespondenceAddress(AddressParameter $address): DossierParameter
@@ -159,11 +167,13 @@ final class DossierParameter extends AbstractImportParameter
         }
 
         $this->hasCorrespondenceAddress = $address->getIdentifier();
+
         return $this;
     }
 
     /**
      * @param string $identifier
+     *
      * @return AddressParameter
      */
     public function createCorrespondenceAddress(string $identifier): AddressParameter
@@ -176,23 +186,29 @@ final class DossierParameter extends AbstractImportParameter
 
     /**
      * @param HouseParameter $house
+     *
      * @return DossierParameter
      */
     public function addHouse(HouseParameter $house): DossierParameter
     {
-        Assertion::lessThan(count($this->hasHouses), self::MAX_HOUSES_PER_DOSSIER,
-            sprintf('A maximum of %s houses per dossier is allowed', self::MAX_HOUSES_PER_DOSSIER));
+        Assertion::lessThan(
+            count($this->hasHouses),
+            self::MAX_HOUSES_PER_DOSSIER,
+            sprintf('A maximum of %s houses per dossier is allowed', self::MAX_HOUSES_PER_DOSSIER)
+        );
 
         if (!$this->getScope()->has($house)) {
             $this->getScope()->add($house);
         }
 
         $this->hasHouses[] = $house->getIdentifier();
+
         return $this;
     }
 
     /**
      * @param string $identifier
+     *
      * @return HouseParameter
      */
     public function createHouse(string $identifier): HouseParameter
@@ -205,6 +221,7 @@ final class DossierParameter extends AbstractImportParameter
 
     /**
      * @param ExternalDocumentParameter $externalDocument
+     *
      * @return DossierParameter
      */
     public function addExternalDocument(ExternalDocumentParameter $externalDocument): DossierParameter
@@ -214,11 +231,13 @@ final class DossierParameter extends AbstractImportParameter
         }
 
         $this->hasExternalDocuments[] = $externalDocument->getIdentifier();
+
         return $this;
     }
 
     /**
      * @param string $identifier
+     *
      * @return ExternalDocumentParameter
      */
     public function createExternalDocument(string $identifier): ExternalDocumentParameter
@@ -231,36 +250,43 @@ final class DossierParameter extends AbstractImportParameter
 
     /**
      * @param MaritalStatus $maritalStatus
+     *
      * @return DossierParameter
      */
     public function setMaritalStatus(MaritalStatus $maritalStatus): DossierParameter
     {
         $this->maritalStatus = $maritalStatus->getKey();
+
         return $this;
     }
 
     /**
      * @param ClientStatus $clientStatus
+     *
      * @return DossierParameter
      */
     public function setClientStatus(ClientStatus $clientStatus): DossierParameter
     {
         $this->clientStatus = $clientStatus->getKey();
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return DossierParameter
      */
     public function setNote(string $value): DossierParameter
     {
         $this->note = $value;
+
         return $this;
     }
 
     /**
      * @param string $label
+     *
      * @return DossierParameter
      */
     public function addLabel(string $label): DossierParameter
@@ -276,6 +302,7 @@ final class DossierParameter extends AbstractImportParameter
         );
 
         $this->labels[] = $label;
+
         return $this;
     }
 }

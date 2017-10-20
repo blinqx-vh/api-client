@@ -1,11 +1,9 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\ResponseTransformer;
 
 use Dnhb\ApiClient\Exception\ApiClientUnexpectedResultException;
-
 
 /**
  * Class FloatResult
@@ -16,6 +14,7 @@ final class FloatResult implements TransformerInterface
 {
     /**
      * @param array $response
+     *
      * @return float
      * @throws ApiClientUnexpectedResultException
      */

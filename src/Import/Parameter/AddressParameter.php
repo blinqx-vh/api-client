@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Parameter;
 
@@ -34,6 +34,7 @@ final class AddressParameter extends AbstractImportParameter
 
     /**
      * AddressParameter constructor.
+     *
      * @param string $identifier
      * @param Scope  $scope
      */
@@ -41,12 +42,14 @@ final class AddressParameter extends AbstractImportParameter
     {
         parent::__construct($identifier, $scope);
 
-        $this->setRequiredProperties([
-            'postalCode',
-            'houseNumber',
-            'street',
-            'city'
-        ]);
+        $this->setRequiredProperties(
+            [
+                'postalCode',
+                'houseNumber',
+                'street',
+                'city',
+            ]
+        );
     }
 
     /**
@@ -67,6 +70,7 @@ final class AddressParameter extends AbstractImportParameter
 
     /**
      * @param string $value
+     *
      * @return AddressParameter
      */
     public function setPostalCode(string $value): AddressParameter
@@ -75,11 +79,13 @@ final class AddressParameter extends AbstractImportParameter
         Assertion::postalcode($value, 'Postal code should be of valid format (1000AA)');
 
         $this->postalCode = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return AddressParameter
      */
     public function setHouseNumber(string $value): AddressParameter
@@ -88,21 +94,25 @@ final class AddressParameter extends AbstractImportParameter
         Assertion::numeric($value, 'House number should be numeric');
 
         $this->houseNumber = $value;
+
         return $this;
     }
 
     /**
      * @param string $addition
+     *
      * @return AddressParameter
      */
     public function setAddition(string $addition): AddressParameter
     {
         $this->addition = $addition;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return AddressParameter
      */
     public function setStreet(string $value): AddressParameter
@@ -110,11 +120,13 @@ final class AddressParameter extends AbstractImportParameter
         Assertion::notEmpty($value, 'Street cannot be empty');
 
         $this->street = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return AddressParameter
      */
     public function setCity(string $value): AddressParameter
@@ -122,6 +134,7 @@ final class AddressParameter extends AbstractImportParameter
         Assertion::notEmpty($value, 'City cannot be empty');
 
         $this->city = $value;
+
         return $this;
     }
 }

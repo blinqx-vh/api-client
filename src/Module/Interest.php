@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Module;
-
 
 use Dnhb\ApiClient\Data\AvailableForType;
 use Dnhb\ApiClient\Data\MortgageType;
@@ -26,23 +25,22 @@ use Dnhb\ApiClient\Interest\Rate\InterestRatesRequest;
  */
 final class Interest extends AbstractModule
 {
-
     /**
      * Get interest rates
      *
-     * @param int $mortgageProviderId
-     * @param int|null $labelId
-     * @param int|null $productId
-     * @param AvailableForType $availableFor
-     * @param bool $nhg
-     * @param int|null $loanToValuePercentage
-     * @param bool $bestInterestOnly
-     * @param int $period
-     * @param bool $onlyUseIncludedLabels
+     * @param int                     $mortgageProviderId
+     * @param int|null                $labelId
+     * @param int|null                $productId
+     * @param AvailableForType        $availableFor
+     * @param bool                    $nhg
+     * @param int|null                $loanToValuePercentage
+     * @param bool                    $bestInterestOnly
+     * @param int                     $period
+     * @param bool                    $onlyUseIncludedLabels
      * @param SortInterestRatesByType $sortBy
-     * @param SortDirectionType $sortDirection
-     * @param int $page
-     * @param int $limit
+     * @param SortDirectionType       $sortDirection
+     * @param int                     $page
+     * @param int                     $limit
      *
      * @throws ApiClientInvalidArgumentException
      * @throws ApiClientResponseException
@@ -64,8 +62,7 @@ final class Interest extends AbstractModule
         SortDirectionType $sortDirection,
         int $page = 0,
         int $limit = 25
-    ): array
-    {
+    ): array {
         $parameter = new InterestRatesParameter(
             $mortgageProviderId,
             $labelId,
@@ -88,17 +85,17 @@ final class Interest extends AbstractModule
     /**
      * Get bank labels.
      *
-     * @param int|null $mortgageProvider
-     * @param int|null $product
-     * @param MortgageType|null $mortgageType
+     * @param int|null              $mortgageProvider
+     * @param int|null              $product
+     * @param MortgageType|null     $mortgageType
      * @param AvailableForType|null $availableFor
-     * @param bool|null $nhg
-     * @param float|null $ltv
-     * @param int|null $period
-     * @param bool|null $onlyUseIncludedLabels
-     * @param float|null $maxLtv
-     * @param int $page
-     * @param int $limit
+     * @param bool|null             $nhg
+     * @param float|null            $ltv
+     * @param int|null              $period
+     * @param bool|null             $onlyUseIncludedLabels
+     * @param float|null            $maxLtv
+     * @param int                   $page
+     * @param int                   $limit
      *
      * @throws ApiClientInvalidArgumentException
      * @throws ApiClientAuthException
@@ -118,8 +115,7 @@ final class Interest extends AbstractModule
         float $maxLtv = null,
         int $page = 0,
         int $limit = 25
-    ): array
-    {
+    ): array {
         $parameter = new BankLabelsParameter(
             $mortgageProvider,
             $product,
@@ -140,17 +136,17 @@ final class Interest extends AbstractModule
     /**
      * Get mortgage providers.
      *
-     * @param int|null $mortgageProviderId
-     * @param int|null $labelId
-     * @param int|null $productId
-     * @param MortgageType|null $mortgageType
+     * @param int|null              $mortgageProviderId
+     * @param int|null              $labelId
+     * @param int|null              $productId
+     * @param MortgageType|null     $mortgageType
      * @param AvailableForType|null $availableFor
-     * @param bool|null $nhg
-     * @param float|null $ltv
-     * @param int|null $period
-     * @param bool|null $onlyUseIncludedLabels
-     * @param int $page
-     * @param int $limit
+     * @param bool|null             $nhg
+     * @param float|null            $ltv
+     * @param int|null              $period
+     * @param bool|null             $onlyUseIncludedLabels
+     * @param int                   $page
+     * @param int                   $limit
      *
      * @throws ApiClientInvalidArgumentException
      * @throws ApiClientAuthException
@@ -170,8 +166,7 @@ final class Interest extends AbstractModule
         bool $onlyUseIncludedLabels = null,
         int $page = 0,
         int $limit = 25
-    ): array
-    {
+    ): array {
         $parameter = new MortgageProvidersParameter(
             $mortgageProviderId,
             $labelId,

@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Parameter;
 
@@ -23,7 +23,6 @@ final class HouseParameter extends AbstractImportParameter
 
     /** @var  string */
     protected $hasAddress;
-
     /** @var  float */
     protected $woz;
 
@@ -37,6 +36,7 @@ final class HouseParameter extends AbstractImportParameter
 
     /**
      * BaseImportParameter constructor.
+     *
      * @param string $identifier
      * @param Scope  $scope
      */
@@ -44,9 +44,11 @@ final class HouseParameter extends AbstractImportParameter
     {
         parent::__construct($identifier, $scope);
 
-        $this->setRequiredProperties([
-            'hasAddress'
-        ]);
+        $this->setRequiredProperties(
+            [
+                'hasAddress',
+            ]
+        );
     }
 
     /**
@@ -59,6 +61,7 @@ final class HouseParameter extends AbstractImportParameter
 
     /**
      * @param AddressParameter $address
+     *
      * @return HouseParameter
      */
     public function addAddress(AddressParameter $address): HouseParameter
@@ -70,11 +73,13 @@ final class HouseParameter extends AbstractImportParameter
         }
 
         $this->hasAddress = $address->getIdentifier();
+
         return $this;
     }
 
     /**
      * @param string $identifier
+     *
      * @return AddressParameter
      */
     public function createAddress(string $identifier): AddressParameter
@@ -87,6 +92,7 @@ final class HouseParameter extends AbstractImportParameter
 
     /**
      * @param float $woz
+     *
      * @return HouseParameter
      */
     public function setWoz(float $woz): HouseParameter
@@ -94,6 +100,7 @@ final class HouseParameter extends AbstractImportParameter
         Assertion::greaterOrEqualThan($woz, 0.0, 'WOZ should be higher or equals to zero');
 
         $this->woz = $woz;
+
         return $this;
     }
 }

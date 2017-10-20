@@ -1,10 +1,9 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Data;
 
 use MyCLabs\Enum\Enum;
-
 
 /**
  * Class Gender
@@ -15,6 +14,7 @@ final class Gender extends Enum
 {
     /** Male */
     const MALE = 'MALE';
+
     /** Female */
     const FEMALE = 'FEMALE';
 }

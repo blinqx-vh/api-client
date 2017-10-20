@@ -1,20 +1,19 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests\Interest\Label;
+
 use Dnhb\ApiClient\Data\AvailableForType;
 use Dnhb\ApiClient\Data\MortgageType;
 use Dnhb\ApiClient\Interest\Label\BankLabelsParameter;
 use Dnhb\ApiClient\Interest\Label\InterestLabelParameter;
 use PHPUnit\Framework\TestCase;
 
-
 /**
  * Class BankLabelsParameterTest
  */
 final class BankLabelsParameterTest extends TestCase
 {
-
     /**
      * Test different parameters on correct usage of the different
      * types of parameters.
@@ -23,7 +22,7 @@ final class BankLabelsParameterTest extends TestCase
     {
         $bankLabelsParameter = new BankLabelsParameter(
             1,
-             null,
+            null,
             new MortgageType(MortgageType::INTEREST_ONLY),
             new AvailableForType(AvailableForType::TYPE_BOTH),
             false,

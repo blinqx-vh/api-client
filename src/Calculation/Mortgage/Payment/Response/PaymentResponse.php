@@ -1,10 +1,9 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment\Response;
 
 use Dnhb\ApiClient\Exception\ApiClientResponseException;
-
 
 /**
  * Class PaymentResponse
@@ -20,7 +19,9 @@ final class PaymentResponse
 
     /**
      * PaymentResponse constructor.
+     *
      * @param array $response
+     *
      * @throws ApiClientResponseException
      */
     public function __construct(array $response)
@@ -53,6 +54,4 @@ final class PaymentResponse
     {
         return $this->total;
     }
-
-
 }

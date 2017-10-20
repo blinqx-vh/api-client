@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Exception;
-
 
 use Exception;
 use GuzzleHttp\Exception\ConnectException;

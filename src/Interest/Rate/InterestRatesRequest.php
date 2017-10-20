@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Interest\Rate;
 
@@ -14,7 +14,6 @@ use Dnhb\ApiClient\Request\WithArrayResult;
 class InterestRatesRequest extends AbstractGetApiRequest
 {
     use WithArrayResult;
-
     protected $baseUrl = 'interest/v1/interest-rates';
 
     /**

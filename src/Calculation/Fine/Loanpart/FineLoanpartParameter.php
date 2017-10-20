@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Fine\Loanpart;
 
@@ -9,7 +9,6 @@ use DateTime;
 use Dnhb\ApiClient\Contract\GetParameterInterface;
 use Dnhb\ApiClient\Data\MortgageType;
 use Dnhb\ApiClient\Exception\ApiClientInvalidArgumentException;
-
 
 /**
  * Class FineLoanpartParameter
@@ -22,9 +21,8 @@ final class FineLoanpartParameter implements GetParameterInterface
     private $supportedTypes = [
         MortgageType::ANNUITY,
         MortgageType::INTEREST_ONLY,
-        MortgageType::LINEAR
+        MortgageType::LINEAR,
     ];
-
     /** @var string */
     private $loanpartStartDate;
     /** @var int */
@@ -50,6 +48,7 @@ final class FineLoanpartParameter implements GetParameterInterface
 
     /**
      * FineLoanpartParameter constructor.
+     *
      * @param DateTime     $loanpartStartDate
      * @param int          $loanpartDurationInMonths
      * @param DateTime     $fixedRateTermStartDate
@@ -61,6 +60,7 @@ final class FineLoanpartParameter implements GetParameterInterface
      * @param DateTime     $refinancingDate
      * @param float        $presentDayInterest
      * @param float        $fineFreePercentage
+     *
      * @throws ApiClientInvalidArgumentException
      */
     public function __construct(
@@ -94,7 +94,6 @@ final class FineLoanpartParameter implements GetParameterInterface
         Assertion::greaterOrEqualThan($fineFreePercentage, 0);
         Assertion::lessOrEqualThan($fineFreePercentage, 100);
 
-
         $this->loanpartStartDate = $loanpartStartDate->format('Y-m-d');
         $this->loanpartDurationInMonths = $loanpartDurationInMonths;
         $this->fixedRateTermStartDate = $fixedRateTermStartDate->format('Y-m-d');
@@ -114,17 +113,17 @@ final class FineLoanpartParameter implements GetParameterInterface
     public function serialize(): array
     {
         return [
-            'loanPartStartDate' => $this->loanpartStartDate,
-            'loanPartDuration' => $this->loanpartDurationInMonths,
-            'fixedRateTermStartDate' => $this->fixedRateTermStartDate,
+            'loanPartStartDate'             => $this->loanpartStartDate,
+            'loanPartDuration'              => $this->loanpartDurationInMonths,
+            'fixedRateTermStartDate'        => $this->fixedRateTermStartDate,
             'fixedRateTermDurationInMonths' => $this->fixedRateTermDurationInMonths,
-            'remainingDebt' => $this->remainingDebt,
-            'percentage' => $this->interestPercentage,
-            'originalDebt' => $this->originalDebt,
-            'mortgageType' => $this->mortgageType,
-            'refinancingDate' => $this->refinancingDate,
-            'presentDayInterest' => $this->presentDayInterest,
-            'fineFreePercentage' => $this->fineFreePercentage
+            'remainingDebt'                 => $this->remainingDebt,
+            'percentage'                    => $this->interestPercentage,
+            'originalDebt'                  => $this->originalDebt,
+            'mortgageType'                  => $this->mortgageType,
+            'refinancingDate'               => $this->refinancingDate,
+            'presentDayInterest'            => $this->presentDayInterest,
+            'fineFreePercentage'            => $this->fineFreePercentage,
         ];
     }
 

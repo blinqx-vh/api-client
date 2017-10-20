@@ -1,12 +1,11 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import;
 
 use Dnhb\ApiClient\Import\Contract\ImportParameter;
 use Dnhb\ApiClient\Import\Traits\WithIdentifier;
 use Dnhb\ApiClient\Import\Traits\WithRequiredProperties;
-
 
 /**
  * Class AbstractImportParameter
@@ -16,12 +15,12 @@ use Dnhb\ApiClient\Import\Traits\WithRequiredProperties;
 abstract class AbstractImportParameter implements ImportParameter
 {
     use WithIdentifier, WithRequiredProperties;
-
     /** @var Scope */
     private $scope;
 
     /**
      * BaseImportParameter constructor.
+     *
      * @param string $identifier
      * @param Scope  $scope
      */

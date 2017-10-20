@@ -1,9 +1,7 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\ResponseTransformer;
-
 
 use Dnhb\ApiClient\Calculation\Mortgage\Payment\Response\PaymentResponse;
 
@@ -16,6 +14,7 @@ final class MortgagePayments implements TransformerInterface
 {
     /**
      * @param array $response
+     *
      * @return PaymentResponse
      */
     public function transform(array $response): PaymentResponse

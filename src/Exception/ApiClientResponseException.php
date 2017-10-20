@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Exception;
 
@@ -59,6 +59,4 @@ final class ApiClientResponseException extends ApiClientException
     {
         return $this->response;
     }
-
-
 }

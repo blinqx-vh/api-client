@@ -1,31 +1,31 @@
 {
-    "name": "dnhb/api-client",
-    "description": "A client for the Hypotheekbond APIs",
-    "type": "library",
-    "license": "proprietary",
-    "authors": [
-        {
-            "name": "De Nationale Hypotheekbond",
-            "email": "info@hypotheekbond.nl"
-        }
-    ],
-    "require": {
-        "php": ">= 7.0",
-        "guzzlehttp/guzzle": "^6.2",
-        "myclabs/php-enum": "^1.5",
-        "beberlei/assert": "^2.7"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.7"
-    },
-    "autoload": {
-        "psr-4": {
-            "Dnhb\\ApiClient\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Dnhb\\ApiClient\\Tests\\": "tests"
-        }
+  "name": "dnhb/api-client",
+  "description": "A client for the Hypotheekbond APIs",
+  "type": "library",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "De Nationale Hypotheekbond",
+      "email": "info@hypotheekbond.nl"
     }
+  ],
+  "require": {
+    "php": ">= 7.0",
+    "guzzlehttp/guzzle": "^6.2",
+    "myclabs/php-enum": "^1.5",
+    "beberlei/assert": "^2.7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dnhb\\ApiClient\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dnhb\\ApiClient\\Tests\\": "tests"
+    }
+  }
 }

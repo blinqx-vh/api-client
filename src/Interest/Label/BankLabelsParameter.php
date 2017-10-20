@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Interest\Label;
-
 
 use Dnhb\ApiClient\Contract\GetParameterInterface;
 use Dnhb\ApiClient\Data\AvailableForType;
@@ -15,7 +14,6 @@ use Dnhb\ApiClient\Import\Assert\Assertion;
  */
 class BankLabelsParameter implements GetParameterInterface
 {
-
     /**
      * @var array
      */
@@ -29,18 +27,16 @@ class BankLabelsParameter implements GetParameterInterface
         MortgageType::INVESTMENT,
         MortgageType::LIFE,
         MortgageType::LINEAR,
-        MortgageType::SAVING
+        MortgageType::SAVING,
     ];
-
     /**
      * @var array
      */
     private $supportedAvailabilityTypes = [
         AvailableForType::TYPE_ARRANGEMENT,
         AvailableForType::TYPE_CONTINUATION,
-        AvailableForType::TYPE_BOTH
+        AvailableForType::TYPE_BOTH,
     ];
-
     /**
      * @var int
      */
@@ -89,17 +85,17 @@ class BankLabelsParameter implements GetParameterInterface
     /**
      * BankLabelsParameter constructor.
      *
-     * @param int|null $mortgageProviderId
-     * @param int|null $productId
-     * @param MortgageType|null $mortgageType
+     * @param int|null              $mortgageProviderId
+     * @param int|null              $productId
+     * @param MortgageType|null     $mortgageType
      * @param AvailableForType|null $availableFor
-     * @param bool|null $nhg
-     * @param float|null $ltv
-     * @param int|null $period
-     * @param bool $onlyUseIncludedLabels
-     * @param float|null $maxLtv
-     * @param int $page
-     * @param int $limit
+     * @param bool|null             $nhg
+     * @param float|null            $ltv
+     * @param int|null              $period
+     * @param bool                  $onlyUseIncludedLabels
+     * @param float|null            $maxLtv
+     * @param int                   $page
+     * @param int                   $limit
      *
      * @throws ApiClientInvalidArgumentException
      */
@@ -115,8 +111,7 @@ class BankLabelsParameter implements GetParameterInterface
         float $maxLtv = null,
         int $page = 0,
         int $limit = 25
-    )
-    {
+    ) {
         if (null !== $mortgageType) {
             if (!in_array($mortgageType->getValue(), $this->supportedMortgageTypes, true)) {
                 throw new ApiClientInvalidArgumentException(
@@ -186,17 +181,17 @@ class BankLabelsParameter implements GetParameterInterface
         }
 
         return [
-            'mortgageProviderId' => $this->mortgageProviderId,
-            'productId' => $this->productId,
-            'repaymentType' => null !== $this->mortgageType ? $this->mortgageType->getValue() : null,
-            'availableFor' => null !== $this->availableFor ? $this->availableFor->getValue() : null,
-            'nhg' => $nhg,
+            'mortgageProviderId'    => $this->mortgageProviderId,
+            'productId'             => $this->productId,
+            'repaymentType'         => null !== $this->mortgageType ? $this->mortgageType->getValue() : null,
+            'availableFor'          => null !== $this->availableFor ? $this->availableFor->getValue() : null,
+            'nhg'                   => $nhg,
             'loanToValuePercentage' => $this->ltv,
-            'period' => $this->period,
+            'period'                => $this->period,
             'onlyUseIncludedLabels' => $onlyUseIncludedLabels,
-            'maxLtv' => $this->maxLtv,
-            'page' => $this->page,
-            'limit' => $this->limit
+            'maxLtv'                => $this->maxLtv,
+            'page'                  => $this->page,
+            'limit'                 => $this->limit,
         ];
     }
 

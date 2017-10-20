@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Dnhb\ApiClient\Tests\Interest\Label;
 
 use Dnhb\ApiClient\Data\AvailableForType;
@@ -13,13 +12,13 @@ use Dnhb\ApiClient\Tests\TestCase\ApiClientTestCase;
  */
 final class BankLabelsTest extends ApiClientTestCase
 {
-
     /**
      * Test the request.
      */
     public function testRequest()
     {
-        $api = $this->getApi('
+        $api = $this->getApi(
+            '
             {
               "data": [
                 {
@@ -31,7 +30,8 @@ final class BankLabelsTest extends ApiClientTestCase
                 }
               ]
             }
-        ');
+        '
+        );
 
         $result = $api->interest()->getBankLabels(
             1,
@@ -54,18 +54,21 @@ final class BankLabelsTest extends ApiClientTestCase
         $this->assertRequestInContainer(
             Method::GET,
             '/interest/v1/label',
-            implode('&', [
-                'mortgageProviderId=1',
-                'repaymentType=INTEREST_ONLY',
-                'availableFor=BOTH',
-                'nhg=false',
-                'loanToValuePercentage=100',
-                'period=1',
-                'onlyUseIncludedLabels=false',
-                'page=1',
-                'limit=100',
-                'api_key=key'
-            ])
+            implode(
+                '&',
+                [
+                    'mortgageProviderId=1',
+                    'repaymentType=INTEREST_ONLY',
+                    'availableFor=BOTH',
+                    'nhg=false',
+                    'loanToValuePercentage=100',
+                    'period=1',
+                    'onlyUseIncludedLabels=false',
+                    'page=1',
+                    'limit=100',
+                    'api_key=key',
+                ]
+            )
         );
     }
 

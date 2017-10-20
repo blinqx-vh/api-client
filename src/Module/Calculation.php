@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Module;
 
@@ -39,6 +39,7 @@ final class Calculation extends AbstractModule
      * @param $loanParts
      * @param $woz
      * @param $persons
+     *
      * @return PaymentResponse
      */
     public function getMortgagePayments($loanParts, float $woz, $persons): PaymentResponse
@@ -62,6 +63,7 @@ final class Calculation extends AbstractModule
      * @param DateTime     $refinancingDate
      * @param float        $presentDayInterest
      * @param float        $fineFreePercentage
+     *
      * @return float
      */
     public function getLoanpartFine(
@@ -102,6 +104,7 @@ final class Calculation extends AbstractModule
      * @param int   $fixedRateTermDurationInMonths
      * @param float $notDeductible
      * @param float $groundRent
+     *
      * @return float
      */
     public function getMaximumMortgageByIncome(
@@ -128,11 +131,13 @@ final class Calculation extends AbstractModule
 
     /**
      * @param float $objectValue
+     *
      * @return float
      */
     public function getMaximumMortgageByValue(float $objectValue): float
     {
         $parameters = new MaximumMortgageByValueParameter($objectValue);
+
         return $this->client->send(new MaximumMortgageByValueRequest($parameters));
     }
 }

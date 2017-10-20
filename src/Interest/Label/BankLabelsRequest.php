@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Interest\Label;
 
@@ -12,7 +12,6 @@ use Dnhb\ApiClient\Request\WithArrayResult;
 class BankLabelsRequest extends AbstractGetApiRequest
 {
     use WithArrayResult;
-
     protected $baseUrl = 'interest/v1/label';
 
     /**

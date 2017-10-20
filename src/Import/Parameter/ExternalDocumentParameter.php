@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Parameter;
 
@@ -23,7 +23,6 @@ final class ExternalDocumentParameter extends AbstractImportParameter
 
     /** @var string */
     protected $url;
-
     /** @var string */
     protected $description;
 
@@ -37,6 +36,7 @@ final class ExternalDocumentParameter extends AbstractImportParameter
 
     /**
      * ExternalDocumentParameter constructor.
+     *
      * @param string $identifier
      * @param Scope  $scope
      */
@@ -57,6 +57,7 @@ final class ExternalDocumentParameter extends AbstractImportParameter
 
     /**
      * @param string $value
+     *
      * @return ExternalDocumentParameter
      */
     public function setUrl(string $value): ExternalDocumentParameter
@@ -64,11 +65,13 @@ final class ExternalDocumentParameter extends AbstractImportParameter
         Assertion::notEmpty($value, 'Url cannot be empty');
 
         $this->url = $value;
+
         return $this;
     }
 
     /**
      * @param string $value
+     *
      * @return ExternalDocumentParameter
      */
     public function setDescription(string $value): ExternalDocumentParameter
@@ -76,6 +79,7 @@ final class ExternalDocumentParameter extends AbstractImportParameter
         Assertion::notEmpty($value, 'Description cannot be empty');
 
         $this->description = $value;
+
         return $this;
     }
 }

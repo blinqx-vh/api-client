@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Interest\Rate;
 
@@ -17,40 +17,36 @@ use Dnhb\ApiClient\Import\Assert\Assertion;
  */
 final class InterestRatesParameter implements GetParameterInterface
 {
-
     /**
-     * @var array 
+     * @var array
      */
     private $supportedAvailablilityTypes = [
         AvailableForType::TYPE_ARRANGEMENT,
-        AvailableForType::TYPE_CONTINUATION
+        AvailableForType::TYPE_CONTINUATION,
     ];
-
     /**
-     * @var array 
+     * @var array
      */
     private $supportedSortDirections = [
         SortDirectionType::DIRECTION_ASC,
-        SortDirectionType::DIRECTION_DESC
+        SortDirectionType::DIRECTION_DESC,
     ];
-
     /**
      * @var array
      */
     private $supportedSortBys = [
-        SortInterestRatesByType::INTEREST_RATES_SORT_TYPE_PERCENTAGE
+        SortInterestRatesByType::INTEREST_RATES_SORT_TYPE_PERCENTAGE,
     ];
-
     /**
-     * @var int 
+     * @var int
      */
     private $mortgageProviderId;
     /**
-     * @var int 
+     * @var int
      */
     private $labelId;
     /**
-     * @var int 
+     * @var int
      */
     private $productId;
     /**
@@ -58,23 +54,23 @@ final class InterestRatesParameter implements GetParameterInterface
      */
     private $availableFor;
     /**
-     * @var boolean 
+     * @var boolean
      */
     private $nhg;
     /**
-     * @var double 
+     * @var double
      */
     private $loanToValuePercentage;
     /**
-     * @var boolean 
+     * @var boolean
      */
     private $bestInterestOnly;
     /**
-     * @var integer 
+     * @var integer
      */
     private $period;
     /**
-     * @var boolean 
+     * @var boolean
      */
     private $onlyUseIncludedLabels;
     /**
@@ -86,30 +82,31 @@ final class InterestRatesParameter implements GetParameterInterface
      */
     private $sortDirection;
     /**
-     * @var integer 
+     * @var integer
      */
     private $page;
     /**
-     * @var integer 
+     * @var integer
      */
     private $limit;
 
     /**
      * InterestRatesParameter constructor.
      *
-     * @param  int                          $mortgageProviderId
-     * @param  int|null                     $labelId
-     * @param  int|null                     $productId
-     * @param  AvailableForType             $availableFor
-     * @param  bool                         $nhg
-     * @param  int|null                     $loanToValuePercentage
-     * @param  bool                         $bestInterestOnly
-     * @param  int                          $period
-     * @param  bool                         $onlyUseIncludedLabels
-     * @param  SortInterestRatesByType      $sortBy
-     * @param  SortDirectionType            $sortDirection
-     * @param  int                          $page
-     * @param  int                          $limit
+     * @param  int                     $mortgageProviderId
+     * @param  int|null                $labelId
+     * @param  int|null                $productId
+     * @param  AvailableForType        $availableFor
+     * @param  bool                    $nhg
+     * @param  int|null                $loanToValuePercentage
+     * @param  bool                    $bestInterestOnly
+     * @param  int                     $period
+     * @param  bool                    $onlyUseIncludedLabels
+     * @param  SortInterestRatesByType $sortBy
+     * @param  SortDirectionType       $sortDirection
+     * @param  int                     $page
+     * @param  int                     $limit
+     *
      * @throws ApiClientInvalidArgumentException
      */
     public function __construct(
@@ -181,19 +178,19 @@ final class InterestRatesParameter implements GetParameterInterface
     public function serialize(): array
     {
         return [
-            'mortgageProviderId' => $this->mortgageProviderId,
-            'labelId' => $this->labelId,
-            'productId' => $this->productId,
-            'availableFor' => $this->availableFor->getValue(),
-            'nhg' => $this->nhg ? 'true' : 'false',
+            'mortgageProviderId'    => $this->mortgageProviderId,
+            'labelId'               => $this->labelId,
+            'productId'             => $this->productId,
+            'availableFor'          => $this->availableFor->getValue(),
+            'nhg'                   => $this->nhg ? 'true' : 'false',
             'loanToValuePercentage' => $this->loanToValuePercentage,
-            'bestInterestOnly' => $this->bestInterestOnly ? 'true' : 'false',
-            'period' => $this->period,
+            'bestInterestOnly'      => $this->bestInterestOnly ? 'true' : 'false',
+            'period'                => $this->period,
             'onlyUseIncludedLabels' => $this->onlyUseIncludedLabels ? 'true' : 'false',
-            'sortBy' => $this->sortBy->getValue(),
-            'sortDirection' => $this->sortDirection->getValue(),
-            'page' => $this->page,
-            'limit' => $this->limit
+            'sortBy'                => $this->sortBy->getValue(),
+            'sortDirection'         => $this->sortDirection->getValue(),
+            'page'                  => $this->page,
+            'limit'                 => $this->limit,
         ];
     }
 

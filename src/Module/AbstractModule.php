@@ -1,6 +1,5 @@
 <?php
-declare(strict_types=1);
-
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Module;
 
@@ -14,7 +13,7 @@ use Dnhb\ApiClient\Client;
 abstract class AbstractModule
 {
     /**
-     * @var  Client 
+     * @var  Client
      */
     protected $client;
 

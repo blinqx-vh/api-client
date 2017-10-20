@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests\Calculation\Regulation;
 
@@ -13,7 +13,6 @@ use Dnhb\ApiClient\Tests\TestCase\ApiClientTestCase;
  */
 final class ConstructionAddedValueTest extends ApiClientTestCase
 {
-
     /** */
     public function testRequest()
     {

@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\MaximumByValue;
-
 
 use Dnhb\ApiClient\Contract\GetParameterInterface;
 
@@ -18,6 +17,7 @@ final class MaximumMortgageByValueParameter implements GetParameterInterface
 
     /**
      * MaximumMortgageByValueParameter constructor.
+     *
      * @param float $objectValue
      */
     public function __construct(float $objectValue)
@@ -31,7 +31,7 @@ final class MaximumMortgageByValueParameter implements GetParameterInterface
     public function serialize(): array
     {
         return [
-            'objectvalue' => $this->objectValue
+            'objectvalue' => $this->objectValue,
         ];
     }
 

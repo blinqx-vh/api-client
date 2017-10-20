@@ -1,8 +1,7 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\MaximumByIncome;
-
 
 use Assert\Assertion;
 use Dnhb\ApiClient\Contract\GetParameterInterface;
@@ -16,7 +15,6 @@ use Dnhb\ApiClient\Request\WithFloatResult;
 final class MaximumMortgageByIncomeParameter implements GetParameterInterface
 {
     use WithFloatResult;
-
     /** @var float */
     private $interestPercentage;
     /** @var bool */
@@ -29,7 +27,6 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
     private $notDeductible;
     /** @var float */
     private $groundRent;
-
     /** @var float */
     private $personOneIncome;
     /** @var int */
@@ -40,7 +37,6 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
     private $personOneLoans;
     /** @var float */
     private $personOneStudentLoans;
-
     /** @var float */
     private $personTwoIncome;
     /** @var int */
@@ -54,6 +50,7 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
 
     /**
      * MaximumMortgageByIncomeParameter constructor.
+     *
      * @param float $interestPercentage
      * @param array $persons Array of person objects
      * @param bool  $nhg
@@ -93,21 +90,21 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
     public function serialize(): array
     {
         return [
-            'nhg' => $this->nhg,
-            'duration' => $this->mortgageDurationInMonths,
-            'percentage' => $this->interestPercentage,
-            'rateFixation' => round($this->fixedRateTermDurationInMonths / 12),
-            'notDeductible' => $this->notDeductible,
-            'groundRent' => $this->groundRent,
-            'person[0][income]' => $this->personOneIncome,
-            'person[0][age]' => $this->personOneAge,
-            'person[0][alimony]' => $this->personOneAlimony,
-            'person[0][loans]' => $this->personOneLoans,
+            'nhg'                     => $this->nhg,
+            'duration'                => $this->mortgageDurationInMonths,
+            'percentage'              => $this->interestPercentage,
+            'rateFixation'            => round($this->fixedRateTermDurationInMonths / 12),
+            'notDeductible'           => $this->notDeductible,
+            'groundRent'              => $this->groundRent,
+            'person[0][income]'       => $this->personOneIncome,
+            'person[0][age]'          => $this->personOneAge,
+            'person[0][alimony]'      => $this->personOneAlimony,
+            'person[0][loans]'        => $this->personOneLoans,
             'person[0][studentLoans]' => $this->personOneStudentLoans,
-            'person[1][income]' => $this->personTwoIncome,
-            'person[1][age]' => $this->personTwoAge,
-            'person[1][alimony]' => $this->personTwoAlimony,
-            'person[1][loans]' => $this->personTwoLoans,
+            'person[1][income]'       => $this->personTwoIncome,
+            'person[1][age]'          => $this->personTwoAge,
+            'person[1][alimony]'      => $this->personTwoAlimony,
+            'person[1][loans]'        => $this->personTwoLoans,
             'person[1][studentLoans]' => $this->personTwoStudentLoans,
         ];
     }
@@ -123,6 +120,7 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
             $this->personOneAlimony = $person->getAlimony();
             $this->personOneLoans = $person->getLoans();
             $this->personOneStudentLoans = $person->getStudentLoans();
+
             return;
         }
 
