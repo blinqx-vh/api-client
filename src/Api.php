@@ -12,7 +12,7 @@ use Dnhb\ApiClient\Module\Interest;
  *
  * @package Dnhb\ApiClient
  */
-final class Api
+class Api
 {
     /** @var  Client */
     private $client;
