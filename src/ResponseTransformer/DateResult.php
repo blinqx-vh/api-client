@@ -28,7 +28,7 @@ final class DateResult implements TransformerInterface
 
         $dateResponse =  DateTime::createFromFormat(
             '!Y-m-d',
-            $response['data']['result']
+            (string) $response['data']['result']
         );
 
         if(!DateTime::getLastErrors()['warning_count'] === 0){
