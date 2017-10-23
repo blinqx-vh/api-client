@@ -16,6 +16,8 @@ use Dnhb\ApiClient\Calculation\Mortgage\Payment\PaymentParameters;
 use Dnhb\ApiClient\Calculation\Mortgage\Payment\PaymentPersonParameter;
 use Dnhb\ApiClient\Calculation\Mortgage\Payment\PaymentRequest;
 use Dnhb\ApiClient\Calculation\Mortgage\Payment\Response\PaymentResponse;
+use Dnhb\ApiClient\Calculation\Regulation\AOWDate\AOWDateParameter;
+use Dnhb\ApiClient\Calculation\Regulation\AOWDate\AOWDateRequest;
 use Dnhb\ApiClient\Calculation\Regulation\ConstructionAddedValue\ConstructionAddedValueRequest;
 use Dnhb\ApiClient\Data\MortgageType;
 
@@ -139,5 +141,17 @@ final class Calculation extends AbstractModule
         $parameters = new MaximumMortgageByValueParameter($objectValue);
 
         return $this->client->send(new MaximumMortgageByValueRequest($parameters));
+    }
+
+    /**
+     * @param DateTime $dateOfBirth
+     *
+     * @return DateTime
+     */
+    public function getAOWDate(DateTime $dateOfBirth): Datetime
+    {
+        $parameters = new AOWDateParameter($dateOfBirth);
+
+        return $this->client->send(new AOWDateRequest($parameters));
     }
 }
