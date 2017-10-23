@@ -30,7 +30,6 @@ final class Auth implements AuthInterface
     }
 
     /**
-     *
      * @param string $apiKey
      *
      * @return AuthInterface
