@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient;
 
+use Dnhb\ApiClient\Module\Authorization;
 use Dnhb\ApiClient\Module\Calculation;
 use Dnhb\ApiClient\Module\Import;
 use Dnhb\ApiClient\Module\Interest;
@@ -25,6 +26,14 @@ class Api
     public function __construct(Client $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * @return Authorization
+     */
+    public function authorization(): Authorization
+    {
+        return new Authorization($this->client);
     }
 
     /**
