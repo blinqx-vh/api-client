@@ -7,7 +7,7 @@ use Dnhb\ApiClient\Request\Method;
 use Dnhb\ApiClient\Tests\TestCase\ApiClientTestCase;
 
 /**
- * Class ConstructionAddedValueTest
+ * Class TokenTest
  *
  * @package Dnhb\ApiClientTests\Authorization\Token
  */
