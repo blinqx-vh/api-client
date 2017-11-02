@@ -34,7 +34,6 @@ class Client
      */
     public function __construct(ClientInterface $client, AuthInterface $auth)
     {
-
         $this->client = $client;
         $this->auth = $auth;
     }
