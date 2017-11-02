@@ -17,7 +17,7 @@ use GuzzleHttp\Exception\ConnectException;
  *
  * @package Dnhb\ApiClient
  */
-final class Client
+class Client
 {
     /** @var ClientInterface */
     private $client;
