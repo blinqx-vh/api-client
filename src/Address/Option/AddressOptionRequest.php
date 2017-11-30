@@ -7,9 +7,9 @@ use Dnhb\ApiClient\Contract\AbstractGetApiRequest;
 use Dnhb\ApiClient\Request\WithArrayResult;
 
 /**
- * Class OptionRequest
+ * Class AddressOptionRequest
  */
-class OptionRequest extends AbstractGetApiRequest
+class AddressOptionRequest extends AbstractGetApiRequest
 {
     use WithArrayResult;
     /**
@@ -18,11 +18,11 @@ class OptionRequest extends AbstractGetApiRequest
     protected $baseUrl = 'address/v1/options';
 
     /**
-     * OptionRequest constructor.
+     * AddressOptionRequest constructor.
      *
-     * @param OptionParameter $parameter
+     * @param AddressOptionParameter $parameter
      */
-    public function __construct(OptionParameter $parameter)
+    public function __construct(AddressOptionParameter $parameter)
     {
         $this->requestParams = $parameter->serialize();
     }

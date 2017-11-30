@@ -8,9 +8,9 @@ use Dnhb\ApiClient\Data\FieldType;
 use Dnhb\ApiClient\Exception\ApiClientInvalidArgumentException;
 
 /**
- * Class OptionParameter
+ * Class AddressOptionParameter
  */
-class OptionParameter implements GetParameterInterface
+class AddressOptionParameter implements GetParameterInterface
 {
     /**
      * @var array
@@ -54,7 +54,7 @@ class OptionParameter implements GetParameterInterface
     private $limit;
 
     /**
-     * OptionParameter constructor.
+     * AddressOptionParameter constructor.
      *
      * @param null|string $street
      * @param null|string $city
