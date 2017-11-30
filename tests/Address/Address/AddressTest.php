@@ -79,13 +79,13 @@ final class AddressTest extends ApiClientTestCase
     {
         self::assertArraySubset(
             [
-                'street' => 'Snelgersmastraat',
-                'housenumber' => '3',
+                'street'               => 'Snelgersmastraat',
+                'housenumber'          => '3',
                 'housenumber-addition' => 'I',
-                'city' => 'Appingedam',
-                'postalcode' => '9901AA',
-                'municipality' => 'Appingedam',
-                'built' => 1900
+                'city'                 => 'Appingedam',
+                'postalcode'           => '9901AA',
+                'municipality'         => 'Appingedam',
+                'built'                => 1900,
             ],
             $result,
             true

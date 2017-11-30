@@ -21,9 +21,8 @@ class AddressOptionParameter implements GetParameterInterface
         FieldType::FIELD_CITY,
         FieldType::FIELD_POSTALCODE,
         FieldType::FIELD_HOUSE_NUMBER_ADDITION,
-        FieldType::FIELD_MUNICIPALITY
+        FieldType::FIELD_MUNICIPALITY,
     ];
-
     /**
      * @var string|null
      */
@@ -102,13 +101,13 @@ class AddressOptionParameter implements GetParameterInterface
     public function serialize(): array
     {
         return [
-            'street' => $this->street,
-            'city' => $this->city,
-            'postalcode' => $this->postalcode,
+            'street'      => $this->street,
+            'city'        => $this->city,
+            'postalcode'  => $this->postalcode,
             'houseNumber' => $this->houseNumber,
-            'field' => $this->field,
-            'page' => $this->page,
-            'limit' => $this->limit
+            'field'       => $this->field,
+            'page'        => $this->page,
+            'limit'       => $this->limit,
         ];
     }
 
