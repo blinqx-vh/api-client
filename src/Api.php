@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient;
 
+use Dnhb\ApiClient\Module\Address;
 use Dnhb\ApiClient\Module\Authorization;
 use Dnhb\ApiClient\Module\Calculation;
 use Dnhb\ApiClient\Module\Import;
@@ -26,6 +27,14 @@ class Api
     public function __construct(Client $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * @return Address
+     */
+    public function address(): Address
+    {
+        return new Address($this->client);
     }
 
     /**
