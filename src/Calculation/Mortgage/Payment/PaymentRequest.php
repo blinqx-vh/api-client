@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
 
 use Dnhb\ApiClient\Contract\AbstractPostApiRequest;
-use Dnhb\ApiClient\Contract\PostParameterInterface;
+use Dnhb\ApiClient\Contract\JsonablePostParameter;
 use Dnhb\ApiClient\ResponseTransformer\MortgagePayments;
 use Dnhb\ApiClient\ResponseTransformer\TransformerInterface;
 
@@ -21,12 +21,11 @@ final class PaymentRequest extends AbstractPostApiRequest
     /**
      * PaymentRequest constructor.
      *
-     * @param PostParameterInterface $parameters
+     * @param JsonablePostParameter $parameters
      */
-    public function __construct(PostParameterInterface $parameters)
+    public function __construct(JsonablePostParameter $parameters)
     {
         $this->options['body'] = json_encode($parameters->toJsonableObject());
-        parent::__construct($parameters);
     }
 
     /**

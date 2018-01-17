@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
 
-use Dnhb\ApiClient\Contract\PostParameterInterface;
+use Dnhb\ApiClient\Contract\JsonablePostParameter;
 use stdClass;
 
 /**
@@ -11,7 +11,7 @@ use stdClass;
  *
  * @package Dnhb\ApiClient\Calculation\Mortgage\Payment
  */
-final class PaymentParameters implements PostParameterInterface
+final class PaymentParameters implements JsonablePostParameter
 {
     /** @var PaymentLoanpartParameter[] */
     private $loanparts;

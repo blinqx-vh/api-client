@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Contract;
 
+use Dnhb\ApiClient\Request\MimeType;
+
 /**
  * Class AbstractApiRequest
  *
@@ -16,6 +18,10 @@ abstract class AbstractApiRequest implements ApiRequestInterface
     protected $requestParams = [];
     /** @var array */
     protected $options = [];
+    /** @var array */
+    protected $headers = [
+        'Accept' => MimeType::JSON,
+    ];
 
     /**
      * @return string
@@ -39,5 +45,13 @@ abstract class AbstractApiRequest implements ApiRequestInterface
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHeaders(): array
+    {
+        return $this->headers;
     }
 }

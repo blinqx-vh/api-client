@@ -3,10 +3,8 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import;
 
-use Assert\Assertion;
 use Dnhb\ApiClient\Contract\AbstractPostApiRequest;
-use Dnhb\ApiClient\Contract\PostParameterInterface;
-use Dnhb\ApiClient\Import\Manager\ImportParameterManager;
+use Dnhb\ApiClient\Contract\JsonablePostParameter;
 use Dnhb\ApiClient\Request\WithIdResult;
 
 /**
@@ -25,17 +23,10 @@ final class InsertDossierRequest extends AbstractPostApiRequest
     /**
      * InsertDossierRequest constructor.
      *
-     * @param ImportParameterManager|PostParameterInterface $importParameterManager
+     * @param JsonablePostParameter $importParameterManager
      */
-    public function __construct(PostParameterInterface $importParameterManager)
+    public function __construct(JsonablePostParameter $importParameterManager)
     {
-        Assertion::isInstanceOf(
-            $importParameterManager,
-            ImportParameterManager::class,
-            'Parameter for InsertDossierRequest should be an instance of ' . ImportParameterManager::class
-        );
-
         $this->options['body'] = json_encode($importParameterManager->toJsonableObject());
-        parent::__construct($importParameterManager);
     }
 }

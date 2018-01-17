@@ -12,19 +12,6 @@ use Dnhb\ApiClient\Request\Method;
  */
 abstract class AbstractPostApiRequest extends AbstractApiRequest implements PostApiRequestInterface
 {
-    /** @var PostParameterInterface */
-    private $parameters;
-
-    /**
-     * AbstractPostApiRequest constructor.
-     *
-     * @param PostParameterInterface $parameters
-     */
-    public function __construct(PostParameterInterface $parameters)
-    {
-        $this->parameters = $parameters;
-    }
-
     /**
      * @return string
      */

@@ -11,13 +11,6 @@ namespace Dnhb\ApiClient\Contract;
 interface PostApiRequestInterface
 {
     /**
-     * constructor.
-     *
-     * @param PostParameterInterface $parameters
-     */
-    public function __construct(PostParameterInterface $parameters);
-
-    /**
      * @return string
      */
     public function getBaseUrl(): string;

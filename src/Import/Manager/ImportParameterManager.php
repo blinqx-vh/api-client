@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Manager;
 
-use Dnhb\ApiClient\Contract\PostParameterInterface;
+use Dnhb\ApiClient\Contract\JsonablePostParameter;
 use Dnhb\ApiClient\Exception\ApiClientException;
 use Dnhb\ApiClient\Import\Assert\Assertion;
 use Dnhb\ApiClient\Import\Scope;
@@ -12,7 +12,7 @@ use stdClass;
 /**
  * Class ImportParameterManager
  */
-final class ImportParameterManager implements PostParameterInterface
+final class ImportParameterManager implements JsonablePostParameter
 {
     /**
      * The cap of dossiers per import request

@@ -33,6 +33,11 @@ interface ApiRequestInterface
     public function getMethod(): string;
 
     /**
+     * @return array
+     */
+    public function getHeaders(): array;
+
+    /**
      * @return TransformerInterface
      */
     public function getResponseTransformer(): TransformerInterface;

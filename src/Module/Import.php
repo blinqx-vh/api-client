@@ -5,6 +5,8 @@ namespace Dnhb\ApiClient\Module;
 
 use Dnhb\ApiClient\Import\InsertDossierRequest;
 use Dnhb\ApiClient\Import\Manager\ImportParameterManager;
+use Dnhb\ApiClient\Import\MHDN\MHDNParameter;
+use Dnhb\ApiClient\Import\MHDN\MHDNRequest;
 use Dnhb\ApiClient\Import\Scope;
 
 /**
@@ -25,5 +27,17 @@ final class Import extends AbstractModule
         $parameter->addScope($scope);
 
         return $this->client->send(new InsertDossierRequest($parameter));
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return int
+     */
+    public function mHDN(string $message): int
+    {
+        $mHDNParameter = MHDNParameter::fromString($message);
+
+        return $this->client->send(new MHDNRequest($mHDNParameter));
     }
 }

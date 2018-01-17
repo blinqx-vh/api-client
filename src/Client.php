@@ -57,9 +57,7 @@ class Client
         try {
             $params = array_merge(
                 [
-                    'headers' => [
-                        'Accept' => 'application/json',
-                    ],
+                    'headers' => $request->getHeaders(),
                 ],
                 $request->getOptions()
             );
