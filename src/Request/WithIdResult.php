@@ -13,11 +13,17 @@ use Dnhb\ApiClient\ResponseTransformer\TransformerInterface;
  */
 trait WithIdResult
 {
+    use WithResponseTransformer;
+
     /**
-     * @return IdResult|TransformerInterface
+     * @return TransformerInterface
      */
     public function getResponseTransformer(): TransformerInterface
     {
+        if ($this->responseTransformer !== null) {
+            return $this->responseTransformer;
+        }
+
         return new IdResult();
     }
 }

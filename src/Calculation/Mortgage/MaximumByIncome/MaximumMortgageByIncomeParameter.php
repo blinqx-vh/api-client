@@ -72,7 +72,7 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
         Assertion::between(count($persons), 1, 2);
 
         $this->interestPercentage = $interestPercentage;
-        $this->nhg = $nhg;
+        $this->nhg = $nhg ? 'true' : 'false';
         $this->mortgageDurationInMonths = $mortgageDurationInMonths;
         $this->fixedRateTermDurationInMonths = $fixedRateTermDurationInMonths;
         $this->notDeductible = $notDeductible;

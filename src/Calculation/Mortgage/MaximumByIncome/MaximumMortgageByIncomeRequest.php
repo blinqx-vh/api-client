@@ -15,7 +15,7 @@ final class MaximumMortgageByIncomeRequest extends AbstractGetApiRequest
 {
     use WithFloatResult;
     /** @var string */
-    protected $baseUrl = 'calculation/v1/loanparts/maximum-by-income';
+    protected $baseUrl = 'calculation/v1/mortgage/maximum-by-income';
 
     /**
      * MaximumMortgageByIncomeRequest constructor.

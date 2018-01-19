@@ -41,4 +41,11 @@ interface ApiRequestInterface
      * @return TransformerInterface
      */
     public function getResponseTransformer(): TransformerInterface;
+
+    /**
+     * @param TransformerInterface $transformer
+     *
+     * @return ApiRequestInterface
+     */
+    public function setResponseTransformer(TransformerInterface $transformer): ApiRequestInterface;
 }

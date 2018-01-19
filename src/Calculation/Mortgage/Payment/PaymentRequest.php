@@ -5,6 +5,7 @@ namespace Dnhb\ApiClient\Calculation\Mortgage\Payment;
 
 use Dnhb\ApiClient\Contract\AbstractPostApiRequest;
 use Dnhb\ApiClient\Contract\JsonablePostParameter;
+use Dnhb\ApiClient\Request\WithResponseTransformer;
 use Dnhb\ApiClient\ResponseTransformer\MortgagePayments;
 use Dnhb\ApiClient\ResponseTransformer\TransformerInterface;
 
@@ -15,6 +16,7 @@ use Dnhb\ApiClient\ResponseTransformer\TransformerInterface;
  */
 final class PaymentRequest extends AbstractPostApiRequest
 {
+    use WithResponseTransformer;
     /** @var string */
     protected $baseUrl = 'calculation/v1/mortgage/payment';
 
@@ -33,6 +35,10 @@ final class PaymentRequest extends AbstractPostApiRequest
      */
     public function getResponseTransformer(): TransformerInterface
     {
+        if ($this->responseTransformer !== null) {
+            return $this->responseTransformer;
+        }
+
         return new MortgagePayments();
     }
 }

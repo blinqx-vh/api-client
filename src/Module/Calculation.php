@@ -9,6 +9,8 @@ use Dnhb\ApiClient\Calculation\Fine\Loanpart\FineLoanpartParameter;
 use Dnhb\ApiClient\Calculation\Fine\Loanpart\FineLoanpartRequest;
 use Dnhb\ApiClient\Calculation\Mortgage\MaximumByIncome\MaximumMortgageByIncomeParameter;
 use Dnhb\ApiClient\Calculation\Mortgage\MaximumByIncome\MaximumMortgageByIncomeRequest;
+use Dnhb\ApiClient\Calculation\Mortgage\MaximumByIncome\MaximumMortgageByIncomeResponseTransformer;
+use Dnhb\ApiClient\Calculation\Mortgage\MaximumByIncome\MaximumMortgageByIncomeResult;
 use Dnhb\ApiClient\Calculation\Mortgage\MaximumByValue\MaximumMortgageByValueParameter;
 use Dnhb\ApiClient\Calculation\Mortgage\MaximumByValue\MaximumMortgageByValueRequest;
 use Dnhb\ApiClient\Calculation\Mortgage\Payment\PaymentLoanpartParameter;
@@ -118,6 +120,37 @@ final class Calculation extends AbstractModule
         float $notDeductible,
         float $groundRent
     ): float {
+        return $this->getMaximumMortgageByIncomeResult(
+            $interestPercentage,
+            $persons,
+            $nhg,
+            $mortgageDurationInMonths,
+            $fixedRateTermDurationInMonths,
+            $notDeductible,
+            $groundRent
+        )->getMaximumMortgage();
+    }
+
+    /**
+     * @param float $interestPercentage
+     * @param array $persons
+     * @param bool  $nhg
+     * @param int   $mortgageDurationInMonths
+     * @param int   $fixedRateTermDurationInMonths
+     * @param float $notDeductible
+     * @param float $groundRent
+     *
+     * @return MaximumMortgageByIncomeResult
+     */
+    public function getMaximumMortgageByIncomeResult(
+        float $interestPercentage,
+        array $persons,
+        bool $nhg,
+        int $mortgageDurationInMonths,
+        int $fixedRateTermDurationInMonths,
+        float $notDeductible,
+        float $groundRent
+    ): MaximumMortgageByIncomeResult {
         $parameter = new MaximumMortgageByIncomeParameter(
             $interestPercentage,
             $persons,
@@ -128,7 +161,10 @@ final class Calculation extends AbstractModule
             $groundRent
         );
 
-        return $this->client->send(new MaximumMortgageByIncomeRequest($parameter));
+        $request = new MaximumMortgageByIncomeRequest($parameter);
+        $request->setResponseTransformer(new MaximumMortgageByIncomeResponseTransformer());
+
+        return $this->client->send($request);
     }
 
     /**
