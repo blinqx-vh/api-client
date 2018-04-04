@@ -4,7 +4,6 @@ declare(strict_types = 1);
 namespace Dnhb\ApiClient\Exception;
 
 use Exception;
-use GuzzleHttp\Exception\ConnectException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -13,8 +12,13 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @package Dnhb\ApiClient
  */
-class ApiClientConnectException extends ConnectException
+class ApiClientConnectException extends ApiClientException
 {
+    /** @var RequestInterface */
+    private $request;
+    /** @var ResponseInterface */
+    private $response;
+
     /**
      * ApiClientConnectException constructor.
      *
@@ -24,11 +28,30 @@ class ApiClientConnectException extends ConnectException
      * @param Exception         $previous
      */
     public function __construct(
-        $message = null,
-        RequestInterface $request = null,
+        $message,
+        RequestInterface $request,
         ResponseInterface $response = null,
         Exception $previous = null
     ) {
-        parent::__construct($message, $request, $response, $previous);
+        parent::__construct($message, 0, $previous);
+
+        $this->request = $request;
+        $this->response = $response;
+    }
+
+    /**
+     * @return RequestInterface
+     */
+    public function getRequest(): RequestInterface
+    {
+        return $this->request;
+    }
+
+    /**
+     * @return ResponseInterface
+     */
+    public function getResponse(): ResponseInterface
+    {
+        return $this->response;
     }
 }

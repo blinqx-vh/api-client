@@ -5,7 +5,6 @@ namespace Dnhb\ApiClient;
 
 use Dnhb\ApiClient\Contract\ApiRequestInterface;
 use Dnhb\ApiClient\Contract\AuthInterface;
-use Dnhb\ApiClient\Exception\ApiClientAuthException;
 use Dnhb\ApiClient\Exception\ApiClientConnectException;
 use Dnhb\ApiClient\Exception\ApiClientResponseException;
 use GuzzleHttp\ClientInterface;
@@ -42,8 +41,9 @@ class Client
      * @param ApiRequestInterface $request
      *
      * @return mixed
-     * @throws ApiClientAuthException
      * @throws ApiClientResponseException
+     * @throws ApiClientConnectException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function send(ApiRequestInterface $request)
     {
