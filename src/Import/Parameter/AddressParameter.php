@@ -72,6 +72,7 @@ final class AddressParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return AddressParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setPostalCode(string $value): AddressParameter
     {
@@ -87,6 +88,7 @@ final class AddressParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return AddressParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setHouseNumber(string $value): AddressParameter
     {
@@ -114,6 +116,7 @@ final class AddressParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return AddressParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setStreet(string $value): AddressParameter
     {
@@ -128,6 +131,7 @@ final class AddressParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return AddressParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setCity(string $value): AddressParameter
     {

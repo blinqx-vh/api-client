@@ -63,6 +63,8 @@ final class HouseParameter extends AbstractImportParameter
      * @param AddressParameter $address
      *
      * @return HouseParameter
+     * @throws \Assert\AssertionFailedException
+     * @throws \Dnhb\ApiClient\Exception\ScopesNotMatchException
      */
     public function addAddress(AddressParameter $address): HouseParameter
     {
@@ -81,6 +83,8 @@ final class HouseParameter extends AbstractImportParameter
      * @param string $identifier
      *
      * @return AddressParameter
+     * @throws \Assert\AssertionFailedException
+     * @throws \Dnhb\ApiClient\Exception\ScopesNotMatchException
      */
     public function createAddress(string $identifier): AddressParameter
     {
@@ -94,6 +98,7 @@ final class HouseParameter extends AbstractImportParameter
      * @param float $woz
      *
      * @return HouseParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setWoz(float $woz): HouseParameter
     {

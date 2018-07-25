@@ -20,6 +20,7 @@ final class Import extends AbstractModule
      * @param ImportParameterManager $parameter
      *
      * @return int
+     * @throws \Dnhb\ApiClient\Exception\ApiClientValidationException
      */
     public function insertDossier(Scope $scope): int
     {

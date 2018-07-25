@@ -44,6 +44,8 @@ final class DossierParameter extends AbstractImportParameter
     protected $hasExternalDocuments;
     /** @var string */
     protected $hasCorrespondenceAddress;
+    /** @var array */
+    private $hasLifeInsurances;
     /** @var MaritalStatus|null */
     protected $maritalStatus;
     /** @var ClientStatus|null */
@@ -246,6 +248,37 @@ final class DossierParameter extends AbstractImportParameter
         $this->addExternalDocument($externalDocument);
 
         return $externalDocument;
+    }
+
+    /**
+     * @param LifeInsuranceParameter $lifeInsurance
+     *
+     * @return DossierParameter
+     * @throws \Dnhb\ApiClient\Exception\ScopesNotMatchException
+     */
+    public function addLifeInsurance(LifeInsuranceParameter $lifeInsurance): DossierParameter
+    {
+        if (!$this->getScope()->has($lifeInsurance)) {
+            $this->getScope()->add($lifeInsurance);
+        }
+
+        $this->hasLifeInsurances[] = $lifeInsurance->getIdentifier();
+
+        return $this;
+    }
+
+    /**
+     * @param string $identifier
+     *
+     * @return LifeInsuranceParameter
+     * @throws \Dnhb\ApiClient\Exception\ScopesNotMatchException
+     */
+    public function createLifeInsurance(string $identifier): LifeInsuranceParameter
+    {
+        $lifeInsurance = new LifeInsuranceParameter($identifier, $this->getScope());
+        $this->addLifeInsurance($lifeInsurance);
+
+        return $lifeInsurance;
     }
 
     /**

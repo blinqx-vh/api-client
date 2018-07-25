@@ -27,6 +27,13 @@ final class InsertDossierRequest extends AbstractPostApiRequest
      */
     public function __construct(JsonablePostParameter $importParameterManager)
     {
-        $this->options['body'] = json_encode($importParameterManager->toJsonableObject());
+        Assertion::isInstanceOf(
+            $importParameterManager,
+            ImportParameterManager::class,
+            'Parameter for InsertDossierRequest should be an instance of ' . ImportParameterManager::class
+        );
+
+        $this->options['body'] = json_encode($importParameterManager->toJsonableObject(), JSON_PRESERVE_ZERO_FRACTION);
+        parent::__construct($importParameterManager);
     }
 }

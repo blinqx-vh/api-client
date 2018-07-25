@@ -36,9 +36,9 @@ final class PersonParameter extends AbstractImportParameter
     protected $lastNamePrefix;
     /** @var string|null */
     protected $email;
-    /** @var string|null */
+    /** @var DateTime|null */
     protected $dateOfBirth;
-    /** @var string|null */
+    /** @var Gender|null */
     protected $gender;
     /** @var string|null */
     protected $privatePhoneNumber;
@@ -112,6 +112,7 @@ final class PersonParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return PersonParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setLastName(string $value): PersonParameter
     {
@@ -162,6 +163,7 @@ final class PersonParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return PersonParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setEmail(string $value): PersonParameter
     {
@@ -176,12 +178,13 @@ final class PersonParameter extends AbstractImportParameter
      * @param DateTime $value
      *
      * @return PersonParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setDateOfBirth(DateTime $value): PersonParameter
     {
         Assertion::lessOrEqualThan($value, new DateTime(), 'Date of Birth should be in the past');
 
-        $this->dateOfBirth = $value->format('Y-m-d');
+        $this->dateOfBirth = $value;
 
         return $this;
     }
@@ -193,7 +196,7 @@ final class PersonParameter extends AbstractImportParameter
      */
     public function setGender(Gender $value): PersonParameter
     {
-        $this->gender = $value->getKey();
+        $this->gender = $value;
 
         return $this;
     }
@@ -202,6 +205,8 @@ final class PersonParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return PersonParameter
+     * @throws \Assert\AssertionFailedException
+     * @throws ValueNotSetException
      */
     public function setPrivatePhoneNumber(string $value): PersonParameter
     {
@@ -219,6 +224,7 @@ final class PersonParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return PersonParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setMobilePhoneNumber(string $value): PersonParameter
     {

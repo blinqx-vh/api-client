@@ -6,7 +6,9 @@ namespace Dnhb\ApiClient\Tests\Import;
 use DateTime;
 use Dnhb\ApiClient\Data\ClientStatus;
 use Dnhb\ApiClient\Data\Gender;
+use Dnhb\ApiClient\Data\LifeInsuranceCoverageType;
 use Dnhb\ApiClient\Data\MaritalStatus;
+use Dnhb\ApiClient\Data\PaymentPeriod;
 use Dnhb\ApiClient\Import\Manager\ImportParameterManager;
 use Dnhb\ApiClient\Import\Parameter\AddressParameter;
 use Dnhb\ApiClient\Import\Parameter\DossierParameter;
@@ -119,8 +121,18 @@ final class ImportTest extends ApiClientTestCase
             ->setUrl('http://facebook.com/profile/david')
             ->setDescription('Davids facebook');
 
+        $dossier->createLifeInsurance('ORV')
+            ->setStartDate(new DateTime('2010-10-20'))
+            ->setEndDate(new DateTime('2040-10-20'))
+            ->setInsuranceCompanyId(1)
+            ->setCoverage(250000.0)
+            ->setPremium(25.0)
+            ->setPremiumDuration(360)
+            ->setCoverageType(new LifeInsuranceCoverageType(LifeInsuranceCoverageType::CONSTANT))
+            ->setPaymentPeriod(new PaymentPeriod(PaymentPeriod::MONTH));
+
         self::assertEqualParameter(
-            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant","Partner"],"hasHouses":["House"],"hasExternalDocuments":["Ext1","Ext2"],"hasCorrespondenceAddress":"Address","maritalStatus":"MARRIED_PRENUPTIAL_AGREEMENT","clientStatus":"PROSPECT","note":"This is a note"},"Address":{"@type":"Address","postalCode":"1000AA","houseNumber":"1","addition":"a","street":"Damrak","city":"Amsterdam"},"House":{"@type":"House","hasAddress":"Address","woz":250000},"Applicant":{"@type":"Person","isPrimaryContact":true,"lastName":"James","firstName":"D\u00f6avid","initials":"D.","email":"d.james@example.com","dateOfBirth":"1980-01-01","gender":"MALE","privatePhoneNumber":"0201234567","mobilePhoneNumber":"0612345678"},"Partner":{"@type":"Person","isPrimaryContact":false,"lastName":"James","firstName":"Tina","initials":"T.","email":"t.james@example.com","dateOfBirth":"1982-06-02","gender":"FEMALE","mobilePhoneNumber":"0612345687"},"Ext1":{"@type":"ExternalDocument","url":"www.example.com\/picture_david.jpg","description":"A picture of david"},"Ext2":{"@type":"ExternalDocument","url":"http:\/\/facebook.com\/profile\/david","description":"Davids facebook"}}}',
+            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant","Partner"],"hasHouses":["House"],"hasExternalDocuments":["Ext1","Ext2"],"hasCorrespondenceAddress":"Address","hasLifeInsurances":["ORV"],"maritalStatus":"MARRIED_PRENUPTIAL_AGREEMENT","clientStatus":"PROSPECT","note":"This is a note"},"Address":{"@type":"Address","postalCode":"1000AA","houseNumber":"1","addition":"a","street":"Damrak","city":"Amsterdam"},"House":{"@type":"House","hasAddress":"Address","woz":250000},"Applicant":{"@type":"Person","isPrimaryContact":true,"lastName":"James","firstName":"D\u00f6avid","initials":"D.","email":"d.james@example.com","dateOfBirth":"1980-01-01","gender":"MALE","privatePhoneNumber":"0201234567","mobilePhoneNumber":"0612345678"},"Partner":{"@type":"Person","isPrimaryContact":false,"lastName":"James","firstName":"Tina","initials":"T.","email":"t.james@example.com","dateOfBirth":"1982-06-02","gender":"FEMALE","mobilePhoneNumber":"0612345687"},"Ext1":{"@type":"ExternalDocument","url":"www.example.com\/picture_david.jpg","description":"A picture of david"},"Ext2":{"@type":"ExternalDocument","url":"http:\/\/facebook.com\/profile\/david","description":"Davids facebook"},"ORV":{"@type":"LifeInsurance","startDate":"2010-10-20","insuranceCompanyId":1,"premium":25,"premiumPeriod":"MONTH","premiumDuration":360,"coverage":250000,"coverageType":"CONSTANT","endDate":"2040-10-20"}}}',
             $scope
         );
 

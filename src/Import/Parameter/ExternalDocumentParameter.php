@@ -59,6 +59,7 @@ final class ExternalDocumentParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return ExternalDocumentParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setUrl(string $value): ExternalDocumentParameter
     {
@@ -73,6 +74,7 @@ final class ExternalDocumentParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return ExternalDocumentParameter
+     * @throws \Assert\AssertionFailedException
      */
     public function setDescription(string $value): ExternalDocumentParameter
     {
