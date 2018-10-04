@@ -11,6 +11,7 @@
   ],
   "require": {
     "php": ">= 7.0",
+    "ext-json": "*",
     "guzzlehttp/guzzle": "^6.2",
     "myclabs/php-enum": "^1.5",
     "beberlei/assert": "^2.7"

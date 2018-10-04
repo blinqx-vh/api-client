@@ -20,7 +20,7 @@ final class ImportParameterManager implements JsonablePostParameter
     const MAX_SCOPES = 1;
 
     /** @var array */
-    private $scopes;
+    private $scopes = [];
 
     /**
      * @param Scope $scope

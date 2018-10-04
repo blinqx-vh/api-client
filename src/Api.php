@@ -8,6 +8,7 @@ use Dnhb\ApiClient\Module\Authorization;
 use Dnhb\ApiClient\Module\Calculation;
 use Dnhb\ApiClient\Module\Import;
 use Dnhb\ApiClient\Module\Interest;
+use Dnhb\ApiClient\Module\Signal;
 
 /**
  * Class Api
@@ -69,5 +70,13 @@ class Api
     public function import(): Import
     {
         return new Import($this->client);
+    }
+
+    /**
+     * @return Signal
+     */
+    public function signal(): Signal
+    {
+        return new Signal($this->client);
     }
 }

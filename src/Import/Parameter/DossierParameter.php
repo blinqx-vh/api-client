@@ -37,7 +37,7 @@ final class DossierParameter extends AbstractImportParameter
     const MAX_LENGTH_LABEL = 255;
 
     /** @var array */
-    protected $hasPersons;
+    protected $hasPersons = [];
     /** @var array */
     protected $hasHouses;
     /** @var array */
@@ -193,11 +193,13 @@ final class DossierParameter extends AbstractImportParameter
      */
     public function addHouse(HouseParameter $house): DossierParameter
     {
-        Assertion::lessThan(
-            count($this->hasHouses),
-            self::MAX_HOUSES_PER_DOSSIER,
-            sprintf('A maximum of %s houses per dossier is allowed', self::MAX_HOUSES_PER_DOSSIER)
-        );
+        if (is_array($this->hasHouses)) {
+            Assertion::lessThan(
+                count($this->hasHouses),
+                self::MAX_HOUSES_PER_DOSSIER,
+                sprintf('A maximum of %s houses per dossier is allowed', self::MAX_HOUSES_PER_DOSSIER)
+            );
+        }
 
         if (!$this->getScope()->has($house)) {
             $this->getScope()->add($house);
