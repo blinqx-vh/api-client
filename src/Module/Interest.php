@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dnhb\ApiClient\Module;
 
@@ -7,14 +7,14 @@ use Dnhb\ApiClient\Data\AvailableForType;
 use Dnhb\ApiClient\Data\MortgageType;
 use Dnhb\ApiClient\Data\SortDirectionType;
 use Dnhb\ApiClient\Data\SortInterestRatesByType;
-use Dnhb\ApiClient\Exception\ApiClientAuthException;
 use Dnhb\ApiClient\Exception\ApiClientInvalidArgumentException;
 use Dnhb\ApiClient\Exception\ApiClientResponseException;
 use Dnhb\ApiClient\Interest\Label\BankLabelsParameter;
 use Dnhb\ApiClient\Interest\Label\BankLabelsRequest;
-use Dnhb\ApiClient\Interest\Label\InterestLabelParameter;
 use Dnhb\ApiClient\Interest\MortageProvider\MortgageProvidersParameter;
 use Dnhb\ApiClient\Interest\MortageProvider\MortgageProvidersRequest;
+use Dnhb\ApiClient\Interest\Product\LabelProductParameter;
+use Dnhb\ApiClient\Interest\Product\LabelProductRequest;
 use Dnhb\ApiClient\Interest\Rate\InterestRatesParameter;
 use Dnhb\ApiClient\Interest\Rate\InterestRatesRequest;
 
@@ -28,25 +28,24 @@ final class Interest extends AbstractModule
     /**
      * Get interest rates
      *
-     * @param int                     $mortgageProviderId
-     * @param int|null                $labelId
-     * @param int|null                $productId
-     * @param AvailableForType        $availableFor
-     * @param bool                    $nhg
-     * @param int|null                $loanToValuePercentage
-     * @param bool                    $bestInterestOnly
-     * @param int                     $period
-     * @param bool                    $onlyUseIncludedLabels
+     * @param int $mortgageProviderId
+     * @param int|null $labelId
+     * @param int|null $productId
+     * @param AvailableForType $availableFor
+     * @param bool $nhg
+     * @param int|null $loanToValuePercentage
+     * @param bool $bestInterestOnly
+     * @param int $period
+     * @param bool $onlyUseIncludedLabels
      * @param SortInterestRatesByType $sortBy
-     * @param SortDirectionType       $sortDirection
-     * @param int                     $page
-     * @param int                     $limit
-     *
-     * @throws ApiClientInvalidArgumentException
-     * @throws ApiClientResponseException
-     * @throws ApiClientAuthException
+     * @param SortDirectionType $sortDirection
+     * @param int $page
+     * @param int $limit
      *
      * @return array
+     * @throws ApiClientInvalidArgumentException
+     * @throws ApiClientResponseException
+     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
      */
     public function getInterestRates(
         int $mortgageProviderId,
@@ -62,7 +61,8 @@ final class Interest extends AbstractModule
         SortDirectionType $sortDirection,
         int $page = 0,
         int $limit = 25
-    ): array {
+    ): array
+    {
         $parameter = new InterestRatesParameter(
             $mortgageProviderId,
             $labelId,
@@ -85,23 +85,22 @@ final class Interest extends AbstractModule
     /**
      * Get bank labels.
      *
-     * @param int|null              $mortgageProvider
-     * @param int|null              $product
-     * @param MortgageType|null     $mortgageType
+     * @param int|null $mortgageProvider
+     * @param int|null $product
+     * @param MortgageType|null $mortgageType
      * @param AvailableForType|null $availableFor
-     * @param bool|null             $nhg
-     * @param float|null            $ltv
-     * @param int|null              $period
-     * @param bool|null             $onlyUseIncludedLabels
-     * @param float|null            $maxLtv
-     * @param int                   $page
-     * @param int                   $limit
-     *
-     * @throws ApiClientInvalidArgumentException
-     * @throws ApiClientAuthException
-     * @throws ApiClientResponseException
+     * @param bool|null $nhg
+     * @param float|null $ltv
+     * @param int|null $period
+     * @param bool|null $onlyUseIncludedLabels
+     * @param float|null $maxLtv
+     * @param int $page
+     * @param int $limit
      *
      * @return array
+     * @throws ApiClientInvalidArgumentException
+     * @throws ApiClientResponseException
+     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
      */
     public function getBankLabels(
         int $mortgageProvider = null,
@@ -136,23 +135,22 @@ final class Interest extends AbstractModule
     /**
      * Get mortgage providers.
      *
-     * @param int|null              $mortgageProviderId
-     * @param int|null              $labelId
-     * @param int|null              $productId
-     * @param MortgageType|null     $mortgageType
+     * @param int|null $mortgageProviderId
+     * @param int|null $labelId
+     * @param int|null $productId
+     * @param MortgageType|null $mortgageType
      * @param AvailableForType|null $availableFor
-     * @param bool|null             $nhg
-     * @param float|null            $ltv
-     * @param int|null              $period
-     * @param bool|null             $onlyUseIncludedLabels
-     * @param int                   $page
-     * @param int                   $limit
-     *
-     * @throws ApiClientInvalidArgumentException
-     * @throws ApiClientAuthException
-     * @throws ApiClientResponseException
+     * @param bool|null $nhg
+     * @param float|null $ltv
+     * @param int|null $period
+     * @param bool|null $onlyUseIncludedLabels
+     * @param int $page
+     * @param int $limit
      *
      * @return array
+     * @throws ApiClientInvalidArgumentException
+     * @throws ApiClientResponseException
+     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
      */
     public function getMortgageProviders(
         int $mortgageProviderId = null,
@@ -182,5 +180,54 @@ final class Interest extends AbstractModule
         );
 
         return $this->client->send(new MortgageProvidersRequest($parameter));
+    }
+
+    /**
+     * @param int|null $mortgageProviderId
+     * @param int|null $labelId
+     * @param int|null $productId
+     * @param MortgageType|null $mortgageType
+     * @param AvailableForType|null $availableFor
+     * @param bool|null $nhg
+     * @param float|null $ltv
+     * @param int|null $period
+     * @param b
+     * ool|null $onlyUseIncludedLabels
+     * @param int $page
+     * @param int $limit
+     * @return array
+     * @throws ApiClientInvalidArgumentException
+     * @throws ApiClientResponseException
+     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getLabelProducts(
+        int $mortgageProviderId = null,
+        int $labelId = null,
+        int $productId = null,
+        MortgageType $mortgageType = null,
+        AvailableForType $availableFor = null,
+        bool $nhg = null,
+        float $ltv = null,
+        int $period = null,
+        bool $onlyUseIncludedLabels = null,
+        int $page = 0,
+        int $limit = 25
+    ): array {
+        $parameter = new LabelProductParameter(
+            $mortgageProviderId,
+            $labelId,
+            $productId,
+            $mortgageType,
+            $availableFor,
+            $nhg,
+            $ltv,
+            $period,
+            $onlyUseIncludedLabels,
+            $page,
+            $limit
+        );
+
+        return $this->client->send(new LabelProductRequest($parameter));
     }
 }
