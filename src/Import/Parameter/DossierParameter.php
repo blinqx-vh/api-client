@@ -193,13 +193,11 @@ final class DossierParameter extends AbstractImportParameter
      */
     public function addHouse(HouseParameter $house): DossierParameter
     {
-        if (is_array($this->hasHouses)) {
-            Assertion::lessThan(
-                count($this->hasHouses),
-                self::MAX_HOUSES_PER_DOSSIER,
-                sprintf('A maximum of %s houses per dossier is allowed', self::MAX_HOUSES_PER_DOSSIER)
-            );
-        }
+        Assertion::lessThan(
+            count($this->hasHouses),
+            self::MAX_HOUSES_PER_DOSSIER,
+            sprintf('A maximum of %s houses per dossier is allowed', self::MAX_HOUSES_PER_DOSSIER)
+        );
 
         if (!$this->getScope()->has($house)) {
             $this->getScope()->add($house);
