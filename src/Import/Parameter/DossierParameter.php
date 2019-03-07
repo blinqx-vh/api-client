@@ -39,13 +39,13 @@ final class DossierParameter extends AbstractImportParameter
     /** @var array */
     protected $hasPersons = [];
     /** @var array */
-    protected $hasHouses;
+    protected $hasHouses = [];
     /** @var array */
-    protected $hasExternalDocuments;
+    protected $hasExternalDocuments = [];
     /** @var string */
     protected $hasCorrespondenceAddress;
     /** @var array */
-    private $hasLifeInsurances;
+    private $hasLifeInsurances = [];
     /** @var MaritalStatus|null */
     protected $maritalStatus;
     /** @var ClientStatus|null */
@@ -53,7 +53,7 @@ final class DossierParameter extends AbstractImportParameter
     /** @var string */
     protected $note;
     /** @var array */
-    protected $labels;
+    protected $labels = [];
 
     /**
      * DossierParameter constructor.
