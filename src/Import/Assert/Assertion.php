@@ -58,7 +58,7 @@ final class Assertion extends \Assert\Assertion
     {
         static::string($value, $message, $propertyPath);
 
-        $pattern = '/^\+?[\d-\s]+$/';
+        $pattern = '/^\+?[\d\-\s]+$/';
         if (0 === preg_match($pattern, $value)) {
             $message = sprintf(
                 static::generateMessage($message) ?: 'Value "%s" was expected to be a valid phonenumber.',
