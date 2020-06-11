@@ -58,7 +58,6 @@ final class PersonParameter extends AbstractImportParameter
         $this->setRequiredProperties(
             [
                 'isPrimaryContact',
-                'lastName',
             ]
         );
     }

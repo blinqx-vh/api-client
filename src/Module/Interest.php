@@ -41,6 +41,7 @@ final class Interest extends AbstractModule
      * @param SortDirectionType $sortDirection
      * @param int $page
      * @param int $limit
+     * @param MortgageType|null $repaymentType
      *
      * @return array
      * @throws ApiClientInvalidArgumentException
@@ -60,7 +61,8 @@ final class Interest extends AbstractModule
         SortInterestRatesByType $sortBy,
         SortDirectionType $sortDirection,
         int $page = 0,
-        int $limit = 25
+        int $limit = 25,
+        MortgageType $repaymentType = null
     ): array
     {
         $parameter = new InterestRatesParameter(
@@ -76,7 +78,8 @@ final class Interest extends AbstractModule
             $sortBy,
             $sortDirection,
             $page,
-            $limit
+            $limit,
+            $repaymentType
         );
 
         return $this->client->send(new InterestRatesRequest($parameter));

@@ -5,6 +5,7 @@ namespace Dnhb\ApiClient\Interest\Rate;
 
 use Dnhb\ApiClient\Contract\GetParameterInterface;
 use Dnhb\ApiClient\Data\AvailableForType;
+use Dnhb\ApiClient\Data\MortgageType;
 use Dnhb\ApiClient\Data\SortDirectionType;
 use Dnhb\ApiClient\Data\SortInterestRatesByType;
 use Dnhb\ApiClient\Exception\ApiClientInvalidArgumentException;
@@ -70,6 +71,10 @@ final class InterestRatesParameter implements GetParameterInterface
      */
     private $period;
     /**
+     * @var MortgageType
+     */
+    private $repaymentType;
+    /**
      * @var boolean
      */
     private $onlyUseIncludedLabels;
@@ -106,6 +111,7 @@ final class InterestRatesParameter implements GetParameterInterface
      * @param  SortDirectionType       $sortDirection
      * @param  int                     $page
      * @param  int                     $limit
+     * @param  MortgageType|null       $repaymentType
      *
      * @throws ApiClientInvalidArgumentException
      */
@@ -122,7 +128,8 @@ final class InterestRatesParameter implements GetParameterInterface
         SortInterestRatesByType $sortBy,
         SortDirectionType $sortDirection,
         int $page = 0,
-        int $limit = 25
+        int $limit = 25,
+        MortgageType $repaymentType = null
     ) {
         if (!in_array($availableFor->getValue(), $this->supportedAvailablilityTypes, true)) {
             throw new ApiClientInvalidArgumentException(
@@ -163,6 +170,7 @@ final class InterestRatesParameter implements GetParameterInterface
         $this->loanToValuePercentage = $loanToValuePercentage;
         $this->bestInterestOnly = $bestInterestOnly;
         $this->period = $period;
+        $this->repaymentType = $repaymentType;
         $this->onlyUseIncludedLabels = $onlyUseIncludedLabels;
         $this->sortBy = $sortBy;
         $this->sortDirection = $sortDirection;
@@ -186,6 +194,7 @@ final class InterestRatesParameter implements GetParameterInterface
             'loanToValuePercentage' => $this->loanToValuePercentage,
             'bestInterestOnly'      => $this->bestInterestOnly ? 'true' : 'false',
             'period'                => $this->period,
+            'repaymentType'         => $this->repaymentType ? $this->repaymentType->getValue() : null,
             'onlyUseIncludedLabels' => $this->onlyUseIncludedLabels ? 'true' : 'false',
             'sortBy'                => $this->sortBy->getValue(),
             'sortDirection'         => $this->sortDirection->getValue(),
@@ -280,6 +289,14 @@ final class InterestRatesParameter implements GetParameterInterface
     public function getPeriod(): int
     {
         return $this->period;
+    }
+
+    /**
+     * @return MortgageType|null
+     */
+    public function getRepaymentType()
+    {
+        return $this->repaymentType;
     }
 
     /**
