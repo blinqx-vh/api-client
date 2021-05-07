@@ -18,21 +18,21 @@ use Dnhb\ApiClient\Import\Traits\WithSerialize;
 final class LifeInsuranceParameter extends AbstractImportParameter
 {
     use WithSerialize;
-    /** @var DateTime */
+    /** @var DateTime|null */
     private $startDate;
-    /** @var int */
+    /** @var int|null */
     private $insuranceCompanyId;
-    /** @var float */
+    /** @var float|null */
     private $premium;
-    /** @var PaymentPeriod */
+    /** @var PaymentPeriod|null */
     private $premiumPeriod;
-    /** @var int */
+    /** @var int|null */
     private $premiumDuration;
-    /** @var float */
+    /** @var float|null */
     private $coverage;
-    /** @var LifeInsuranceCoverageType */
+    /** @var LifeInsuranceCoverageType|null */
     private $coverageType;
-    /** @var DateTime */
+    /** @var DateTime|null */
     private $endDate;
 
     /**
@@ -193,5 +193,61 @@ final class LifeInsuranceParameter extends AbstractImportParameter
         $this->endDate = $endDate;
 
         return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getStartDate(): ?DateTime
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getInsuranceCompanyId(): ?int
+    {
+        return $this->insuranceCompanyId;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getPremium(): ?float
+    {
+        return $this->premium;
+    }
+
+    /**
+     * @return PaymentPeriod|null
+     */
+    public function getPremiumPeriod(): ?PaymentPeriod
+    {
+        return $this->premiumPeriod;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPremiumDuration(): ?int
+    {
+        return $this->premiumDuration;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getCoverage(): ?float
+    {
+        return $this->coverage;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getEndDate(): ?DateTime
+    {
+        return $this->endDate;
     }
 }

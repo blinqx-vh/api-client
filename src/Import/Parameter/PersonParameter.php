@@ -24,9 +24,9 @@ final class PersonParameter extends AbstractImportParameter
     /** */
     const TYPE = 'Person';
 
-    /** @var bool */
+    /** @var bool|null */
     protected $isPrimaryContact;
-    /** @var string */
+    /** @var string|null */
     protected $lastName;
     /** @var string|null */
     protected $firstName;
@@ -232,5 +232,77 @@ final class PersonParameter extends AbstractImportParameter
         $this->mobilePhoneNumber = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getInitials(): ?string
+    {
+        return $this->initials;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastNamePrefix(): ?string
+    {
+        return $this->lastNamePrefix;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getDateOfBirth(): ?DateTime
+    {
+        return $this->dateOfBirth;
+    }
+
+    /**
+     * @return Gender|null
+     */
+    public function getGender(): ?Gender
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPrivatePhoneNumber(): ?string
+    {
+        return $this->privatePhoneNumber;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMobilePhoneNumber(): ?string
+    {
+        return $this->mobilePhoneNumber;
     }
 }

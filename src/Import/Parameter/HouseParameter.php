@@ -21,9 +21,9 @@ final class HouseParameter extends AbstractImportParameter
     /** */
     const TYPE = 'House';
 
-    /** @var  string */
+    /** @var  string|null */
     protected $hasAddress;
-    /** @var  float */
+    /** @var  float|null */
     protected $woz;
 
     /**
@@ -107,5 +107,21 @@ final class HouseParameter extends AbstractImportParameter
         $this->woz = $woz;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getHasAddress(): ?string
+    {
+        return $this->hasAddress;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getWoz(): ?float
+    {
+        return $this->woz;
     }
 }

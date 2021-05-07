@@ -21,15 +21,15 @@ final class AddressParameter extends AbstractImportParameter
     /** */
     const TYPE = 'Address';
 
-    /** @var string */
+    /** @var string|null */
     protected $postalCode;
-    /** @var string */
+    /** @var string|null */
     protected $houseNumber;
-    /** @var string */
+    /** @var string|null */
     protected $addition;
-    /** @var string */
+    /** @var string|null */
     protected $street;
-    /** @var string */
+    /** @var string|null */
     protected $city;
 
     /**
@@ -140,5 +140,45 @@ final class AddressParameter extends AbstractImportParameter
         $this->city = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getHouseNumber(): ?string
+    {
+        return $this->houseNumber;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAddition(): ?string
+    {
+        return $this->addition;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCity(): ?string
+    {
+        return $this->city;
     }
 }

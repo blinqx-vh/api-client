@@ -42,7 +42,7 @@ final class DossierParameter extends AbstractImportParameter
     protected $hasHouses = [];
     /** @var array */
     protected $hasExternalDocuments = [];
-    /** @var string */
+    /** @var string|null */
     protected $hasCorrespondenceAddress;
     /** @var array */
     private $hasLifeInsurances = [];
@@ -50,7 +50,7 @@ final class DossierParameter extends AbstractImportParameter
     protected $maritalStatus;
     /** @var ClientStatus|null */
     protected $clientStatus;
-    /** @var string */
+    /** @var string|null */
     protected $note;
     /** @var array */
     protected $labels = [];
@@ -337,5 +337,77 @@ final class DossierParameter extends AbstractImportParameter
         $this->labels[] = $label;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHasPersons(): array
+    {
+        return $this->hasPersons;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHasHouses(): array
+    {
+        return $this->hasHouses;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHasExternalDocuments(): array
+    {
+        return $this->hasExternalDocuments;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getHasCorrespondenceAddress(): ?string
+    {
+        return $this->hasCorrespondenceAddress;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHasLifeInsurances(): array
+    {
+        return $this->hasLifeInsurances;
+    }
+
+    /**
+     * @return MaritalStatus|null
+     */
+    public function getMaritalStatus(): ?MaritalStatus
+    {
+        return $this->maritalStatus;
+    }
+
+    /**
+     * @return ClientStatus|null
+     */
+    public function getClientStatus(): ?ClientStatus
+    {
+        return $this->clientStatus;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLabels(): array
+    {
+        return $this->labels;
     }
 }

@@ -21,9 +21,9 @@ final class ExternalDocumentParameter extends AbstractImportParameter
     /** */
     const TYPE = 'ExternalDocument';
 
-    /** @var string */
+    /** @var string|null */
     protected $url;
-    /** @var string */
+    /** @var string|null */
     protected $description;
 
     /**
@@ -83,5 +83,21 @@ final class ExternalDocumentParameter extends AbstractImportParameter
         $this->description = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
     }
 }
