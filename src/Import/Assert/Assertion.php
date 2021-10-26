@@ -33,7 +33,7 @@ final class Assertion extends \Assert\Assertion
 
         if (0 === preg_match('/^[1-9]{1}\d{3}[A-Z]{2}$/', $value)) {
             $message = sprintf(
-                static::generateMessage($message) ?: 'Value "%s" was expected to be a valid postalcode.',
+                static::generateMessage($message) ?: 'Postal code should be of valid format (1000AA), got "%s"',
                 static::stringify($value)
             );
 
