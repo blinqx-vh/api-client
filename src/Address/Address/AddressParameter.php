@@ -72,7 +72,7 @@ class AddressParameter implements GetParameterInterface
             'street'      => $this->street,
             'city'        => $this->city,
             'postalcode'  => $this->postalcode,
-            'houseNumber' => $this->houseNumber,
+            'housenumber' => $this->houseNumber,
             'page'        => $this->page,
             'limit'       => $this->limit,
         ];
