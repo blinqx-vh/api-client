@@ -5,6 +5,8 @@ namespace Dnhb\ApiClient\Module;
 
 use Dnhb\ApiClient\Address\Address\AddressParameter;
 use Dnhb\ApiClient\Address\Address\AddressRequest;
+use Dnhb\ApiClient\Address\HouseValue\EstimateHouseValueParameter;
+use Dnhb\ApiClient\Address\HouseValue\EstimateHouseValueRequest;
 use Dnhb\ApiClient\Address\Option\AddressOptionParameter;
 use Dnhb\ApiClient\Address\Option\AddressOptionRequest;
 
@@ -27,8 +29,9 @@ final class Address extends AbstractModule
      * @param int|null    $limit
      *
      * @return mixed
-     * @throws \Dnhb\ApiClient\Exception\ApiClientAuthException
+     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
      * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getAddress(
         string $street = null,
@@ -62,8 +65,10 @@ final class Address extends AbstractModule
      * @param int|null    $limit
      *
      * @return mixed
-     * @throws \Dnhb\ApiClient\Exception\ApiClientAuthException
+     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
+     * @throws \Dnhb\ApiClient\Exception\ApiClientInvalidArgumentException
      * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getAddressOptions(
         string $street = null,
@@ -85,5 +90,25 @@ final class Address extends AbstractModule
         );
 
         return $this->client->send(new AddressOptionRequest($addressOptionParameter));
+    }
+
+    /**
+     * Get estimated house value.
+     *
+     * @return mixed
+     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
+     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getEstimateHouseValue(
+        string $postalcode,
+        int $houseNumber,
+        string $houseNumberAddition = null
+    ) {
+        return $this->client->send(new EstimateHouseValueRequest(new EstimateHouseValueParameter(
+            $postalcode,
+            $houseNumber,
+            $houseNumberAddition
+        )));
     }
 }
