@@ -77,18 +77,12 @@ final class AddressTest extends ApiClientTestCase
      */
     private function assertResultSubset(array $result)
     {
-        self::assertArraySubset(
-            [
-                'street'               => 'Snelgersmastraat',
-                'housenumber'          => '3',
-                'housenumber-addition' => 'I',
-                'city'                 => 'Appingedam',
-                'postalcode'           => '9901AA',
-                'municipality'         => 'Appingedam',
-                'built'                => 1900,
-            ],
-            $result,
-            true
-        );
+        self::assertEquals('Snelgersmastraat', $result['street']);
+        self::assertEquals('3', $result['housenumber']);
+        self::assertEquals('I', $result['housenumber-addition']);
+        self::assertEquals('Appingedam', $result['city']);
+        self::assertEquals('9901AA', $result['postalcode']);
+        self::assertEquals('Appingedam', $result['municipality']);
+        self::assertEquals(1900, $result['built']);
     }
 }
