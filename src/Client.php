@@ -71,7 +71,7 @@ class Client
                 $e
             );
         } catch (ConnectException $e) {
-            throw new ApiClientConnectException($e->getMessage(), $e->getRequest(), $e->getResponse(), $e);
+            throw new ApiClientConnectException($e->getMessage(), $e->getRequest(), null, $e);
         }
     }
 
