@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Assert;
 
+use Assert\AssertionFailedException;
+
 /**
  * Class Assertion
  *
@@ -19,13 +21,13 @@ final class Assertion extends \Assert\Assertion
     /**
      * Assert that value is a postal code.
      *
-     * @param mixed                $value
+     * @param mixed $value
      * @param string|callable|null $message
-     * @param string|null          $propertyPath
+     * @param string|null $propertyPath
      *
      * @return bool
      *
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public static function postalcode($value, $message = null, $propertyPath = null)
     {
@@ -46,13 +48,13 @@ final class Assertion extends \Assert\Assertion
     /**
      * Assert that value is a phonenumber.
      *
-     * @param mixed                $value
+     * @param mixed $value
      * @param string|callable|null $message
-     * @param string|null          $propertyPath
+     * @param string|null $propertyPath
      *
      * @return bool
      *
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public static function phonenumber($value, $message = null, $propertyPath = null)
     {

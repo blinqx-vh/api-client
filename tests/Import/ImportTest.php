@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Tests\Import;
 
+use Assert\InvalidArgumentException;
 use DateTime;
 use Dnhb\ApiClient\Data\ClientStatus;
 use Dnhb\ApiClient\Data\Gender;
@@ -23,22 +24,19 @@ use Dnhb\ApiClient\Tests\TestCase\ApiClientTestCase;
  */
 final class ImportTest extends ApiClientTestCase
 {
-    /**
-     *
-     */
-    private static function assertEqualParameter(string $expected, Scope $scope)
+    private static function assertEqualParameter(string $expected, Scope $scope): void
     {
         $importParameterManager = new ImportParameterManager();
         $importParameterManager->addScope($scope);
 
         self::assertEquals(
             $expected,
-            json_encode($importParameterManager->toJsonableObject())
+            json_encode($importParameterManager->toJsonableObject(), JSON_THROW_ON_ERROR)
         );
     }
 
     /** Most basic request possible */
-    public function testRequest()
+    public function testRequest(): void
     {
         $api = $this->getApi('{"data":{"id":1}}');
 
@@ -64,10 +62,7 @@ final class ImportTest extends ApiClientTestCase
         );
     }
 
-    /**
-     *
-     */
-    public function testFullDossier()
+    public function testFullDossier(): void
     {
         $api = $this->getApi('{"data":{"id":1}}');
 
@@ -101,7 +96,10 @@ final class ImportTest extends ApiClientTestCase
             ->setDateOfBirth(new DateTime('01-01-1980'))
             ->setEmail('d.james@example.com')
             ->setPrivatePhoneNumber('0201234567')
-            ->setMobilePhoneNumber('0612345678');
+            ->setMobilePhoneNumber('0612345678')
+            ->setIncome(40000)
+            ->setIncomeAfterAowDate(10000)
+            ->setSmokes(true);
 
         $dossier->createPerson('Partner')
             ->setIsPrimaryContact(false)
@@ -111,7 +109,10 @@ final class ImportTest extends ApiClientTestCase
             ->setLastName('James')
             ->setDateOfBirth(new DateTime('1982-06-02'))
             ->setEmail('t.james@example.com')
-            ->setMobilePhoneNumber('0612345687');
+            ->setMobilePhoneNumber('0612345687')
+            ->setIncome(15000)
+            ->setIncomeAfterAowDate(5000)
+            ->setSmokes(true);
 
         $dossier->createExternalDocument('Ext1')
             ->setUrl('www.example.com/picture_david.jpg')
@@ -132,7 +133,7 @@ final class ImportTest extends ApiClientTestCase
             ->setPaymentPeriod(new PaymentPeriod(PaymentPeriod::MONTH));
 
         self::assertEqualParameter(
-            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant","Partner"],"hasHouses":["House"],"hasExternalDocuments":["Ext1","Ext2"],"hasCorrespondenceAddress":"Address","hasLifeInsurances":["ORV"],"maritalStatus":"MARRIED_PRENUPTIAL_AGREEMENT","clientStatus":"PROSPECT","note":"This is a note","labels":[]},"Address":{"@type":"Address","postalCode":"1000AA","houseNumber":"1","addition":"a","street":"Damrak","city":"Amsterdam"},"House":{"@type":"House","hasAddress":"Address","woz":250000},"Applicant":{"@type":"Person","isPrimaryContact":true,"lastName":"James","firstName":"D\u00f6avid","initials":"D.","email":"d.james@example.com","dateOfBirth":"1980-01-01","gender":"MALE","privatePhoneNumber":"0201234567","mobilePhoneNumber":"0612345678"},"Partner":{"@type":"Person","isPrimaryContact":false,"lastName":"James","firstName":"Tina","initials":"T.","email":"t.james@example.com","dateOfBirth":"1982-06-02","gender":"FEMALE","mobilePhoneNumber":"0612345687"},"Ext1":{"@type":"ExternalDocument","url":"www.example.com\/picture_david.jpg","description":"A picture of david"},"Ext2":{"@type":"ExternalDocument","url":"http:\/\/facebook.com\/profile\/david","description":"Davids facebook"},"ORV":{"@type":"LifeInsurance","startDate":"2010-10-20","insuranceCompanyId":1,"premium":25,"premiumPeriod":"MONTH","premiumDuration":360,"coverage":250000,"coverageType":"CONSTANT","endDate":"2040-10-20"}}}',
+            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant","Partner"],"hasHouses":["House"],"hasExternalDocuments":["Ext1","Ext2"],"hasCorrespondenceAddress":"Address","hasLifeInsurances":["ORV"],"maritalStatus":"MARRIED_PRENUPTIAL_AGREEMENT","clientStatus":"PROSPECT","note":"This is a note","labels":[]},"Address":{"@type":"Address","postalCode":"1000AA","houseNumber":"1","addition":"a","street":"Damrak","city":"Amsterdam"},"House":{"@type":"House","hasAddress":"Address","woz":250000},"Applicant":{"@type":"Person","isPrimaryContact":true,"lastName":"James","firstName":"D\u00f6avid","initials":"D.","email":"d.james@example.com","dateOfBirth":"1980-01-01","gender":"MALE","privatePhoneNumber":"0201234567","mobilePhoneNumber":"0612345678","income":40000,"incomeAfterAowDate":10000,"smokes":true},"Partner":{"@type":"Person","isPrimaryContact":false,"lastName":"James","firstName":"Tina","initials":"T.","email":"t.james@example.com","dateOfBirth":"1982-06-02","gender":"FEMALE","mobilePhoneNumber":"0612345687","income":15000,"incomeAfterAowDate":5000,"smokes":true},"Ext1":{"@type":"ExternalDocument","url":"www.example.com\/picture_david.jpg","description":"A picture of david"},"Ext2":{"@type":"ExternalDocument","url":"http:\/\/facebook.com\/profile\/david","description":"Davids facebook"},"ORV":{"@type":"LifeInsurance","startDate":"2010-10-20","insuranceCompanyId":1,"premium":25,"premiumPeriod":"MONTH","premiumDuration":360,"coverage":250000,"coverageType":"CONSTANT","endDate":"2040-10-20"}}}',
             $scope
         );
 
@@ -144,5 +145,19 @@ final class ImportTest extends ApiClientTestCase
             '/client/v1/import/insert',
             'api_key=key'
         );
+    }
+
+    /** Most basic request possible */
+    public function testRequestFailsOnInvalidIncome(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $scope = new Scope('Scope');
+
+        $dossier = new DossierParameter('DossierParameter', $scope);
+        $dossier->createPerson('ApplicantParameter')
+            ->setIsPrimaryContact(true)
+            ->setLastName('LastName')
+            ->setIncome(-1000);
     }
 }

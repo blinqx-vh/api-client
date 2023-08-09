@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Parameter;
 
+use Assert\AssertionFailedException;
 use DateTime;
 use Dnhb\ApiClient\Data\Gender;
 use Dnhb\ApiClient\Exception\ValueNotSetException;
@@ -44,6 +45,12 @@ final class PersonParameter extends AbstractImportParameter
     protected $privatePhoneNumber;
     /** @var string|null */
     protected $mobilePhoneNumber;
+    /** @var float|null */
+    private $income;
+    /** @var float|null */
+    private $incomeAfterAowDate;
+    /** @var bool|null */
+    private $smokes;
 
     /**
      * PersonParameter constructor.
@@ -111,7 +118,7 @@ final class PersonParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return PersonParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setLastName(string $value): PersonParameter
     {
@@ -162,7 +169,7 @@ final class PersonParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return PersonParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setEmail(string $value): PersonParameter
     {
@@ -177,7 +184,7 @@ final class PersonParameter extends AbstractImportParameter
      * @param DateTime $value
      *
      * @return PersonParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setDateOfBirth(DateTime $value): PersonParameter
     {
@@ -204,7 +211,7 @@ final class PersonParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return PersonParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      * @throws ValueNotSetException
      */
     public function setPrivatePhoneNumber(string $value): PersonParameter
@@ -223,13 +230,38 @@ final class PersonParameter extends AbstractImportParameter
      * @param string $value
      *
      * @return PersonParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setMobilePhoneNumber(string $value): PersonParameter
     {
         Assertion::phonenumber($value, 'Mobile phone number should contain a valid phone number');
 
         $this->mobilePhoneNumber = $value;
+
+        return $this;
+    }
+
+    public function setIncome(float $income): PersonParameter
+    {
+        Assertion::min($income, 0, 'Invalid income supplied (%s). Income cannot be negative.');
+
+        $this->income = $income;
+
+        return $this;
+    }
+
+    public function setIncomeAfterAowDate(float $incomeAfterAowDate): PersonParameter
+    {
+        Assertion::min($incomeAfterAowDate, 0, 'Invalid income supplied (%s). Income cannot be negative.');
+
+        $this->incomeAfterAowDate = $incomeAfterAowDate;
+
+        return $this;
+    }
+
+    public function setSmokes(bool $smokes): PersonParameter
+    {
+        $this->smokes = $smokes;
 
         return $this;
     }
@@ -304,5 +336,29 @@ final class PersonParameter extends AbstractImportParameter
     public function getMobilePhoneNumber(): ?string
     {
         return $this->mobilePhoneNumber;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getIncome(): ?float
+    {
+        return $this->income;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getIncomeAfterAowDate(): ?float
+    {
+        return $this->incomeAfterAowDate;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getSmokes(): ?bool
+    {
+        return $this->smokes;
     }
 }
