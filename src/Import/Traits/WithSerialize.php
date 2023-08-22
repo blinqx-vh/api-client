@@ -3,8 +3,8 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Traits;
 
+use Dnhb\ApiClient\Import\Parameter\ObligationParameter;
 use InvalidArgumentException;
-use MyCLabs\Enum\Enum;
 use stdClass;
 
 /**

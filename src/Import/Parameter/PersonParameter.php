@@ -13,16 +13,10 @@ use Dnhb\ApiClient\Import\Manager\ValidationManager;
 use Dnhb\ApiClient\Import\Scope;
 use Dnhb\ApiClient\Import\Traits\WithSerialize;
 
-/**
- * Class PersonParameter
- *
- * @package Dnhb\ApiClient\Import\Parameter
- */
 final class PersonParameter extends AbstractImportParameter
 {
     use WithSerialize;
 
-    /** */
     const TYPE = 'Person';
 
     /** @var bool|null */
@@ -51,6 +45,8 @@ final class PersonParameter extends AbstractImportParameter
     private $incomeAfterAowDate;
     /** @var bool|null */
     private $smokes;
+    /** @var array|null */
+    protected $hasObligations;
 
     /**
      * PersonParameter constructor.
@@ -264,6 +260,22 @@ final class PersonParameter extends AbstractImportParameter
         $this->smokes = $smokes;
 
         return $this;
+    }
+
+    public function addObligation(ObligationParameter $obligationParameter): PersonParameter
+    {
+        if (!$this->getScope()->has($obligationParameter)) {
+            $this->getScope()->add($obligationParameter);
+        }
+
+        $this->hasObligations[] = $obligationParameter->getIdentifier();
+
+        return $this;
+    }
+
+    public function getHasObligations(): ?array
+    {
+        return $this->hasObligations;
     }
 
     /**
