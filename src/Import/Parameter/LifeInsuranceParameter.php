@@ -44,7 +44,6 @@ final class LifeInsuranceParameter extends AbstractImportParameter
 
         $this->setRequiredProperties(
             [
-                'startDate',
                 'insuranceCompanyId',
                 'premium',
                 'premiumPeriod',
@@ -104,7 +103,7 @@ final class LifeInsuranceParameter extends AbstractImportParameter
      * @param float $premium
      *
      * @return LifeInsuranceParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setPremium(float $premium): LifeInsuranceParameter
     {
@@ -131,7 +130,7 @@ final class LifeInsuranceParameter extends AbstractImportParameter
      * @param int $premiumDuration
      *
      * @return LifeInsuranceParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setPremiumDuration(int $premiumDuration): LifeInsuranceParameter
     {
@@ -147,7 +146,7 @@ final class LifeInsuranceParameter extends AbstractImportParameter
      * @param float $coverage
      *
      * @return LifeInsuranceParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setCoverage(float $coverage): LifeInsuranceParameter
     {
@@ -174,7 +173,7 @@ final class LifeInsuranceParameter extends AbstractImportParameter
      * @param DateTime $endDate
      *
      * @return LifeInsuranceParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setEndDate(DateTime $endDate): LifeInsuranceParameter
     {
