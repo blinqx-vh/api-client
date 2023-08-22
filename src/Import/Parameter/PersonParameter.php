@@ -47,6 +47,8 @@ final class PersonParameter extends AbstractImportParameter
     private $smokes;
     /** @var array|null */
     protected $hasObligations;
+    /** @var array|null */
+    protected $hasAssets;
 
     /**
      * PersonParameter constructor.
@@ -237,6 +239,9 @@ final class PersonParameter extends AbstractImportParameter
         return $this;
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function setIncome(float $income): PersonParameter
     {
         Assertion::min($income, 0, 'Invalid income supplied (%s). Income cannot be negative.');
@@ -246,6 +251,9 @@ final class PersonParameter extends AbstractImportParameter
         return $this;
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function setIncomeAfterAowDate(float $incomeAfterAowDate): PersonParameter
     {
         Assertion::min($incomeAfterAowDate, 0, 'Invalid income supplied (%s). Income cannot be negative.');
@@ -273,9 +281,25 @@ final class PersonParameter extends AbstractImportParameter
         return $this;
     }
 
+    public function addAsset(AssetParameter $assetParameter): PersonParameter
+    {
+        if (!$this->getScope()->has($assetParameter)) {
+            $this->getScope()->add($assetParameter);
+        }
+
+        $this->hasAssets[] = $assetParameter->getIdentifier();
+
+        return $this;
+    }
+
     public function getHasObligations(): ?array
     {
         return $this->hasObligations;
+    }
+
+    public function getHasAssets(): ?array
+    {
+        return $this->hasAssets;
     }
 
     /**

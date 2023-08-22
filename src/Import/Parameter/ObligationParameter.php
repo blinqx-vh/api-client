@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Parameter;
 
+use Assert\AssertionFailedException;
 use Dnhb\ApiClient\Data\CreditType;
 use Dnhb\ApiClient\Import\AbstractImportParameter;
 use Dnhb\ApiClient\Import\Assert\Assertion;
@@ -43,6 +44,9 @@ class ObligationParameter extends AbstractImportParameter
         return $this;
     }
 
+    /**
+     * @throws AssertionFailedException
+     */
     public function setCreditAmount(int $creditAmount): ObligationParameter
     {
         Assertion::min($creditAmount, 0, 'Invalid credit supplied (%s). credit cannot be negative.');

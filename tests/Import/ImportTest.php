@@ -5,6 +5,7 @@ namespace Dnhb\ApiClient\Tests\Import;
 
 use Assert\InvalidArgumentException;
 use DateTime;
+use Dnhb\ApiClient\Data\AccountType;
 use Dnhb\ApiClient\Data\ClientStatus;
 use Dnhb\ApiClient\Data\CreditType;
 use Dnhb\ApiClient\Data\Gender;
@@ -13,6 +14,7 @@ use Dnhb\ApiClient\Data\MaritalStatus;
 use Dnhb\ApiClient\Data\PaymentPeriod;
 use Dnhb\ApiClient\Import\Manager\ImportParameterManager;
 use Dnhb\ApiClient\Import\Parameter\AddressParameter;
+use Dnhb\ApiClient\Import\Parameter\AssetParameter;
 use Dnhb\ApiClient\Import\Parameter\DossierParameter;
 use Dnhb\ApiClient\Import\Parameter\ObligationParameter;
 use Dnhb\ApiClient\Import\Scope;
@@ -144,7 +146,7 @@ final class ImportTest extends ApiClientTestCase
         );
     }
 
-    public function testRequestFailsOnInvalidIncome(): void
+    public function testRequestFailsOnNegativeIncome(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -266,5 +268,116 @@ final class ImportTest extends ApiClientTestCase
             '/client/v1/import/insert',
             'api_key=key'
         );
+    }
+
+    public function testRequestFailsOnNegativeAmountWithObligations(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $scope = new Scope('Scope');
+        $studentLoanObligation = new ObligationParameter('Obligation1', $scope);
+        $studentLoanObligation->setCreditAmount(-5000);
+    }
+
+    public function testRequestWithAssets(): void
+    {
+        $api = $this->getApi('{"data":{"id":1}}');
+
+        $scope = new Scope('Scope');
+
+        $dossier = new DossierParameter('DossierParameter', $scope);
+
+        $dossier->setClientStatus(new ClientStatus(ClientStatus::PROSPECT))
+            ->setMaritalStatus(new MaritalStatus(MaritalStatus::MARRIED_PRENUPTIAL_AGREEMENT))
+            ->setNote('This is a note');
+
+        $address = new AddressParameter('Address', $scope);
+        $address->setPostalCode('1000AA')
+            ->setHouseNumber('1')
+            ->setAddition('a')
+            ->setStreet('Damrak')
+            ->setCity('Amsterdam');
+
+        $dossier->addCorrespondenceAddress($address);
+
+        $dossier->createHouse('House')
+            ->setWoz(250000.00)
+            ->addAddress($address);
+
+        // Assets - applicant
+        $assetOwnResource = new AssetParameter('Asset1', $scope);
+        $assetOwnResource
+            ->setAccountType(new AccountType(AccountType::SPAARLOON_ACCOUNT))
+            ->setResourceAmount(5000)
+            ->setBankId(1);
+
+        $dossier->createPerson('Applicant')
+            ->setIsPrimaryContact(true)
+            ->setGender(new Gender(Gender::MALE))
+            ->setInitials('D.')
+            ->setFirstName('Döavid')
+            ->setLastName('James')
+            ->setDateOfBirth(new DateTime('01-01-1980'))
+            ->setEmail('d.james@example.com')
+            ->setPrivatePhoneNumber('0201234567')
+            ->setMobilePhoneNumber('0612345678')
+            ->setIncome(40000)
+            ->setIncomeAfterAowDate(10000)
+            ->setSmokes(true)
+            ->addAsset($assetOwnResource);
+
+        $dossier->createPerson('Partner')
+            ->setIsPrimaryContact(false)
+            ->setGender(new Gender(Gender::FEMALE))
+            ->setInitials('T.')
+            ->setFirstName('Tina')
+            ->setLastName('James')
+            ->setDateOfBirth(new DateTime('1982-06-02'))
+            ->setEmail('t.james@example.com')
+            ->setMobilePhoneNumber('0612345687')
+            ->setIncome(15000)
+            ->setIncomeAfterAowDate(5000)
+            ->setSmokes(true);
+
+        $dossier->createExternalDocument('Ext1')
+            ->setUrl('www.example.com/picture_david.jpg')
+            ->setDescription('A picture of david');
+
+        $dossier->createExternalDocument('Ext2')
+            ->setUrl('http://facebook.com/profile/david')
+            ->setDescription('Davids facebook');
+
+        $dossier->createLifeInsurance('ORV')
+            ->setStartDate(new DateTime('2010-10-20'))
+            ->setEndDate(new DateTime('2040-10-20'))
+            ->setInsuranceCompanyId(1)
+            ->setCoverage(250000.0)
+            ->setPremium(25.0)
+            ->setPremiumDuration(360)
+            ->setCoverageType(new LifeInsuranceCoverageType(LifeInsuranceCoverageType::CONSTANT))
+            ->setPaymentPeriod(new PaymentPeriod(PaymentPeriod::MONTH));
+
+        self::assertEqualParameter(
+            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant","Partner"],"hasHouses":["House"],"hasExternalDocuments":["Ext1","Ext2"],"hasCorrespondenceAddress":"Address","hasLifeInsurances":["ORV"],"maritalStatus":"MARRIED_PRENUPTIAL_AGREEMENT","clientStatus":"PROSPECT","note":"This is a note","labels":[]},"Address":{"@type":"Address","postalCode":"1000AA","houseNumber":"1","addition":"a","street":"Damrak","city":"Amsterdam"},"House":{"@type":"House","hasAddress":"Address","woz":250000},"Asset1":{"@type":"Asset","accountType":"1","resourceAmount":5000,"bankId":1},"Applicant":{"@type":"Person","isPrimaryContact":true,"lastName":"James","firstName":"D\u00f6avid","initials":"D.","email":"d.james@example.com","dateOfBirth":"1980-01-01","gender":"MALE","privatePhoneNumber":"0201234567","mobilePhoneNumber":"0612345678","income":40000,"incomeAfterAowDate":10000,"smokes":true,"hasAssets":["Asset1"]},"Partner":{"@type":"Person","isPrimaryContact":false,"lastName":"James","firstName":"Tina","initials":"T.","email":"t.james@example.com","dateOfBirth":"1982-06-02","gender":"FEMALE","mobilePhoneNumber":"0612345687","income":15000,"incomeAfterAowDate":5000,"smokes":true},"Ext1":{"@type":"ExternalDocument","url":"www.example.com\/picture_david.jpg","description":"A picture of david"},"Ext2":{"@type":"ExternalDocument","url":"http:\/\/facebook.com\/profile\/david","description":"Davids facebook"},"ORV":{"@type":"LifeInsurance","startDate":"2010-10-20","insuranceCompanyId":1,"premium":25,"premiumPeriod":"MONTH","premiumDuration":360,"coverage":250000,"coverageType":"CONSTANT","endDate":"2040-10-20"}}}',
+            $scope
+        );
+
+        $result = $api->import()->insertDossier($scope);
+        self::assertEquals(1, $result);
+
+        $this->assertRequestInContainer(
+            Method::POST,
+            '/client/v1/import/insert',
+            'api_key=key'
+        );
+    }
+
+    public function testRequestFailsOnNegativeAmountWithAssets(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $scope = new Scope('Scope');
+        $assetOwnResource = new AssetParameter('Asset1', $scope);
+        $assetOwnResource->setResourceAmount(-5000);
     }
 }
