@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Dnhb\ApiClient\Import\Parameter;
 
+use Assert\AssertionFailedException;
 use DateTime;
 use Dnhb\ApiClient\Data\LifeInsuranceCoverageType;
 use Dnhb\ApiClient\Data\PaymentPeriod;
@@ -35,17 +36,8 @@ final class LifeInsuranceParameter extends AbstractImportParameter
     /** @var DateTime|null */
     private $endDate;
 
-    /**
-     *
-     */
     const TYPE = 'LifeInsurance';
 
-    /**
-     * BaseImportParameter constructor.
-     *
-     * @param string $identifier
-     * @param Scope  $scope
-     */
     public function __construct(string $identifier, Scope $scope)
     {
         parent::__construct($identifier, $scope);
@@ -80,7 +72,7 @@ final class LifeInsuranceParameter extends AbstractImportParameter
      * @param DateTime $startDate
      *
      * @return LifeInsuranceParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setStartDate(DateTime $startDate): LifeInsuranceParameter
     {
@@ -97,7 +89,7 @@ final class LifeInsuranceParameter extends AbstractImportParameter
      * @param int $insuranceCompanyId
      *
      * @return LifeInsuranceParameter
-     * @throws \Assert\AssertionFailedException
+     * @throws AssertionFailedException
      */
     public function setInsuranceCompanyId(int $insuranceCompanyId): LifeInsuranceParameter
     {

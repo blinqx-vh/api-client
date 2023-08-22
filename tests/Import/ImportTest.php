@@ -153,10 +153,7 @@ final class ImportTest extends ApiClientTestCase
         $scope = new Scope('Scope');
 
         $dossier = new DossierParameter('DossierParameter', $scope);
-        $dossier->createPerson('ApplicantParameter')
-            ->setIsPrimaryContact(true)
-            ->setLastName('LastName')
-            ->setIncome(-1000);
+        $dossier->createPerson('ApplicantParameter')->setIncome(-1000);
     }
 
     public function testRequestWithObligations(): void
@@ -166,23 +163,6 @@ final class ImportTest extends ApiClientTestCase
         $scope = new Scope('Scope');
 
         $dossier = new DossierParameter('DossierParameter', $scope);
-
-        $dossier->setClientStatus(new ClientStatus(ClientStatus::PROSPECT))
-            ->setMaritalStatus(new MaritalStatus(MaritalStatus::MARRIED_PRENUPTIAL_AGREEMENT))
-            ->setNote('This is a note');
-
-        $address = new AddressParameter('Address', $scope);
-        $address->setPostalCode('1000AA')
-            ->setHouseNumber('1')
-            ->setAddition('a')
-            ->setStreet('Damrak')
-            ->setCity('Amsterdam');
-
-        $dossier->addCorrespondenceAddress($address);
-
-        $dossier->createHouse('House')
-            ->setWoz(250000.00)
-            ->addAddress($address);
 
         // Obligations - applicant
         $studentLoanObligation = new ObligationParameter('Obligation1', $scope);
@@ -208,55 +188,16 @@ final class ImportTest extends ApiClientTestCase
 
         $dossier->createPerson('Applicant')
             ->setIsPrimaryContact(true)
-            ->setGender(new Gender(Gender::MALE))
-            ->setInitials('D.')
-            ->setFirstName('Döavid')
-            ->setLastName('James')
-            ->setDateOfBirth(new DateTime('01-01-1980'))
-            ->setEmail('d.james@example.com')
-            ->setPrivatePhoneNumber('0201234567')
-            ->setMobilePhoneNumber('0612345678')
-            ->setIncome(40000)
-            ->setIncomeAfterAowDate(10000)
-            ->setSmokes(true)
             ->addObligation($studentLoanObligation)
             ->addObligation($privateLeaseObligation);
 
         $dossier->createPerson('Partner')
             ->setIsPrimaryContact(false)
-            ->setGender(new Gender(Gender::FEMALE))
-            ->setInitials('T.')
-            ->setFirstName('Tina')
-            ->setLastName('James')
-            ->setDateOfBirth(new DateTime('1982-06-02'))
-            ->setEmail('t.james@example.com')
-            ->setMobilePhoneNumber('0612345687')
-            ->setIncome(15000)
-            ->setIncomeAfterAowDate(5000)
-            ->setSmokes(true)
             ->addObligation($partnerStudentLoanObligation)
             ->addObligation($partnerPrivateLeaseObligation);
 
-        $dossier->createExternalDocument('Ext1')
-            ->setUrl('www.example.com/picture_david.jpg')
-            ->setDescription('A picture of david');
-
-        $dossier->createExternalDocument('Ext2')
-            ->setUrl('http://facebook.com/profile/david')
-            ->setDescription('Davids facebook');
-
-        $dossier->createLifeInsurance('ORV')
-            ->setStartDate(new DateTime('2010-10-20'))
-            ->setEndDate(new DateTime('2040-10-20'))
-            ->setInsuranceCompanyId(1)
-            ->setCoverage(250000.0)
-            ->setPremium(25.0)
-            ->setPremiumDuration(360)
-            ->setCoverageType(new LifeInsuranceCoverageType(LifeInsuranceCoverageType::CONSTANT))
-            ->setPaymentPeriod(new PaymentPeriod(PaymentPeriod::MONTH));
-
         self::assertEqualParameter(
-            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant","Partner"],"hasHouses":["House"],"hasExternalDocuments":["Ext1","Ext2"],"hasCorrespondenceAddress":"Address","hasLifeInsurances":["ORV"],"maritalStatus":"MARRIED_PRENUPTIAL_AGREEMENT","clientStatus":"PROSPECT","note":"This is a note","labels":[]},"Address":{"@type":"Address","postalCode":"1000AA","houseNumber":"1","addition":"a","street":"Damrak","city":"Amsterdam"},"House":{"@type":"House","hasAddress":"Address","woz":250000},"Obligation1":{"@type":"Obligation","creditType":"5","creditAmount":5000},"Obligation2":{"@type":"Obligation","creditType":"4","creditAmount":500},"Obligation3":{"@type":"Obligation","creditType":"5","creditAmount":2000},"Obligation4":{"@type":"Obligation","creditType":"4","creditAmount":650},"Applicant":{"@type":"Person","isPrimaryContact":true,"lastName":"James","firstName":"D\u00f6avid","initials":"D.","email":"d.james@example.com","dateOfBirth":"1980-01-01","gender":"MALE","privatePhoneNumber":"0201234567","mobilePhoneNumber":"0612345678","income":40000,"incomeAfterAowDate":10000,"smokes":true,"hasObligations":["Obligation1","Obligation2"]},"Partner":{"@type":"Person","isPrimaryContact":false,"lastName":"James","firstName":"Tina","initials":"T.","email":"t.james@example.com","dateOfBirth":"1982-06-02","gender":"FEMALE","mobilePhoneNumber":"0612345687","income":15000,"incomeAfterAowDate":5000,"smokes":true,"hasObligations":["Obligation3","Obligation4"]},"Ext1":{"@type":"ExternalDocument","url":"www.example.com\/picture_david.jpg","description":"A picture of david"},"Ext2":{"@type":"ExternalDocument","url":"http:\/\/facebook.com\/profile\/david","description":"Davids facebook"},"ORV":{"@type":"LifeInsurance","startDate":"2010-10-20","insuranceCompanyId":1,"premium":25,"premiumPeriod":"MONTH","premiumDuration":360,"coverage":250000,"coverageType":"CONSTANT","endDate":"2040-10-20"}}}',
+            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant","Partner"],"hasHouses":[],"hasExternalDocuments":[],"hasLifeInsurances":[],"clientStatus":"PROSPECT","labels":[]},"Obligation1":{"@type":"Obligation","creditType":"5","creditAmount":5000},"Obligation2":{"@type":"Obligation","creditType":"4","creditAmount":500},"Obligation3":{"@type":"Obligation","creditType":"5","creditAmount":2000},"Obligation4":{"@type":"Obligation","creditType":"4","creditAmount":650},"Applicant":{"@type":"Person","isPrimaryContact":true,"hasObligations":["Obligation1","Obligation2"]},"Partner":{"@type":"Person","isPrimaryContact":false,"hasObligations":["Obligation3","Obligation4"]}}}',
             $scope
         );
 
@@ -287,23 +228,6 @@ final class ImportTest extends ApiClientTestCase
 
         $dossier = new DossierParameter('DossierParameter', $scope);
 
-        $dossier->setClientStatus(new ClientStatus(ClientStatus::PROSPECT))
-            ->setMaritalStatus(new MaritalStatus(MaritalStatus::MARRIED_PRENUPTIAL_AGREEMENT))
-            ->setNote('This is a note');
-
-        $address = new AddressParameter('Address', $scope);
-        $address->setPostalCode('1000AA')
-            ->setHouseNumber('1')
-            ->setAddition('a')
-            ->setStreet('Damrak')
-            ->setCity('Amsterdam');
-
-        $dossier->addCorrespondenceAddress($address);
-
-        $dossier->createHouse('House')
-            ->setWoz(250000.00)
-            ->addAddress($address);
-
         // Assets - applicant
         $assetOwnResource = new AssetParameter('Asset1', $scope);
         $assetOwnResource
@@ -313,52 +237,10 @@ final class ImportTest extends ApiClientTestCase
 
         $dossier->createPerson('Applicant')
             ->setIsPrimaryContact(true)
-            ->setGender(new Gender(Gender::MALE))
-            ->setInitials('D.')
-            ->setFirstName('Döavid')
-            ->setLastName('James')
-            ->setDateOfBirth(new DateTime('01-01-1980'))
-            ->setEmail('d.james@example.com')
-            ->setPrivatePhoneNumber('0201234567')
-            ->setMobilePhoneNumber('0612345678')
-            ->setIncome(40000)
-            ->setIncomeAfterAowDate(10000)
-            ->setSmokes(true)
             ->addAsset($assetOwnResource);
 
-        $dossier->createPerson('Partner')
-            ->setIsPrimaryContact(false)
-            ->setGender(new Gender(Gender::FEMALE))
-            ->setInitials('T.')
-            ->setFirstName('Tina')
-            ->setLastName('James')
-            ->setDateOfBirth(new DateTime('1982-06-02'))
-            ->setEmail('t.james@example.com')
-            ->setMobilePhoneNumber('0612345687')
-            ->setIncome(15000)
-            ->setIncomeAfterAowDate(5000)
-            ->setSmokes(true);
-
-        $dossier->createExternalDocument('Ext1')
-            ->setUrl('www.example.com/picture_david.jpg')
-            ->setDescription('A picture of david');
-
-        $dossier->createExternalDocument('Ext2')
-            ->setUrl('http://facebook.com/profile/david')
-            ->setDescription('Davids facebook');
-
-        $dossier->createLifeInsurance('ORV')
-            ->setStartDate(new DateTime('2010-10-20'))
-            ->setEndDate(new DateTime('2040-10-20'))
-            ->setInsuranceCompanyId(1)
-            ->setCoverage(250000.0)
-            ->setPremium(25.0)
-            ->setPremiumDuration(360)
-            ->setCoverageType(new LifeInsuranceCoverageType(LifeInsuranceCoverageType::CONSTANT))
-            ->setPaymentPeriod(new PaymentPeriod(PaymentPeriod::MONTH));
-
         self::assertEqualParameter(
-            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant","Partner"],"hasHouses":["House"],"hasExternalDocuments":["Ext1","Ext2"],"hasCorrespondenceAddress":"Address","hasLifeInsurances":["ORV"],"maritalStatus":"MARRIED_PRENUPTIAL_AGREEMENT","clientStatus":"PROSPECT","note":"This is a note","labels":[]},"Address":{"@type":"Address","postalCode":"1000AA","houseNumber":"1","addition":"a","street":"Damrak","city":"Amsterdam"},"House":{"@type":"House","hasAddress":"Address","woz":250000},"Asset1":{"@type":"Asset","accountType":"1","resourceAmount":5000,"bankId":1},"Applicant":{"@type":"Person","isPrimaryContact":true,"lastName":"James","firstName":"D\u00f6avid","initials":"D.","email":"d.james@example.com","dateOfBirth":"1980-01-01","gender":"MALE","privatePhoneNumber":"0201234567","mobilePhoneNumber":"0612345678","income":40000,"incomeAfterAowDate":10000,"smokes":true,"hasAssets":["Asset1"]},"Partner":{"@type":"Person","isPrimaryContact":false,"lastName":"James","firstName":"Tina","initials":"T.","email":"t.james@example.com","dateOfBirth":"1982-06-02","gender":"FEMALE","mobilePhoneNumber":"0612345687","income":15000,"incomeAfterAowDate":5000,"smokes":true},"Ext1":{"@type":"ExternalDocument","url":"www.example.com\/picture_david.jpg","description":"A picture of david"},"Ext2":{"@type":"ExternalDocument","url":"http:\/\/facebook.com\/profile\/david","description":"Davids facebook"},"ORV":{"@type":"LifeInsurance","startDate":"2010-10-20","insuranceCompanyId":1,"premium":25,"premiumPeriod":"MONTH","premiumDuration":360,"coverage":250000,"coverageType":"CONSTANT","endDate":"2040-10-20"}}}',
+            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant"],"hasHouses":[],"hasExternalDocuments":[],"hasLifeInsurances":[],"clientStatus":"PROSPECT","labels":[]},"Asset1":{"@type":"Asset","accountType":"1","resourceAmount":5000,"bankId":1},"Applicant":{"@type":"Person","isPrimaryContact":true,"hasAssets":["Asset1"]}}}',
             $scope
         );
 
@@ -379,5 +261,54 @@ final class ImportTest extends ApiClientTestCase
         $scope = new Scope('Scope');
         $assetOwnResource = new AssetParameter('Asset1', $scope);
         $assetOwnResource->setResourceAmount(-5000);
+    }
+
+    public function testRequestWithOrv(): void
+    {
+        $api = $this->getApi('{"data":{"id":1}}');
+
+        $scope = new Scope('Scope');
+
+        $dossier = new DossierParameter('DossierParameter', $scope);
+
+        $dossier->createPerson('Applicant')
+            ->setIsPrimaryContact(true)
+            ->setLastName('James');
+
+        $dossier
+            ->createLifeInsurance('ORV')
+            ->setStartDate(new DateTime())
+            ->setEndDate(new DateTime('2040-10-20'))
+            ->setInsuranceCompanyId(1)
+            ->setCoverage(250000.0)
+            ->setPremium(25.0)
+            ->setCoverageType(new LifeInsuranceCoverageType(LifeInsuranceCoverageType::CONSTANT))
+            ->setPaymentPeriod(new PaymentPeriod(PaymentPeriod::MONTH));
+
+        self::assertEqualParameter(
+            '{"Scope":{"DossierParameter":{"@type":"Dossier","hasPersons":["Applicant"],"hasHouses":[],"hasExternalDocuments":[],"hasLifeInsurances":["ORV"],"clientStatus":"PROSPECT","labels":[]},"Applicant":{"@type":"Person","isPrimaryContact":true,"lastName":"James"},"ORV":{"@type":"LifeInsurance","startDate":"2023-08-22","insuranceCompanyId":1,"premium":25,"premiumPeriod":"MONTH","coverage":250000,"coverageType":"CONSTANT","endDate":"2040-10-20"}}}',
+            $scope
+        );
+
+        $result = $api->import()->insertDossier($scope);
+        self::assertEquals(1, $result);
+
+        $this->assertRequestInContainer(
+            Method::POST,
+            '/client/v1/import/insert',
+            'api_key=key'
+        );
+    }
+
+    public function testRequestFailsOnNegativeAmountWithOrv(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $scope = new Scope('Scope');
+
+        $dossier = new DossierParameter('DossierParameter', $scope);
+
+        $dossier->createLifeInsurance('ORV')
+            ->setCoverage(-250000.0);
     }
 }
