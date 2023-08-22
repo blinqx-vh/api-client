@@ -185,23 +185,23 @@ final class ImportTest extends ApiClientTestCase
         // Obligations - applicant
         $studentLoanObligation = new ObligationParameter('Obligation1', $scope);
         $studentLoanObligation
-            ->setCreditType(CreditType::STUDENT_DEBT)
+            ->setCreditType(new CreditType(CreditType::STUDENT_DEBT))
             ->setCreditAmount(5000);
 
         $privateLeaseObligation = new ObligationParameter('Obligation2', $scope);
         $privateLeaseObligation
-            ->setCreditType(CreditType::FINANCIAL_LEASE)
+            ->setCreditType(new CreditType(CreditType::FINANCIAL_LEASE))
             ->setCreditAmount(500);
 
         // Obligations - partner
         $partnerStudentLoanObligation = new ObligationParameter('Obligation3', $scope);
         $partnerStudentLoanObligation
-            ->setCreditType(CreditType::STUDENT_DEBT)
+            ->setCreditType(new CreditType(CreditType::STUDENT_DEBT))
             ->setCreditAmount(2000);
 
         $partnerPrivateLeaseObligation = new ObligationParameter('Obligation4', $scope);
         $partnerPrivateLeaseObligation
-            ->setCreditType(CreditType::FINANCIAL_LEASE)
+            ->setCreditType(new CreditType(CreditType::FINANCIAL_LEASE))
             ->setCreditAmount(650);
 
         $dossier->createPerson('Applicant')
