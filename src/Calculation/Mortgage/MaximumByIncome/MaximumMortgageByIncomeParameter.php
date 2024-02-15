@@ -38,6 +38,8 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
     /** @var float */
     private $personOneStudentLoans;
     /** @var float */
+    private $personOneStudentLoanMonthlyAmount;
+    /** @var float */
     private $personTwoIncome;
     /** @var int */
     private $personTwoAge;
@@ -47,6 +49,8 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
     private $personTwoLoans;
     /** @var float */
     private $personTwoStudentLoans;
+    /** @var float */
+    private $personTwoStudentLoanMonthlyAmount;
 
     /**
      * MaximumMortgageByIncomeParameter constructor.
@@ -90,22 +94,24 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
     public function serialize(): array
     {
         return [
-            'nhg'                     => $this->nhg,
-            'duration'                => $this->mortgageDurationInMonths,
-            'percentage'              => $this->interestPercentage,
-            'rateFixation'            => round($this->fixedRateTermDurationInMonths / 12),
-            'notDeductible'           => $this->notDeductible,
-            'groundRent'              => $this->groundRent,
-            'person[0][income]'       => $this->personOneIncome,
-            'person[0][age]'          => $this->personOneAge,
-            'person[0][alimony]'      => $this->personOneAlimony,
-            'person[0][loans]'        => $this->personOneLoans,
-            'person[0][studentLoans]' => $this->personOneStudentLoans,
-            'person[1][income]'       => $this->personTwoIncome,
-            'person[1][age]'          => $this->personTwoAge,
-            'person[1][alimony]'      => $this->personTwoAlimony,
-            'person[1][loans]'        => $this->personTwoLoans,
-            'person[1][studentLoans]' => $this->personTwoStudentLoans,
+            'nhg'                                 => $this->nhg,
+            'duration'                            => $this->mortgageDurationInMonths,
+            'percentage'                          => $this->interestPercentage,
+            'rateFixation'                        => round($this->fixedRateTermDurationInMonths / 12),
+            'notDeductible'                       => $this->notDeductible,
+            'groundRent'                          => $this->groundRent,
+            'person[0][income]'                   => $this->personOneIncome,
+            'person[0][age]'                      => $this->personOneAge,
+            'person[0][alimony]'                  => $this->personOneAlimony,
+            'person[0][loans]'                    => $this->personOneLoans,
+            'person[0][studentLoans]'             => $this->personOneStudentLoans,
+            'person[0][studentLoanMonthlyAmount]' => $this->personOneStudentLoanMonthlyAmount,
+            'person[1][income]'                   => $this->personTwoIncome,
+            'person[1][age]'                      => $this->personTwoAge,
+            'person[1][alimony]'                  => $this->personTwoAlimony,
+            'person[1][loans]'                    => $this->personTwoLoans,
+            'person[1][studentLoans]'             => $this->personTwoStudentLoans,
+            'person[1][studentLoanMonthlyAmount]' => $this->personTwoStudentLoanMonthlyAmount,
         ];
     }
 
@@ -120,6 +126,7 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
             $this->personOneAlimony = $person->getAlimony();
             $this->personOneLoans = $person->getLoans();
             $this->personOneStudentLoans = $person->getStudentLoans();
+            $this->personOneStudentLoanMonthlyAmount = $person->getStudentLoanMonthlyAmount();
 
             return;
         }
@@ -128,7 +135,7 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
         $this->personTwoAge = $person->getAge();
         $this->personTwoAlimony = $person->getAlimony();
         $this->personTwoLoans = $person->getLoans();
-        $this->personTwoStudentLoans = $person->getStudentLoans();
+        $this->personTwoStudentLoanMonthlyAmount = $person->getStudentLoanMonthlyAmount();
     }
 
     /**
@@ -198,6 +205,14 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
     /**
      * @return float
      */
+    public function getpersonOneStudentLoanMonthlyAmount(): float
+    {
+        return $this->personOneStudentLoan;
+    }
+
+    /**
+     * @return float
+     */
     public function getpersonTwoIncome(): float
     {
         return $this->personTwoIncome;
@@ -234,6 +249,15 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
     {
         return $this->personTwoStudentLoans;
     }
+
+    /**
+     * @return float
+     */
+    public function getpersonTwoStudentLoanMonthlyAmount(): float
+    {
+        return $this->personTwoStudentLoanMonthlyAmount;
+    }
+
 
     /**
      * @return int
