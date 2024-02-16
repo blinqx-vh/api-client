@@ -24,8 +24,8 @@ final class MaximumMortgageByIncomeTest extends ApiClientTestCase
         $api = $this->getApi('{"data":{"result":150000.0,"calculationValues":{"totalReferenceIncome":36000.0}}}');
 
         $persons = [
-            new MaximumMortgageByIncomePersonParameter(35000.0, 18, 0.0, 0.0, 0.0),
-            new MaximumMortgageByIncomePersonParameter(0.0, 18, 0.0, 0.0, 0.0),
+            new MaximumMortgageByIncomePersonParameter(35000.0, 18, 0.0, 0.0, 0.0, 0.0),
+            new MaximumMortgageByIncomePersonParameter(0.0, 18, 0.0, 0.0, 0.0, 0.0),
         ];
 
         $result = $api->calculation()->getMaximumMortgageByIncome(
@@ -57,11 +57,13 @@ final class MaximumMortgageByIncomeTest extends ApiClientTestCase
                     'person%5B0%5D%5Balimony%5D=0',
                     'person%5B0%5D%5Bloans%5D=0',
                     'person%5B0%5D%5BstudentLoans%5D=0',
+                    'person%5B0%5D%5BstudentLoanMonthlyAmount%5D=0',
                     'person%5B1%5D%5Bincome%5D=0',
                     'person%5B1%5D%5Bage%5D=18',
                     'person%5B1%5D%5Balimony%5D=0',
                     'person%5B1%5D%5Bloans%5D=0',
                     'person%5B1%5D%5BstudentLoans%5D=0',
+                    'person%5B1%5D%5BstudentLoanMonthlyAmount%5D=0',
                     'api_key=key',
                 ]
             )

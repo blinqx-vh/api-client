@@ -277,7 +277,7 @@ final class ImportTest extends ApiClientTestCase
 
         $dossier
             ->createLifeInsurance('ORV')
-            ->setStartDate(new DateTime())
+            ->setStartDate(new DateTime('2023-08-22'))
             ->setEndDate(new DateTime('2040-10-20'))
             ->setInsuranceCompanyId(1)
             ->setCoverage(250000.0)

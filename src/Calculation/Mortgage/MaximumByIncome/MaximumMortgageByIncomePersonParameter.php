@@ -20,6 +20,8 @@ final class MaximumMortgageByIncomePersonParameter
     private $loans;
     /** @var float */
     private $studentLoans;
+    /** @var float */
+    private $studentLoanMonthlyAmount;
 
     /**
      * MaximumMortgageByIncomePersonParameter constructor.
@@ -35,13 +37,15 @@ final class MaximumMortgageByIncomePersonParameter
         int $age,
         float $yearlyAlimony,
         float $loans,
-        float $studentLoans
+        float $studentLoans,
+        float $studentLoanMonthlyAmount
     ) {
         $this->income = $yearlyIncome;
         $this->age = $age;
         $this->alimony = $yearlyAlimony;
         $this->loans = $loans;
         $this->studentLoans = $studentLoans;
+        $this->studentLoanMonthlyAmount = $studentLoanMonthlyAmount;
     }
 
     /**
@@ -82,5 +86,13 @@ final class MaximumMortgageByIncomePersonParameter
     public function getStudentLoans(): float
     {
         return $this->studentLoans;
+    }
+
+    /**
+     * @return float
+     */
+    public function getStudentLoanMonthlyAmount(): float
+    {
+        return $this->studentLoanMonthlyAmount;
     }
 }
