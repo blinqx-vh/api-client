@@ -135,6 +135,7 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
         $this->personTwoAge = $person->getAge();
         $this->personTwoAlimony = $person->getAlimony();
         $this->personTwoLoans = $person->getLoans();
+        $this->personTwoStudentLoans = $person->getStudentLoans();
         $this->personTwoStudentLoanMonthlyAmount = $person->getStudentLoanMonthlyAmount();
     }
 

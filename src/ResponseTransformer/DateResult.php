@@ -31,7 +31,8 @@ final class DateResult implements TransformerInterface
             (string) $response['data']['result']
         );
 
-        if(!DateTime::getLastErrors()['warning_count'] === 0){
+        $errors = DateTime::getLastErrors();
+        if($errors && isset($errors['warning_count']) && $errors['warning_count'] !== 0){
             throw new ApiClientResponseException('The used date is not valid');
         }
 

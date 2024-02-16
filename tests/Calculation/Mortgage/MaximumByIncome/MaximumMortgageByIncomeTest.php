@@ -57,11 +57,13 @@ final class MaximumMortgageByIncomeTest extends ApiClientTestCase
                     'person%5B0%5D%5Balimony%5D=0',
                     'person%5B0%5D%5Bloans%5D=0',
                     'person%5B0%5D%5BstudentLoans%5D=0',
+                    'person%5B0%5D%5BstudentLoanMonthlyAmount%5D=0',
                     'person%5B1%5D%5Bincome%5D=0',
                     'person%5B1%5D%5Bage%5D=18',
                     'person%5B1%5D%5Balimony%5D=0',
                     'person%5B1%5D%5Bloans%5D=0',
                     'person%5B1%5D%5BstudentLoans%5D=0',
+                    'person%5B1%5D%5BstudentLoanMonthlyAmount%5D=0',
                     'api_key=key',
                 ]
             )
