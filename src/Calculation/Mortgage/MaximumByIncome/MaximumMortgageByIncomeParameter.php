@@ -208,7 +208,7 @@ final class MaximumMortgageByIncomeParameter implements GetParameterInterface
      */
     public function getpersonOneStudentLoanMonthlyAmount(): float
     {
-        return $this->personOneStudentLoan;
+        return $this->personOneStudentLoanMonthlyAmount;
     }
 
     /**
