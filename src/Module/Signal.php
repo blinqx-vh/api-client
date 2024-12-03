@@ -5,12 +5,13 @@ namespace Dnhb\ApiClient\Module;
 
 use DateTime;
 use Dnhb\ApiClient\Data\ForSaleStatus;
+use Dnhb\ApiClient\Exception\ApiClientConnectException;
+use Dnhb\ApiClient\Exception\ApiClientInvalidArgumentException;
+use Dnhb\ApiClient\Exception\ApiClientResponseException;
 use Dnhb\ApiClient\Signal\ClientDossierCompleteness\ClientDossierCompletenessSignalParameter;
 use Dnhb\ApiClient\Signal\ClientDossierCompleteness\ClientDossierCompletenessSignalRequest;
 use Dnhb\ApiClient\Signal\Continuation\ContinuationSignalParameter;
 use Dnhb\ApiClient\Signal\Continuation\ContinuationSignalRequest;
-use Dnhb\ApiClient\Signal\ForRent\ForRentSignalParameter;
-use Dnhb\ApiClient\Signal\ForRent\ForRentSignalRequest;
 use Dnhb\ApiClient\Signal\ForSale\ForSaleSignalParameter;
 use Dnhb\ApiClient\Signal\ForSale\ForSaleSignalRequest;
 use Dnhb\ApiClient\Signal\LifeInsurance\LifeInsuranceSignalParameter;
@@ -21,6 +22,7 @@ use Dnhb\ApiClient\Signal\RiskClassReduction\RiskClassReductionSignalParameter;
 use Dnhb\ApiClient\Signal\RiskClassReduction\RiskClassReductionSignalRequest;
 use Dnhb\ApiClient\Signal\SavingsBasedMortgageRefinancing\SavingsBasedMortgageRefinancingSignalParameter;
 use Dnhb\ApiClient\Signal\SavingsBasedMortgageRefinancing\SavingsBasedMortgageRefinancingSignalRequest;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class Signal
@@ -35,9 +37,9 @@ final class Signal extends AbstractModule
      *
      * @return array
      *
-     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiClientConnectException
+     * @throws ApiClientResponseException
+     * @throws GuzzleException
      */
     public function getRefinancingSignals(
         DateTime $newSince = null,
@@ -62,9 +64,9 @@ final class Signal extends AbstractModule
      *
      * @return array
      *
-     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiClientConnectException
+     * @throws ApiClientResponseException
+     * @throws GuzzleException
      */
     public function getConinuationSignals(
         DateTime $newSince = null,
@@ -90,9 +92,9 @@ final class Signal extends AbstractModule
      *
      * @return array
      *
-     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiClientConnectException
+     * @throws ApiClientResponseException
+     * @throws GuzzleException
      */
     public function getLifeInsurenaceSignals(
         DateTime $newSince = null,
@@ -118,9 +120,9 @@ final class Signal extends AbstractModule
      *
      * @return array
      *
-     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiClientConnectException
+     * @throws ApiClientResponseException
+     * @throws GuzzleException
      */
     public function getSavingsBasedMortgageRefinancingSignals(
         DateTime $newSince = null,
@@ -139,37 +141,6 @@ final class Signal extends AbstractModule
     }
 
     /**
-     * @param bool|null $offline
-     * @param DateTime|null $newSince
-     * @param DateTime|null $updatedSince
-     * @param int $page
-     * @param int $limit
-     *
-     * @return array
-     *
-     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function getForRentSignals(
-        bool $offline = null,
-        DateTime $newSince = null,
-        DateTime $updatedSince = null,
-        int $page = 0,
-        int $limit = 25
-    ): array
-    {
-        $parameter = new ForRentSignalParameter(
-            $offline,
-            $newSince,
-            $updatedSince,
-            $page,
-            $limit
-        );
-        return $this->client->send(new ForRentSignalRequest($parameter));
-    }
-
-    /**
      * @param ForSaleStatus|null $status
      * @param DateTime|null $newSince
      * @param DateTime|null $updatedSince
@@ -178,10 +149,10 @@ final class Signal extends AbstractModule
      *
      * @return array
      *
-     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientInvalidArgumentException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiClientConnectException
+     * @throws ApiClientInvalidArgumentException
+     * @throws ApiClientResponseException
+     * @throws GuzzleException
      */
     public function getForSaleSignals(
         ForSaleStatus $status = null,
@@ -209,9 +180,9 @@ final class Signal extends AbstractModule
      *
      * @return array
      *
-     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiClientConnectException
+     * @throws ApiClientResponseException
+     * @throws GuzzleException
      */
     public function getRiskClassReductionSignals(
         DateTime $newSince = null,
@@ -237,9 +208,9 @@ final class Signal extends AbstractModule
      *
      * @return array
      *
-     * @throws \Dnhb\ApiClient\Exception\ApiClientConnectException
-     * @throws \Dnhb\ApiClient\Exception\ApiClientResponseException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiClientConnectException
+     * @throws ApiClientResponseException
+     * @throws GuzzleException
      */
     public function getClientDossierCompletenessSignals(
         DateTime $newSince = null,
