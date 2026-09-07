@@ -1,0 +1,36 @@
+# CI translated from bitbucket-pipelines.yml by MM Guide, 2026-09-04.
+#
+# Source: composer:2.5
+# Source steps: composer validate, composer install, phpunit.
+#
+# Source image was `composer:2.5`, pinned here via setup-php tools for fidelity.
+#
+# Bitbucket's `default:` pipeline runs on every push to any branch, so `on: push`
+# carries no branch filter here. Safe because this repository has single-digit
+# branches; the same shape would be wrong on monorepo.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: composer and phpunit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        with:
+          php-version: '8.2'
+          extensions: bcmath, intl
+          tools: composer:2.5
+          coverage: none
+      - run: composer validate --no-check-publish
+      - run: composer install --no-interaction --no-progress
+      - run: vendor/bin/phpunit --log-junit ./test-reports/junit.xml
